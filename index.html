@@ -1,115 +1,67 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CÔNG TY CỔ PHẦN CHỨNG KHOÁN DOBN</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f6f9;
-    }
-    header {
-      background: #0b3d91;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .hero {
-      padding: 60px 30px;
-      text-align: center;
-      background: linear-gradient(to right, #0b3d91, #1e90ff);
-      color: white;
-    }
-    .container {
-      padding: 30px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: center;
-    }
-    footer {
-      background: #0b3d91;
-      color: white;
-      text-align: center;
-      padding: 15px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOBN Securities</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+<!-- HEADER -->
 <header>
   <h2>DOBN Securities</h2>
   <nav>
-    <a href="#">Trang chủ</a>
-    <a href="#">Danh mục</a>
-    <a href="#">Phân tích</a>
-    <a href="#">Liên hệ</a>
+    <a href="index.html">Homepage</a>
+    <a href="client.html">Client's Information</a>
+    <a href="asset.html">Asset Management</a>
+    <a href="planning.html">Financial Planning</a>
+    <a href="portfolio.html">Portfolio Management</a>
   </nav>
 </header>
 
-<section class="hero">
+<!-- HERO -->
+<div class="hero">
   <h1>Chào mừng đến với Công ty Chứng khoán DOBN</h1>
   <p>Dedication - Opportunity - Beyond - Network</p>
-</section>
+</div>
 
+<!-- CONTENT -->
 <div class="container">
+
+  <!-- DANH MỤC -->
   <div class="card">
     <h3>Danh mục đề xuất</h3>
     <table>
       <tr>
         <th>Mã CP</th>
         <th>Ngành</th>
-        <th>Giá</th>
-        <th>Khuyến nghị</th>
       </tr>
       <tr>
         <td>FPT</td>
         <td>Công nghệ</td>
-        <td>120,000</td>
-        <td>Mua</td>
       </tr>
       <tr>
         <td>HPG</td>
         <td>Thép</td>
-        <td>28,000</td>
-        <td>Nắm giữ</td>
       </tr>
       <tr>
         <td>MWG</td>
         <td>Bán lẻ</td>
-        <td>55,000</td>
-        <td>Mua</td>
+      </tr>
       <tr>
         <td>BID</td>
         <td>Ngân hàng</td>
-        <td>55,000</td>
-        <td>Mua</td>  
+      </tr>
+      <tr>
+        <td>REE</td>
+        <td>Năng lượng</td>
       </tr>
     </table>
   </div>
 
+  <!-- CHIẾN LƯỢC -->
   <div class="card">
     <h3>Chiến lược đầu tư</h3>
     <p>- Tập trung cổ phiếu tăng trưởng (Growth)</p>
@@ -117,45 +69,57 @@
     <p>- Đa dạng hóa danh mục</p>
   </div>
 
+  <!-- THÔNG TIN -->
   <div class="card">
     <h3>Thông tin chung</h3>
     <p>Trường Đại học Ngân hàng Thành phố Hồ Chí Minh</p>
     <p>Investment Portfolio Management_L04</p>
     <p>GVHD: TS. Nguyễn Duy Linh</p>
     <p>Nhóm 01 - Investment Portfolio Management</p>
-      <divclass = "card">
-     <h3>BAN LÃNH ĐẠO</h3>
+  </div>
+
+  <!-- THÀNH VIÊN -->
+  <div class="card">
+    <h3>THÀNH VIÊN NHÓM</h3>
     <table>
       <tr>
         <th>Họ và tên</th>
         <th>MSSV</th>
-        <th>Chức vụ</th>
       </tr>
       <tr>
         <td>Ngô Quốc Bảo</td>
         <td>050611230112</td>
-        <td>Chủ tịch Hội đồng Quản trị</td>
       </tr>
       <tr>
         <td>Trần Ngọc Khánh</td>
         <td>05061123</td>
-        <td>Giám đóc điều hành</td>
+      </tr>
+      <tr>
+        <td>Nguyễn Hải Duy</td>
+        <td>05061123</td>
+      </tr>
+      <tr>
+        <td>Đinh Mai Thảo</td>
+        <td>050611231138</td>
       </tr>
       <tr>
         <td>Đoàn Mai Linh</td>
         <td>05061123</td>
-        <td>Giám đốc nhân sự</td>
-        <td>Mua</td>
+      </tr>
       <tr>
-        <td>Đinh Mai Thảo</td>
-        <td>050611231138</td>
-        <td>Giám đốc kinh doanh</td>
-        <td>Mua</td>  
+        <td>Lý Mỹ Châu</td>
+        <td>05061123</td>
+      </tr>
+      <tr>
+        <td>Trần Ngọc Trân Châu</td>
+        <td>05061123</td>
       </tr>
     </table>
   </div>
+
 </div>
 
+<!-- FOOTER -->
 <footer>
   <p>© 2026 DOBN Securities - Demo Website</p>
 </footer>
