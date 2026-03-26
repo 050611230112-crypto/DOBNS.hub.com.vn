@@ -5,37 +5,36 @@ body{
 }
 
 /* HEADER */
-header img{
-  height:60px;
-  margin-right:10px;
-  background:white;
-  padding:5px;
-  border-radius:8px;
+header{
+  background:#0b3d91;
+  color:white;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-/* LOGO + TITLE */
-header div{
+
+/* LOGO */
+.logo{
   display:flex;
   align-items:center;
 }
 
-header img{
-  height:60px;
+.logo img{
+  height:45px;
   margin-right:10px;
 }
-
 /* MENU */
 nav a{
   color:white;
   margin-left:20px;
   text-decoration:none;
   font-weight:bold;
-  position:relative;
 }
 
-nav a:hover{
-  color:#1e90ff;
+nav a.active{
+  border-bottom:3px solid #1e90ff;
 }
-
 /* ACTIVE MENU */
 nav a.active::after{
   content:'';
