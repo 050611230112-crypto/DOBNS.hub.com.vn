@@ -1,4 +1,8 @@
-body{margin:0;font-family:Arial;background:#f4f6f9}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
 
 /* HEADER */
 header{
@@ -20,17 +24,16 @@ header{
   height:45px;
   margin-right:10px;
 }
+
 /* MENU */
 nav a{
   color:white;
   margin-left:20px;
   text-decoration:none;
   font-weight:bold;
+  position:relative; /* QUAN TRỌNG */
 }
 
-nav a.active{
-  border-bottom:3px solid #1e90ff;
-}
 /* ACTIVE MENU */
 nav a.active::after{
   content:'';
@@ -40,6 +43,10 @@ nav a.active::after{
   background:#1e90ff;
   left:0;
   bottom:-5px;
+}
+
+nav a:hover{
+  color:#1e90ff;
 }
 
 /* HERO */
@@ -105,11 +112,6 @@ th,td{
   transform:scale(1.05);
 }
 
-/* IMAGE chung */
-img{
-  max-width:100%;
-}
-
 /* FOOTER */
 footer{
   background:#0b3d91;
@@ -117,4 +119,3 @@ footer{
   text-align:center;
   padding:15px;
 }
-
