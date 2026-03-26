@@ -1,133 +1,121 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DOBN Securities</title>
-<link rel="stylesheet" href="style.css">
-</head>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
 
-<body>
+/* HEADER */
+header{
+  background:#0b3d91;
+  color:white;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-<!-- HEADER -->
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <h2>DOBN Securities</h2>
-  </div>
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+}
 
-  <nav>
-    <a href="index.html" class="active">Homepage</a>
-    <a href="client.html">Client's Information</a>
-    <a href="asset.html">Asset Management</a>
-    <a href="planning.html">Financial Planning</a>
-    <a href="portfolio.html">Portfolio Management</a>
-  </nav>
-</header>
+.logo img{
+  height:45px;
+  margin-right:10px;
+}
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Chào mừng đến với Công ty Chứng khoán DOBN</h1>
-  <p>Dedication - Opportunity - Beyond - Network</p>
-</div>
+/* MENU */
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+  font-weight:bold;
+  position:relative; /* QUAN TRỌNG */
+}
 
-<!-- CONTENT -->
-<div class="container">
-  <div class="card">
-  <h3>Hình ảnh hoạt động</h3>
+/* ACTIVE MENU */
+nav a.active::after{
+  content:'';
+  position:absolute;
+  width:100%;
+  height:3px;
+  background:#1e90ff;
+  left:0;
+  bottom:-5px;
+}
 
-  <div class="gallery">
-    <img src="imanage2.jpg">
-    <img src="imanage3.jpg">
-    <img src="imanage4.jpg">
-  </div>
+nav a:hover{
+  color:#1e90ff;
+}
 
-</div>
-  <!-- DANH MỤC -->
-  <div class="card">
-    <h3>Danh mục đề xuất</h3>
-    <table>
-      <tr>
-        <th>Mã CP</th>
-        <th>Ngành</th>
-      </tr>
-      <tr>
-        <td>FPT</td>
-        <td>Công nghệ</td>
-      </tr>
-      <tr>
-        <td>HPG</td>
-        <td>Thép</td>
-      </tr>
-      <tr>
-        <td>MWG</td>
-        <td>Bán lẻ</td>
-      </tr>
-      <tr>
-        <td>BID</td>
-        <td>Ngân hàng</td>
-      </tr>
-      <tr>
-        <td>REE</td>
-        <td>Năng lượng</td>
-      </tr>
-    </table>
-  </div>
+/* HERO */
+.hero{
+  padding:60px;
+  text-align:center;
+  background:linear-gradient(to right,#0b3d91,#1e90ff);
+  color:white;
+}
 
+/* CONTAINER */
+.container{
+  padding:30px;
+}
 
-  <!-- THÔNG TIN -->
-  <div class="card">
-    <h3>Thông tin chung</h3>
-    <p>Trường Đại học Ngân hàng Thành phố Hồ Chí Minh</p>
-    <p>Investment Portfolio Management_L04</p>
-    <p>GVHD: TS. Nguyễn Duy Linh</p>
-  </div>
+/* CARD */
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
 
-  <!-- THÀNH VIÊN -->
-  <div class="card">
-    <h3>THÀNH VIÊN NHÓM 01</h3>
-    <table>
-      <tr>
-        <th>Họ và tên</th>
-        <th>MSSV</th>
-      </tr>
-      <tr>
-        <td>Ngô Quốc Bảo</td>
-        <td>050611230112</td>
-      </tr>
-      <tr>
-        <td>Trần Ngọc Khánh</td>
-        <td>05061123</td>
-      </tr>
-      <tr>
-        <td>Nguyễn Hải Duy</td>
-        <td>05061123</td>
-      </tr>
-      <tr>
-        <td>Đinh Mai Thảo</td>
-        <td>050611231138</td>
-      </tr>
-      <tr>
-        <td>Đoàn Mai Linh</td>
-        <td>05061123</td>
-      </tr>
-      <tr>
-        <td>Lý Mỹ Châu</td>
-        <td>05061123</td>
-      </tr>
-      <tr>
-        <td>Huỳnh Ngọc Trân Châu</td>
-        <td>05061123</td>
-      </tr>
-    </table>
-  </div>
+.card:hover{
+  transform:translateY(-5px);
+}
 
-</div>
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 DOBN Securities - Demo Website</p>
-</footer>
+th{
+  background:#0b3d91;
+  color:white;
+}
 
-</body>
-</html>
+th,td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:center;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
+  background:#0b3d91;
+  color:white;
+  text-align:center;
+  padding:15px;
+}
