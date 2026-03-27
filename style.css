@@ -27,13 +27,13 @@ header{
   display:flex;
   align-items:center;
   background:white;
-  padding:8px 15px;
+  padding:10px 15px;
   border-radius:12px;
 }
 
 .logo img{
   height:60px;
-  margin-right:20px;
+  margin-right:0px;
 }
 
 /* MENU */
