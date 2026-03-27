@@ -35,7 +35,9 @@ header{
   height:60px;
   margin-right:0px;
 }
-
+.logo{
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
 /* MENU */
 nav a{
   color:white;
