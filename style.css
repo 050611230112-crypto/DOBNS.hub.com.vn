@@ -13,15 +13,6 @@ body{
   box-shadow:0 5px 20px rgba(0,0,0,0.15);
 }
 
-/* HEADER */
-header{
-  background:#1d3f8f;
-  color:white;
-  padding:15px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
 
 /* LOGO */
 .logo{
