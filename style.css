@@ -77,8 +77,8 @@ nav a.active::after{
   align-items: center;
   text-align: center;
   color: #fff;
-  overflow: hidden; /* thêm dòng này */
 }
+
 /* lớp phủ tối */
 .hero::before {
   content: "";
@@ -109,7 +109,6 @@ nav a.active::after{
   color: #fff;
   text-shadow: 0 3px 10px rgba(0,0,0,0.8);
 }
-
 /* CONTAINER */
 .container{
   padding:30px;
