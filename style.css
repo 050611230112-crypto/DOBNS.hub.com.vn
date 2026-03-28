@@ -84,6 +84,7 @@ nav a:hover{
   position: relative;
   inset: 0;
   background: rgba(0,0,0,0.7);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
+  z-index: 0;
 }
 
 /* text */
