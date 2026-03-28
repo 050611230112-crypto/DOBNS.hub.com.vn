@@ -85,32 +85,26 @@ nav a:hover{
   position: relative;
   inset: 0;
   background: rgba(0,0,0,0.7);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
-  z-index: 0;
+  z-index: 1;
 }
 
 /* text */
+.hero-content {
+  position: relative;
+  z-index: 2; /* cao hơn overlay */
+}
+
+/* TEXT */
 .hero h1,
 .hero h2 {
-  color: white; /* đảm bảo trắng 100% */
-  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  color: white;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
 }
 
 .hero h1 {
   font-size: 40px;
   margin: 0;
   font-weight: 700;
-}
-
-.hero h2 {
-  font-weight: 400;
-  margin-bottom: 10px;
-}
-
-/* content nổi lên */
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
 
 /* CONTAINER */
 .container{
