@@ -71,35 +71,23 @@ nav a:hover{
   background: url('imanage2.jpg') center/cover no-repeat;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4); /* lớp tối */
-}
-
-.hero-content {
-  position: relative;
-  color: white;
-  z-index: 1;
-}
-
-/* TEXT */
-.hero h2{
-  font-weight:300;
-  margin-bottom:10px;
-}
-
-.hero h1{
-  font-size:32px;
-  margin:0;
-}
-/* HERO */
 .hero{
   padding:80px 20px;
   text-align:center;
   color:white;
   position:relative;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.5); /* tăng lên nếu vẫn sáng */
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
 }
 
 /* CONTAINER */
