@@ -65,45 +65,50 @@ nav a:hover{
   color:#4da6ff;
 }
 /* HERO */
-.hero{
+.hero {
   position: relative;
-  height: 400px; /* tăng lên cho đúng hero */
+  height: 400px; /* tăng chiều cao cho đúng hero */
+  text-align: center;
+  color: #fff;
+
+  background: url('imanage2.jpg') center/cover no-repeat;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  text-align: center;
-  color: white;
-
-  background: url('imanage2.jpg') center/cover no-repeat;
 }
 
 /* overlay */
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.4);
-}
-
-/* content nổi lên */
-.hero-content{
-  position:relative;
-  z-index:1;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3); /* giảm từ 0.5 -> 0.3 cho đỡ tối */
 }
 
 /* text */
-.hero h1{
-  font-size:36px;
-  margin:0;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+.hero h1,
+.hero h2 {
+  color: #fff; /* đảm bảo trắng 100% */
+  text-shadow: 0 3px 10px rgba(0,0,0,0.8);
 }
 
-.hero h2{
-  font-weight:400;
-  margin-bottom:10px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+.hero h1 {
+  font-size: 40px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.hero h2 {
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+/* content nổi lên */
+.hero-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* CONTAINER */
