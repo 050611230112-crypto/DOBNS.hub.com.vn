@@ -67,7 +67,7 @@ nav a:hover{
 /* HERO */
 .hero {
   position: relative;
-  height: 150px;
+  height: 100px;
   background: url('imanage2.jpg') center/cover no-repeat;
 }
 
