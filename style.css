@@ -108,7 +108,7 @@ nav a:hover{
 /* content nổi lên */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 /* CONTAINER */
