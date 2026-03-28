@@ -1,0 +1,37 @@
+<header>
+  <div class="logo">
+    <img src="logo.png">
+    <span>DOBN Securities</span>
+  </div>
+
+  <nav>
+    <a href="index.html">Homepage</a>
+    <a href="client.html">Client's Information</a>
+    <a href="asset.html">Asset Management</a>
+    <a href="stock.html">Stock</a>
+    <a href="planning.html">Financial Planning</a>
+    <a href="portfolio.html">Portfolio Management</a>
+  </nav>
+</header>
+<div class="container">
+
+  <div class="card">
+    <button onclick="showStock('FPT')">FPT</button>
+    <button onclick="showStock('HPG')">HPG</button>
+    <button onclick="showStock('BID')">BID</button>
+    <button onclick="showStock('MWG')">MWG</button>
+    <button onclick="showStock('REE')">REE</button>
+  </div>
+
+  <div id="stockContent" class="card">
+    Chọn cổ phiếu để xem phân tích
+  </div>
+
+</div>
+
+<script>
+function showStock(code){
+  document.getElementById('stockContent').innerHTML =
+    "<h3>"+code+"</h3><p>Price / Dividend / Fundamental Analysis</p>";
+}
+</script>
