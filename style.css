@@ -1,26 +1,28 @@
+/* RESET */
 body{
   margin:0;
-  font-family:Arial;
+  font-family: Arial, sans-serif;
   background:#e9edf5;
 }
 
-/* HEADER */
-header{
-  background:white; /* đổi sang trắng */
-  color:#1d3f8f;
-  padding:15px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-/* WRAPPER tạo khung bo góc */
+/* WRAPPER */
 .wrapper{
   width:95%;
   margin:20px auto;
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 5px 20px rgba(0,0,0,0.15);
+  background:white;
+}
+
+/* HEADER */
+header{
+  background:white;
+  color:#1d3f8f;
+  padding:15px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 /* LOGO */
@@ -34,19 +36,22 @@ header{
 }
 
 .logo img{
-  height:120px;
-  margin-right:0px;
-  transform:scale(1.6); /* phóng to logo */
+  height:70px; /* giảm lại cho cân */
+  transform:scale(1.2);
 }
 
 /* MENU */
 nav a{
-  color:#1d3f8f; /* màu xanh của header cũ */
+  color:#1d3f8f;
   margin-left:20px;
   text-decoration:none;
-  font-size:18px;
+  font-size:16px;
   font-weight:bold;
   position:relative;
+}
+
+nav a:hover{
+  color:#4da6ff;
 }
 
 /* ACTIVE MENU */
@@ -60,55 +65,53 @@ nav a.active::after{
   bottom:-5px;
 }
 
-/* HOVER */
-nav a:hover{
-  color:#4da6ff;
-}
 /* HERO */
-/* HERO */
-.hero {
-  position: relative;
-  height: 400px;
+.hero{
+  position:relative;
+  height:400px;
 
-  background: url('imanage2.jpg') center/cover no-repeat;
+  background:url('imanage2.jpg') center/cover no-repeat;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+
+  overflow:hidden;
 }
 
-/* lớp phủ tối */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 0; /* nằm dưới text */
+/* OVERLAY (fix lỗi chính ở đây) */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:1;
 }
 
-/* content (chữ) */
-.hero-content {
-  position: relative;
-  z-index: 1; /* nằm trên overlay */
+/* HERO CONTENT */
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:20px 30px;
+  border-radius:12px;
 }
 
 /* TEXT */
-.hero h1 {
-  font-size: 40px;
-  margin: 0;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+.hero h1{
+  font-size:40px;
+  margin:0;
+  font-weight:700;
+  text-shadow:0 3px 10px rgba(0,0,0,0.8);
 }
 
-.hero h2 {
-  font-weight: 400;
-  margin-bottom: 10px;
-  color: #fff;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+.hero h2{
+  font-weight:400;
+  margin-bottom:10px;
+  text-shadow:0 3px 10px rgba(0,0,0,0.8);
 }
+
 /* CONTAINER */
 .container{
   padding:30px;
@@ -163,6 +166,8 @@ th,td{
 .gallery img:hover{
   transform:scale(1.05);
 }
+
+/* BUTTON */
 button{
   padding:10px 15px;
   margin:5px;
@@ -176,6 +181,7 @@ button{
 button:hover{
   background:#0b3d91;
 }
+
 /* FOOTER */
 footer{
   background:#0b3d91;
