@@ -2,11 +2,11 @@
 .hero{
   padding:80px 20px;
   text-align:center;
-  background:linear-gradient(to right,#0b3d91,#1e90ff);
+
   color:white;
   position:relative;
 }
-
+  background:linear-gradient(to right,#0b3d91,#1e90ff);
 /* hiệu ứng sóng */
 .hero::before{
   content:'';
