@@ -68,7 +68,7 @@ nav a:hover{
 .hero {
   position: relative;
   height: 400px;
-  background: url('your-image.jpg') center/cover no-repeat;
+  background: url('imanage2.jpg') center/cover no-repeat;
 }
 
 .hero::before {
