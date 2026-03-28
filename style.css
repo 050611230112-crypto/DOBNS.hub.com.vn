@@ -90,7 +90,7 @@ nav a:hover{
 .hero h1,
 .hero h2 {
   color: white; /* đảm bảo trắng 100% */
-  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
 .hero h1 {
