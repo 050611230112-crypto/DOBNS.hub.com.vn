@@ -69,7 +69,6 @@ nav a:hover{
   position: relative;
   height: 300px; /* tăng chiều cao cho đúng hero */
   text-align: center;
-  color: #fff;
 
   background: url('imanage2.jpg') center/cover no-repeat;
 
@@ -84,7 +83,7 @@ nav a:hover{
   content: "";
   position: relative;
   inset: 0;
-  background: rgba(0,0,0,0.4);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
+  background: rgba(0,0,0,0.7);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
 }
 
 /* text */
