@@ -69,6 +69,7 @@ nav a.active::after{
 .hero{
   position:relative;
   height:400px;
+   text-align:center;
 
   background:url('imanage2.jpg') center/cover no-repeat;
 
@@ -79,6 +80,7 @@ nav a.active::after{
   color:white;
 
   overflow:hidden;
+  
 }
 
 /* OVERLAY (fix lỗi chính ở đây) */
@@ -105,7 +107,6 @@ nav a.active::after{
   font-weight:700;
   text-shadow:0 3px 10px rgba(0,0,0,0.8);
 }
-
 .hero h2{
   font-weight:400;
   margin-bottom:10px;
