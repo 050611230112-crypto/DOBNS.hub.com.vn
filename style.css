@@ -65,47 +65,50 @@ nav a:hover{
   color:#4da6ff;
 }
 /* HERO */
+/* HERO */
 .hero {
   position: relative;
-  height: 320px; /* tăng chiều cao cho đúng hero */
-  text-align: center;
+  height: 400px;
 
   background: url('imanage2.jpg') center/cover no-repeat;
 
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  text-align: center;
+  color: #fff;
 }
 
-/* overlay */
+/* lớp phủ tối */
 .hero::before {
   content: "";
-  position: relative;
+  position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0; /* nằm dưới text */
 }
 
-/* text */
+/* content (chữ) */
 .hero-content {
   position: relative;
-  z-index: 2; /* cao hơn overlay */
+  z-index: 1; /* nằm trên overlay */
 }
 
 /* TEXT */
-.hero h1,
-.hero h2 {
-  color: white;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-}
-
 .hero h1 {
   font-size: 40px;
   margin: 0;
   font-weight: 700;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+}
 
+.hero h2 {
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+}
 /* CONTAINER */
 .container{
   padding:30px;
