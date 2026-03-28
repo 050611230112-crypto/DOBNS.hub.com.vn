@@ -94,6 +94,13 @@ nav a:hover{
   font-size:32px;
   margin:0;
 }
+/* HERO */
+.hero{
+  padding:80px 20px;
+  text-align:center;
+  color:white;
+  position:relative;
+}
 
 /* CONTAINER */
 .container{
