@@ -64,20 +64,24 @@ nav a.active::after{
 nav a:hover{
   color:#4da6ff;
 }
-
 /* HERO */
 .hero {
+  position: relative;
   height: 400px;
-  background-image: url('imanage2.jpg');
-  background-size: cover;        /* tự zoom để phủ full */
-  background-position: center;   /* canh giữa ảnh */
-  background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  background: url('your-image.jpg') center/cover no-repeat;
 }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4); /* lớp tối */
+}
+
+.hero-content {
+  position: relative;
+  color: white;
+  z-index: 1;
 }
 
 /* TEXT */
