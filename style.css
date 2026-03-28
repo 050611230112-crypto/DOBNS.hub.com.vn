@@ -67,7 +67,7 @@ nav a:hover{
 
 /* HERO */
 .hero{
-  padding:60px;
+  padding:80px 20px;
   text-align:center;
   background:linear-gradient(to right,#0b3d91,#1e90ff);
   color:white;
