@@ -71,7 +71,6 @@ nav a.active::after{
   position: relative;
   height: 400px; /* tăng chiều cao cho đúng hero */
   text-align: center;
-  color: #fff;
 
   background: url('imanage2.jpg') center/cover no-repeat;
 
@@ -92,7 +91,7 @@ nav a.active::after{
 /* text */
 .hero h1,
 .hero h2 {
-  color: #fff; /* đảm bảo trắng 100% */
+  color: yellow; /* đảm bảo trắng 100% */
   text-shadow: 0 3px 10px rgba(0,0,0,0.8);
 }
 
