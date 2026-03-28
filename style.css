@@ -24,22 +24,96 @@ header{
 .logo img{
   height:70px; /* chỉnh size dễ nhìn */
 }
-
-/* MENU */
-nav a{
-  color:#1d3f8f;      /* màu xanh header cũ */
-  margin-left:20px;
-  text-decoration:none;
-  font-weight:bold;
+/* HERO */
+.hero{
+  padding:60px 20px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#0b3d91,#1e90ff);
+  position:relative;
 }
 
-/* HOVER */
-nav a:hover{
-  color:#4da6ff;
+/* hiệu ứng sóng */
+.hero::before{
+  content:'';
+  position:absolute;
+  bottom:-40px;
+  left:0;
+  width:100%;
+  height:100px;
+  background:radial-gradient(circle at 50% -20%, rgba(255,255,255,0.3), transparent 70%);
 }
 
-/* ACTIVE */
-nav a.active{
-  border-bottom:3px solid #1d3f8f;
-  padding-bottom:5px;
+/* TEXT */
+.hero h2{
+  font-weight:300;
+  margin-bottom:10px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin:0;
+}
+
+/* CONTAINER */
+.container{
+  padding:30px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#0b3d91;
+  color:white;
+}
+
+th, td{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  text-align:center;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
+  background:#0b3d91;
+  color:white;
+  text-align:center;
+  padding:15px;
 }
