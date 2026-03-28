@@ -73,6 +73,7 @@ nav a.active::after{
   background: url('imanage2.jpg') center/cover no-repeat;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
