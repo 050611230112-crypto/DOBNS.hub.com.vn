@@ -67,7 +67,7 @@ nav a:hover{
 /* HERO */
 .hero {
   position: relative;
-  height: 150px; /* tăng chiều cao cho đúng hero */
+  height: 200px; /* tăng chiều cao cho đúng hero */
   text-align: center;
   color: #fff;
 
@@ -84,14 +84,14 @@ nav a:hover{
   content: "";
   position: relative;
   inset: 0;
-  background: rgba(0,0,0,0.2);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
+  background: rgba(0,0,0,0.3);/* giảm từ 0.5 -> 0.3 cho đỡ tối */
 }
 
 /* text */
 .hero h1,
 .hero h2 {
   color: white; /* đảm bảo trắng 100% */
-  text-shadow: 0 3px 10px rgba(0,0,0,0.9);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.7);
 }
 
 .hero h1 {
