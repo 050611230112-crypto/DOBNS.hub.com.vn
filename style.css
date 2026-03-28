@@ -84,7 +84,10 @@ nav a:hover{
   inset:0;
   background: rgba(0,0,0,0.5); /* tăng lên nếu vẫn sáng */
 }
-
+.hero h1,
+.hero h2{
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
 .hero-content{
   position:relative;
   z-index:1;
