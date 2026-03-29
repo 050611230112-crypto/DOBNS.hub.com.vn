@@ -70,7 +70,7 @@ nav a.active::after{
   position: relative;
   height: 400px; /* tăng chiều cao cho đúng hero */
   text-align: center;
-  color: yellow;
+  color: white;
 
   background: url('imanage2.jpg') center/cover no-repeat;
 
