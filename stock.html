@@ -33,8 +33,6 @@
     <button onclick="loadStock('BID')">BID</button>
     <button onclick="loadStock('MWG')">MWG</button>
     <button onclick="loadStock('REE')">REE</button>
-    <button onclick="loadStock('Stocks Price')">Stock Price</button>
-    <button onclick="loadStock('Dividend History')">Dividend History</button>
   </div>
 
   <!-- CONTENT -->
@@ -52,6 +50,11 @@ async function loadStock(code){
 
   const stock = data[code];
 
+  if(!stock){
+    document.getElementById('stockContent').innerHTML = "<h3>Không có dữ liệu</h3>";
+    return;
+  }
+
   let html = `
   <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
     <img src="${stock.logo}" style="height:70px;">
@@ -60,52 +63,51 @@ async function loadStock(code){
       <p><b>Ngành:</b> ${stock.industry}</p>
     </div>
   </div>
-    <h3>Market Position</h3>
-    <p>${stock.market_position.description}</p>
 
-    <h3>Financial</h3>
-    <p>${stock.financial.summary}</p>
+  <h3>Market Position</h3>
+  <p>${stock.market_position.description}</p>
 
-    <table>
-      <tr>
-        <th>Year</th><th>Profit</th><th>ROE</th><th>ROA</th><th>EPS</th>
-      </tr>
+  <h3>Financial Overview</h3>
+  <p>${stock.financial.summary}</p>
+
+  <table>
+    <tr>
+      <th>Year</th><th>Profit</th><th>ROE</th><th>ROA</th><th>EPS</th>
+    </tr>
   `;
 
   stock.financial.profit_table.forEach(p => {
     html += `
-      <tr>
-        <td>${p.year}</td>
-        <td>${p.lnst}</td>
-        <td>${p.roe}</td>
-        <td>${p.roa}</td>
-        <td>${p.eps}</td>
-      </tr>
+    <tr>
+      <td>${p.year}</td>
+      <td>${p.lnst}</td>
+      <td>${p.roe}</td>
+      <td>${p.roa}</td>
+      <td>${p.eps}</td>
+    </tr>
     `;
   });
 
-  html += `
-    </table>
+  html += `</table>
 
-    <h3>Business Model</h3>
-    <p>${stock.business_model}</p>
+  <h3>Business Model</h3>
+  <p>${stock.business_model}</p>
 
-    <h3>Risk (${stock.risk.level})</h3>
-    <ul>
+  <h3>Risk (${stock.risk.level})</h3>
+  <ul>
   `;
 
   stock.risk.details.forEach(r => {
     html += `<li>${r}</li>`;
   });
 
-  html += `
-    </ul>
+  html += `</ul>
 
-    <h3>Outlook</h3>
-    <p>${stock.outlook.conclusion}</p>
+  <h3>Outlook</h3>
+  <p>${stock.outlook.conclusion}</p>
 
-    <h3>Time Horizon</h3>
-    <p>${stock.time_horizon.type}</p>
+  <h3>Time Horizon</h3>
+  <p>${stock.time_horizon.type}</p>
   `;
 
   document.getElementById('stockContent').innerHTML = html;
