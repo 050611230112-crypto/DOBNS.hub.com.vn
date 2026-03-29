@@ -1,0 +1,61 @@
+{
+  "FPT": {
+    "name": "FPT Corporation",
+    "industry": "Công nghệ thông tin",
+
+    "market_position": {
+      "description": "FPT là doanh nghiệp công nghệ - viễn thông hàng đầu Việt Nam, hoạt động tại hơn 30 quốc gia, tập trung vào AI, Big Data, Cloud và chuyển đổi số.",
+      "market_cap_2025": "163,000 tỷ VNĐ",
+      "revenue_2025": "58,880 tỷ VNĐ"
+    },
+
+    "business_model": "FPT hoạt động với 3 trụ cột: Công nghệ, Viễn thông và Giáo dục. Mô hình này giúp đa dạng hóa doanh thu và giảm rủi ro.",
+
+    "financial": {
+      "revenue_growth": [
+        {"year": 2020, "value": "7.6%"},
+        {"year": 2021, "value": "19.5%"},
+        {"year": 2022, "value": "23.4%"},
+        {"year": 2023, "value": "19.6%"},
+        {"year": 2024, "value": "19.4%"},
+        {"year": 2025, "value": "15.8%"}
+      ],
+
+      "profit_table": [
+        {"year": 2020, "lnst": "4,423,745", "roe": "19.99%", "roa": "9.42%", "eps": "4,744"},
+        {"year": 2021, "lnst": "5,349,301", "roe": "21.67%", "roa": "9.09%", "eps": "5,065"},
+        {"year": 2022, "lnst": "6,491,343", "roe": "22.71%", "roa": "10.08%", "eps": "5,252"},
+        {"year": 2023, "lnst": "7,788,050", "roe": "23.39%", "roa": "11.55%", "eps": "5,471"},
+        {"year": 2024, "lnst": "9,427,423", "roe": "23.93%", "roa": "11.88%", "eps": "5,704"},
+        {"year": 2025, "lnst": "11,225,523", "roe": "23.58%", "roa": "11.71%", "eps": "6,017"}
+      ],
+
+      "summary": "Tăng trưởng doanh thu và lợi nhuận duy trì 15-20%/năm, ROE >20%, EPS tăng đều → cổ phiếu tăng trưởng bền vững."
+    },
+
+    "risk": {
+      "level": "Medium",
+      "details": [
+        "Phụ thuộc thị trường quốc tế (Mỹ, EU, Nhật)",
+        "Rủi ro tỷ giá",
+        "Cạnh tranh công nghệ toàn cầu",
+        "Yêu cầu đầu tư R&D liên tục"
+      ]
+    },
+
+    "outlook": {
+      "growth_driver": "Xu hướng chuyển đổi số toàn cầu (~16%)",
+      "support": "Chính phủ Việt Nam thúc đẩy chuyển đổi số",
+      "conclusion": "Triển vọng tăng trưởng trung và dài hạn tích cực"
+    },
+
+    "time_horizon": {
+      "type": "Medium - Long term",
+      "reasons": [
+        "Tăng trưởng bền vững",
+        "Hưởng lợi từ chuyển đổi số",
+        "EPS tăng đều"
+      ]
+    }
+  }
+}
