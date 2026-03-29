@@ -5,12 +5,12 @@
     "industry": "Công nghệ thông tin",
 
     "market_position": {
-      "description": "FPT là doanh nghiệp công nghệ - viễn thông hàng đầu Việt Nam, hoạt động tại hơn 30 quốc gia, tập trung vào AI, Big Data, Cloud và chuyển đổi số.",
+      "description": "FPT là doanh nghiệp công nghệ- viễn thông hàng đầu Việt Nam, tiên phong trong lĩnh vực chuyển đổi số, tư vấn, cung cấp và triển khai các giải pháp công nghệ-viễn thông. Doanh nghiệp có mặt tại 30 quốc gia và vùng lãnh thổ trên toàn cầu hiện thực hóa chiến lược, mục tiêu phát triển kinh doanh dựa trên các công nghệ cốt lõi như trí tuệ nhân tạo, phân tích dữ liệu lớn, điện toán đám mây, tự động hóa, kết nối vạn vật,... Trong năm 2025, giá trị vốn hóa của FPT ước tính đạt gần 163.000 tỷ VNĐ và tổng doanh thu trong năm 2025  là 58.880 TỶ VNĐ",
       "market_cap_2025": "163,000 tỷ VNĐ",
       "revenue_2025": "58,880 tỷ VNĐ"
     },
 
-    "business_model": "FPT hoạt động với 3 trụ cột: Công nghệ, Viễn thông và Giáo dục. Mô hình này giúp đa dạng hóa doanh thu và giảm rủi ro.",
+    "business_model": "FPT hoạt động với mô hình ba trụ cột gồm Công nghệ, Viễn thông và Giáo dục. Với mô hình này, doanh nghiệp tạo ra một hệ sinh thái hỗ trợ lẫn nhau giữa Công nghệ, Viễn thông và Giáo dục. Điều này góp phần đa dạng hóa nguồn thu, giảm rủi ro phụ thuộc vào một lĩnh vực duy nhất. Đối với ngành Giáo dục, FPT nỗ lực đào tạo nguồn nhân lực chất lượng cao phục vụ thị trường và cho chiến lược phát triển dài hạn của mình.",
 
     "financial": {
       "revenue_growth": [
@@ -31,7 +31,10 @@
         {"year": 2025, "lnst": "11,225,523", "roe": "23.58%", "roa": "11.71%", "eps": "6,017"}
       ],
 
-      "summary": "Tăng trưởng doanh thu và lợi nhuận duy trì 15-20%/năm, ROE >20%, EPS tăng đều → cổ phiếu tăng trưởng bền vững."
+      "summary": "Tăng trưởng duy trì ở mức 2 con số qua nhiều năm, trung bình ở mức 15-20%. Là một trong những cổ phiếu tăng trưởng ổn định, chất lượng cao. 
+https://bctn2024.fpt.com/vi
+Lợi nhuận sau thuế giai đoạn 2020–2025 tăng trưởng từ 4.423.745 lên 11.225.523, tương ứng tốc độ tăng trưởng kép bình quân khoảng 20%/năm. Đồng thời, ROE duy trì ở mức cao trên 20% và ROA cải thiện liên tục, phản ánh hiệu quả sử dụng vốn và tài sản ngày càng tốt. EPS tăng đều qua các năm cho thấy tăng trưởng lợi nhuận mang tính bền vững và không phụ thuộc vào các yếu tố bất thường. https://finance.vietstock.vn/FPT-ctcp-fpt.htm
+."
     },
 
     "risk": {
