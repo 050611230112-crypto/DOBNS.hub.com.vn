@@ -36,7 +36,7 @@ header{
 }
 
 .logo img{
-  height:80px; /* giảm lại cho cân */
+  height:90px; /* giảm lại cho cân */
   transform:scale(1.6);
 }
 
