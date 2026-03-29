@@ -31,10 +31,7 @@
         {"year": 2025, "lnst": "11,225,523", "roe": "23.58%", "roa": "11.71%", "eps": "6,017"}
       ],
 
-      "summary": "Tăng trưởng duy trì ở mức 2 con số qua nhiều năm, trung bình ở mức 15-20%. Là một trong những cổ phiếu tăng trưởng ổn định, chất lượng cao. 
-https://bctn2024.fpt.com/vi
-Lợi nhuận sau thuế giai đoạn 2020–2025 tăng trưởng từ 4.423.745 lên 11.225.523, tương ứng tốc độ tăng trưởng kép bình quân khoảng 20%/năm. Đồng thời, ROE duy trì ở mức cao trên 20% và ROA cải thiện liên tục, phản ánh hiệu quả sử dụng vốn và tài sản ngày càng tốt. EPS tăng đều qua các năm cho thấy tăng trưởng lợi nhuận mang tính bền vững và không phụ thuộc vào các yếu tố bất thường. https://finance.vietstock.vn/FPT-ctcp-fpt.htm
-."
+      "summary": "Tăng trưởng duy trì ở mức 2 con số qua nhiều năm, trung bình ở mức 15-20%. Là một trong những cổ phiếu tăng trưởng ổn định, chất lượng cao. Lợi nhuận sau thuế giai đoạn 2020–2025 tăng trưởng từ 4.423.745 lên 11.225.523, tương ứng tốc độ tăng trưởng kép bình quân khoảng 20%/năm. Đồng thời, ROE duy trì ở mức cao trên 20% và ROA cải thiện liên tục, phản ánh hiệu quả sử dụng vốn và tài sản ngày càng tốt. EPS tăng đều qua các năm cho thấy tăng trưởng lợi nhuận mang tính bền vững và không phụ thuộc vào các yếu tố bất thường.",
     },
 
     "risk": {
@@ -47,11 +44,11 @@ Lợi nhuận sau thuế giai đoạn 2020–2025 tăng trưởng từ 4.423.745
       ]
     },
 
-    "outlook": {
+    "outlook": {[
       "growth_driver": "Xu hướng chuyển đổi số toàn cầu (~16%)",
       "support": "Chính phủ Việt Nam thúc đẩy chuyển đổi số",
       "conclusion": "Triển vọng tăng trưởng trung và dài hạn tích cực"
-    },
+      ]},
 
     "time_horizon": {
       "type": "Medium - Long term",
