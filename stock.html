@@ -53,12 +53,13 @@ async function loadStock(code){
   const stock = data[code];
 
   let html = `
-    <div style="display:flex; align-items:center; gap:15px;">
-    <img src="${stock.logo}" style="height:60px;">
+  <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+    <img src="${stock.logo}" style="height:70px;">
     <div>
-    <h2>${stock.name}</h2>
-    <p><b>Ngành:</b> ${stock.industry}</p>
-
+      <h2>${stock.name}</h2>
+      <p><b>Ngành:</b> ${stock.industry}</p>
+    </div>
+  </div>
     <h3>Market Position</h3>
     <p>${stock.market_position.description}</p>
     <p><b>Market Cap:</b> ${stock.market_position.market_cap_2025}</p>
