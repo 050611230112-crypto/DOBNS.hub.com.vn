@@ -81,11 +81,12 @@ nav a.active::after{
 }
 
 /* overlay */
-.hero: {
+.hero:: before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.3); /* giảm từ 0.5 -> 0.3 cho đỡ tối */
+  background: rgba(0,0,0,0.3);
+  z-index: 1;/* giảm từ 0.5 -> 0.3 cho đỡ tối */
 }
 
 /* text */
@@ -109,7 +110,7 @@ nav a.active::after{
 /* content nổi lên */
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 /* CONTAINER */
 .container{
