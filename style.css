@@ -32,12 +32,11 @@ header{
   background:white;
   padding:5px 10px;
   border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
 
 .logo img{
   height:80px; /* giảm lại cho cân */
-  transform:scale(1.6);
+  transform:scale(1.5);
 }
 
 /* MENU */
