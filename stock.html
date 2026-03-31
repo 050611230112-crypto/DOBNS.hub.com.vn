@@ -67,53 +67,67 @@ async function loadStock(code){
 
   <h3>Market Position</h3>
   <p>${stock.market_position.description}</p>
+  <p><i>Nguồn: ${stock.market_position.source}</i></p>
+
+  <h3>Business Model</h3>
+  <p>${stock.business_model.description}</p>
 
   <h3>Financial Overview</h3>
-  <p>${stock.financial.summary}</p>
+  <p>${stock.financial.analysis}</p>
+  <p>${stock.financial.detailed_comment}</p>
 
   <table>
     <tr>
-      <th>Year</th><th>Profit</th><th>ROE</th><th>ROA</th><th>EPS</th>
+      <th>Year</th>
+      <th>Revenue Growth</th>
+      <th>Profit</th>
+      <th>ROE</th>
+      <th>ROA</th>
+      <th>EPS</th>
     </tr>
   `;
 
-  stock.financial.profit_table.forEach(p => {
+  stock.financial.table.forEach(p => {
     html += `
     <tr>
       <td>${p.year}</td>
+      <td>${p.revenue_growth}</td>
       <td>${p.lnst}</td>
-      <td>${p.roe}</td>
-      <td>${p.roa}</td>
+      <td>${p.roea}</td>
+      <td>${p.roaa}</td>
       <td>${p.eps}</td>
     </tr>
     `;
   });
 
   html += `</table>
+  <p><i>Nguồn: ${stock.financial.data_source}</i></p>
 
-  <h3>Business Model</h3>
-  <p>${stock.business_model}</p>
+  <h3>${stock.risk.title}</h3>
+  <p><b>Mức độ:</b> ${stock.risk.level}</p>
+  <p>${stock.risk.description}</p>
 
-  <h3>Risk (${stock.risk.level})</h3>
+  <h3>${stock.outlook.title}</h3>
+  <p>${stock.outlook.description}</p>
+
+  <h3>${stock.time_horizon.title}</h3>
+  <p>${stock.time_horizon.description}</p>
+
   <ul>
   `;
 
-  stock.risk.details.forEach(r => {
+  stock.time_horizon.reasons.forEach(r => {
     html += `<li>${r}</li>`;
   });
 
-  html += `</ul>
+  html += `
+  </ul>
 
-  <h3>Outlook</h3>
-  <p>${stock.outlook.conclusion}</p>
-
-  <h3>Time Horizon</h3>
-  <p>${stock.time_horizon.type}</p>
+  <p><a href="${stock.time_horizon.dividend_history}" target="_blank">
+    Xem lịch sử cổ tức
+  </a></p>
   `;
 
   document.getElementById('stockContent').innerHTML = html;
 }
 </script>
-
-</body>
-</html>
