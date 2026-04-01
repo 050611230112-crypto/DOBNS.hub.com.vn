@@ -27,10 +27,19 @@
 
 <div class="container">
 
+  <!-- BUTTON -->
+  <div class="card">
+    <button onclick="setMode('price')">Price</button>
+    <button onclick="setMode('dividend')">Dividend</button>
+    <button onclick="setMode('return')">Return</button>
+    <button onclick="setMode('expected')">Expected Return</button>
+    <button onclick="setMode('cov')">Covariance</button>
+    <button onclick="setMode('corr')">Correlation</button>
+  </div>
+
   <!-- SELECT YEAR -->
   <div class="card">
-    <h3>Chọn năm</h3>
-    <select id="yearSelect" onchange="filterData()">
+    <select id="yearSelect" onchange="renderTable()">
       <option value="2021">2021</option>
       <option value="2022">2022</option>
       <option value="2023">2023</option>
@@ -39,8 +48,8 @@
 
   <!-- TABLE -->
   <div class="card">
-    <h3>Dividend History</h3>
-    <table id="dataTable">
+    <h3 id="title">Data</h3>
+    <table>
       <thead>
         <tr>
           <th>Date</th>
@@ -51,7 +60,7 @@
           <th>REE</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="tableBody"></tbody>
     </table>
   </div>
 
@@ -59,47 +68,99 @@
 
 <script>
 
-// 🔥 DATA (bạn thêm tiếp vào đây)
+// 🔥 MODE
+let currentMode = "price";
+
+// 🔥 SAMPLE DATA (bạn thay bằng data thật)
 const data = [
-  {date:"1/1/2021", FPT:0, HPG:0, BID:0, MWG:0, REE:0},
-  {date:"1/5/2021", FPT:0, HPG:500, BID:0, MWG:0, REE:0},
-  {date:"1/6/2021", FPT:1000, HPG:0, BID:0, MWG:0, REE:0},
-  {date:"1/8/2021", FPT:1000, HPG:0, BID:0, MWG:500, REE:0},
-  {date:"1/12/2021", FPT:0, HPG:0, BID:200, MWG:0, REE:0},
+  {date:"1/1/2021", FPT:100, HPG:50, BID:40, MWG:60, REE:30},
+  {date:"1/2/2021", FPT:110, HPG:55, BID:42, MWG:65, REE:32},
+  {date:"1/3/2021", FPT:120, HPG:60, BID:45, MWG:70, REE:35},
 
-  {date:"1/4/2022", FPT:0, HPG:0, BID:0, MWG:0, REE:1000},
-  {date:"1/6/2022", FPT:0, HPG:500, BID:0, MWG:1000, REE:0},
-  {date:"1/8/2022", FPT:1000, HPG:0, BID:0, MWG:0, REE:0},
+  {date:"1/1/2022", FPT:130, HPG:65, BID:50, MWG:75, REE:40},
+  {date:"1/2/2022", FPT:135, HPG:70, BID:52, MWG:80, REE:42},
 
-  {date:"1/1/2023", FPT:0, HPG:0, BID:0, MWG:0, REE:0}
+  {date:"1/1/2023", FPT:140, HPG:75, BID:55, MWG:85, REE:45}
 ];
 
-// 🔥 FILTER FUNCTION
-function filterData(){
+// 🔥 CHANGE MODE
+function setMode(mode){
+  currentMode = mode;
+  renderTable();
+}
+
+// 🔥 CALCULATE RETURN
+function calcReturn(arr){
+  let result = [];
+  for(let i=1;i<arr.length;i++){
+    result.push(((arr[i] - arr[i-1]) / arr[i-1]).toFixed(2));
+  }
+  return result;
+}
+
+// 🔥 RENDER TABLE
+function renderTable(){
+
   const year = document.getElementById("yearSelect").value;
-  const tbody = document.querySelector("#dataTable tbody");
+  const tbody = document.getElementById("tableBody");
 
   tbody.innerHTML = "";
 
-  data.forEach(row => {
-    if(row.date.includes(year)){
-      let tr = `
-        <tr>
-          <td>${row.date}</td>
-          <td>${row.FPT}</td>
-          <td>${row.HPG}</td>
-          <td>${row.BID}</td>
-          <td>${row.MWG}</td>
-          <td>${row.REE}</td>
-        </tr>
-      `;
-      tbody.innerHTML += tr;
-    }
-  });
+  let filtered = data.filter(d => d.date.includes(year));
+
+  // TITLE
+  document.getElementById("title").innerText = currentMode.toUpperCase();
+
+  if(currentMode === "price" || currentMode === "dividend"){
+
+    filtered.forEach(row=>{
+      tbody.innerHTML += `
+      <tr>
+        <td>${row.date}</td>
+        <td>${row.FPT}</td>
+        <td>${row.HPG}</td>
+        <td>${row.BID}</td>
+        <td>${row.MWG}</td>
+        <td>${row.REE}</td>
+      </tr>`;
+    });
+
+  }
+
+  else if(currentMode === "return"){
+
+    let fpt = calcReturn(filtered.map(x=>x.FPT));
+
+    fpt.forEach((r,i)=>{
+      tbody.innerHTML += `
+      <tr>
+        <td>${filtered[i+1].date}</td>
+        <td>${r}</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>`;
+    });
+
+  }
+
+  else if(currentMode === "expected"){
+    tbody.innerHTML = `<tr><td colspan="6">Expected Return (tính trung bình)</td></tr>`;
+  }
+
+  else if(currentMode === "cov"){
+    tbody.innerHTML = `<tr><td colspan="6">Covariance Matrix</td></tr>`;
+  }
+
+  else if(currentMode === "corr"){
+    tbody.innerHTML = `<tr><td colspan="6">Correlation Matrix</td></tr>`;
+  }
+
 }
 
-// load default
-filterData();
+// load lần đầu
+renderTable();
 
 </script>
 
