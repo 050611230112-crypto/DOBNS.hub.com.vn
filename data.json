@@ -106,15 +106,15 @@
 
     "risk": {
       "level": "Trung bình",
-      "description": "Rủi ro từ cạnh tranh, giá nguyên vật liệu và bất động sản."
-    },
-
-    "outlook": {
       "description": "Cổ phiếu này được đánh giá ở mức ổn định, nhờ vào việc mảng năng lượng tiếp tục đóng vai trụ cột, với chiến lược mở rộng công suất điện gió là động lực tăng trưởng dài hạn. Bên cạnh đó, REE duy trì vị thế là nhà thầu cơ điện hàng đầu trong lĩnh vực hạ tầng, với lượng backlog lớn tạo nền tảng cho tăng trưởng doanh thu trong ngắn hạn.Tuy nhiên, cổ phiếu vẫn đối mặt với nhiều rủi ro, bao gồm áp lực cạnh tranh gay gắt và sự biến động của giá nguyên vật liệu trong mảng cơ điện lạnh. Bên cạnh đó, doanh thu từ các dự án bất động sản có xu hướng suy giảm do thị trường chững lại dưới tác động của mặt bằng lãi suất gia tăng."
     },
 
+    "outlook": {
+      "description": "Ổn định nhờ vào mở rộng danh mục đầu tư hạ tầng và năng lượng, nhu cầu tiêu thụ điện và nước tăng trưởng ổn định và Chiến lược đầu tư dài hạn, bền vững ."
+    },
+
     "time_horizon": {
-      "description": "3–5 năm."
+      "description": "Trung và dài hạn (3–5 năm)."
     }
   },
 
