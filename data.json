@@ -13,49 +13,13 @@
     },
 
     "financial": {
-      "table": [
-        {
-          "year": 2020,
-          "lnst": "4,423,745",
-          "roea": "19.99%",
-          "roaa": "9.42%",
-          "eps": "4,744"
-        },
-        {
-          "year": 2021,
-          "lnst": "5,349,301",
-          "roea": "21.67%",
-          "roaa": "9.09%",
-          "eps": "5,065"
-        },
-        {
-          "year": 2022,
-          "lnst": "6,491,343",
-          "roea": "22.71%",
-          "roaa": "10.08%",
-          "eps": "5,252"
-        },
-        {
-          "year": 2023,
-          "lnst": "7,788,050",
-          "roea": "23.39%",
-          "roaa": "11.55%",
-          "eps": "5,471"
-        },
-        {
-          "year": 2024,
-          "lnst": "9,427,423",
-          "roea": "23.93%",
-          "roaa": "11.88%",
-          "eps": "5,704"
-        },
-        {
-          "year": 2025,
-          "lnst": "11,225,523",
-          "roea": "23.58%",
-          "roaa": "11.71%",
-          "eps": "6,017"
-        }
+  "table": [
+        { "year": 2020, "revenue_growth": "7.6%", "lnst": "4,423 tỷ", "roea": "19.99%", "roaa": "9.42%", "eps": "4,744" },
+        { "year": 2021, "revenue_growth": "19.5%", "lnst": "5,349 tỷ", "roea": "21.67%", "roaa": "9.09%", "eps": "5,065" },
+        { "year": 2022, "revenue_growth": "23.4%", "lnst": "6,491 tỷ", "roea": "22.71%", "roaa": "10.08%", "eps": "5,252" },
+        { "year": 2023, "revenue_growth": "19.6%", "lnst": "7,788 tỷ", "roea": "23.99%", "roaa": "11.55%", "eps": "5,471" },
+        { "year": 2024, "revenue_growth": "19.4%", "lnst": "9,427 tỷ", "roea": "23.93%", "roaa": "11.88%", "eps": "5,704" },
+        { "year": 2025, "revenue_growth": "15.8%", "lnst": "11,226 tỷ", "roea": "23.58%", "roaa": "11.71%", "eps": "6,017" }
       ],
 
       "analysis": "Tăng trưởng duy trì ở mức 2 con số qua nhiều năm, trung bình ở mức 15-20%. Là một trong những cổ phiếu tăng trưởng ổn định, chất lượng cao.",
@@ -92,12 +56,12 @@
 
     "financial": {
       "table": [
-        { "year": 2020, "revenue_growth": "15.3%", "lnst": "1,713,502", "roea": "13.97%", "roaa": "8.11%", "eps": "5,251" },
-        { "year": 2021, "revenue_growth": "3.0%", "lnst": "2,135,410", "roea": "12.99%", "roaa": "7.09%", "eps": "6,002" },
-        { "year": 2022, "revenue_growth": "61.3%", "lnst": "3,515,377", "roea": "15.14%", "roaa": "8.19%", "eps": "7,973" },
-        { "year": 2023, "revenue_growth": "-8.6%", "lnst": "2,786,658", "roea": "10.95%", "roaa": "6.36%", "eps": "5,641" },
-        { "year": 2024, "revenue_growth": "-2.2%", "lnst": "2,396,000", "roea": "9.22%", "roaa": "5.59%", "eps": "4,470" },
-        { "year": 2025, "revenue_growth": "19.4%", "lnst": "3,150,405", "roea": "10.70%", "roaa": "6.62%", "eps": "5,019" }
+        { "year": 2020, "revenue_growth": "15.3%", "lnst": "1,713 tỷ", "roea": "13.97%", "roaa": "8.11%", "eps": "5,251" },
+        { "year": 2021, "revenue_growth": "3.0%", "lnst": "2,135 tỷ", "roea": "12.99%", "roaa": "7.09%", "eps": "6,002" },
+        { "year": 2022, "revenue_growth": "61.3%", "lnst": "3,515 tỷ", "roea": "15.14%", "roaa": "8.19%", "eps": "7,973" },
+        { "year": 2023, "revenue_growth": "-8.6%", "lnst": "2,787 tỷ", "roea": "10.95%", "roaa": "6.36%", "eps": "5,641" },
+        { "year": 2024, "revenue_growth": "-2.2%", "lnst": "2,396 tỷ", "roea": "9.22%", "roaa": "5.59%", "eps": "4,470" },
+        { "year": 2025, "revenue_growth": "19.4%", "lnst": "3,150 tỷ", "roea": "10.70%", "roaa": "6.62%", "eps": "5,019" }
       ],
 
       "analysis": "Tăng trưởng biến động, mang tính chu kỳ.",
