@@ -95,3 +95,92 @@
     }
   }
 }
+{
+  "REE": {
+    "logo": "images/REE.jpg",
+    "name": "REE (CTCP Cơ Điện Lạnh)",
+    "industry": "Tiện ích",
+
+    "market_position": {
+      "description": "Vị thế thị trường (Market position): Công ty Cổ phần Cơ Điện Lạnh (REE) là một tập đoàn đa ngành được thành lập từ năm 1977, khởi đầu trong lĩnh vực cơ điện lạnh và đã có hơn 40 năm kinh nghiệm trong ngành.Cũng như đã từng được tạp chí Forbes bình chọn là Top 50 Công ty niêm yết tốt nhất, top 500 Doanh nghiệp lớn nhất Việt Nam,...Hiện tại, REE hoạt động trong các lĩnh vực: năng lượng, nước và môi trường, bất động sản và dịch vụ M&E.",
+      "source": "https://topi.vn/co-phieu-ree.html"
+    },
+
+    "business_model": {
+      "description": "Mô hình doanh nghiệp (Business model): REE hoạt động theo mô hình holding với danh mục kinh doanh đa dạng, bao gồm bốn mảng cốt lõi là cơ điện lạnh, năng lượng, nước sạch và bất động sản cho thuê. Trong đó, mảng cơ điện lạnh đóng vai trò nền tảng về năng lực kỹ thuật; mảng năng lượng tập trung đầu tư vào thủy điện, điện gió, điện mặt trời và nhiệt điện với tổng công suất theo tỷ lệ sở hữu khoảng 1.051 MW; mảng nước sạch ghi nhận tổng công suất sản xuất theo tỷ lệ sở hữu đạt khoảng 450.000 m³/ngày; và mảng bất động sản sở hữu hơn 145.000 m² diện tích văn phòng cho thuê tại TP.HCM. Với chiến lược tập trung vào các lĩnh vực hạ tầng thiết yếu có dòng tiền ổn định và tiềm năng tăng trưởng dài hạn, REE được đánh giá là doanh nghiệp có mức độ rủi ro thấp, phù hợp với định hướng đầu tư dài hạn."
+    },
+
+    "financial": {
+      "table": [
+        {
+          "year": 2020,
+          "revenue_growth": "15.3%",
+          "lnst": "1,713,502",
+          "roea": "13.97%",
+          "roaa": "8.11%",
+          "eps": "5,251"
+        },
+        {
+          "year": 2021,
+          "revenue_growth": "3.0%",
+          "lnst": "2,135,410",
+          "roea": "12.99%",
+          "roaa": "7.09%",
+          "eps": "6,002"
+        },
+        {
+          "year": 2022,
+          "revenue_growth": "61.3%",
+          "lnst": "3,515,377",
+          "roea": "15.14%",
+          "roaa": "8.19%",
+          "eps": "7,973"
+        },
+        {
+          "year": 2023,
+          "revenue_growth": "-8.6%",
+          "lnst": "2,786,658",
+          "roea": "10.95%",
+          "roaa": "6.36%",
+          "eps": "5,641"
+        },
+        {
+          "year": 2024,
+          "revenue_growth": "-2.2%",
+          "lnst": "2,396,000",
+          "roea": "9.22%",
+          "roaa": "5.59%",
+          "eps": "4,470"
+        },
+        {
+          "year": 2025,
+          "revenue_growth": "19.4%",
+          "lnst": "3,150,405",
+          "roea": "10.70%",
+          "roaa": "6.62%",
+          "eps": "5,019"
+        }
+      ],
+
+      "analysis": "Tăng trưởng doanh thu của doanh nghiệp biến động khá mạnh qua các năm; đặc biệt năm 2023 ghi nhận mức tăng đột biến 61,3%, cho thấy đà tăng trưởng chưa thực sự bền vững và vẫn mang tính chu kỳ.",
+
+      "detailed_comment": "Trong giai đoạn 2020–2025, lợi nhuận sau thuế ban đầu tăng trưởng tích cực từ 1,713,502 lên 3,515,377, sau đó suy giảm trước khi dần bước vào giai đoạn phục hồi. Bên cạnh đó, ROE dù vẫn duy trì trên 10% nhưng có xu hướng giảm đáng kể, phản ánh hiệu quả sinh lời trên vốn chủ sở hữu đang suy yếu. Tương tự, ROA chưa cho thấy sự cải thiện rõ rệt, cho thấy khả năng khai thác tài sản vẫn còn hạn chế. EPS cũng biến động cùng chiều với lợi nhuận sau thuế và chưa ổn định trong suốt giai đoạn, từ đó làm giảm mức độ hấp dẫn của cổ phiếu đối với nhà đầu tư."
+    },
+
+    "risk": {
+      "title": "KHẢ NĂNG CHẤP NHẬN RỦI RO",
+      "level": "Trung bình",
+      "description": "Cổ phiếu này được đánh giá ở mức ổn định, nhờ vào việc mảng năng lượng tiếp tục đóng vai trụ cột, với chiến lược mở rộng công suất điện gió là động lực tăng trưởng dài hạn. Bên cạnh đó, REE duy trì vị thế là nhà thầu cơ điện hàng đầu trong lĩnh vực hạ tầng, với lượng backlog lớn tạo nền tảng cho tăng trưởng doanh thu trong ngắn hạn.Tuy nhiên, cổ phiếu vẫn đối mặt với nhiều rủi ro, bao gồm áp lực cạnh tranh gay gắt và sự biến động của giá nguyên vật liệu trong mảng cơ điện lạnh. Bên cạnh đó, doanh thu từ các dự án bất động sản có xu hướng suy giảm do thị trường chững lại dưới tác động của mặt bằng lãi suất gia tăng."
+    },
+
+    "outlook": {
+      "title": "TRIỂN VỌNG TRUNG VÀ DÀI HẠN",
+      "description": "Mở rộng danh mục đầu tư hạ tầng và năng lượng – Việc tiếp tục gia tăng tỷ trọng đầu tư vào các dự án điện (đặc biệt là thủy điện, điện gió, điện mặt trời) và hạ tầng nước giúp REE duy trì nguồn thu ổn định, ít biến động theo chu kỳ kinh tế. Nhu cầu tiêu thụ điện và nước tăng trưởng ổn định – Khi nền kinh tế phục hồi và phát triển, nhu cầu sử dụng điện và nước sạch tiếp tục gia tăng, tạo điều kiện thuận lợi cho các công ty liên kết và dự án mà REE đầu tư, qua đó hỗ trợ tăng trưởng doanh thu và lợi nhuận. Chiến lược đầu tư dài hạn, bền vững – REE tập trung vào các lĩnh vực thiết yếu, có dòng tiền ổn định và khả năng sinh lời lâu dài, đồng thời tối ưu hóa danh mục đầu tư và quản trị hiệu quả, giúp doanh nghiệp duy trì lợi thế cạnh tranh."
+    },
+
+    "time_horizon": {
+      "title": "KHOẢNG THỜI GIAN DỰ KIẾN",
+      "description": "Phù hợp với nhà đầu tư trung và dài hạn (khoảng 3–5 năm), do đặc thù hoạt động của cổ phiếu REE gắn liền với các lĩnh vực có chu kỳ đầu tư dài như năng lượng, hạ tầng nước và bất động sản cho thuê. Hiệu quả kinh doanh của REE thường phụ thuộc vào tăng trưởng kinh tế vĩ mô, nhu cầu tiêu thụ điện, nước ổn định cũng như sự phục hồi của thị trường bất động sản, vì vậy cần thời gian để các khoản đầu tư phát huy hiệu quả. Với danh mục đầu tư đa dạng, dòng tiền ổn định từ năng lượng và hạ tầng, cùng định hướng phát triển dài hạn rõ ràng, cổ phiếu REE vẫn là lựa chọn phù hợp cho các nhà đầu tư trung và dài hạn."
+    }
+  }
+}
