@@ -124,21 +124,21 @@
     "industry": "Bán lẻ",
 
     "market_position": {
-      "description": "MWG là nhà bán lẻ số 1 Việt Nam với hơn 5000 cửa hàng."
+      "description": "MCông ty Cổ phần Đầu tư Thế Giới Di Động (MWG) giữ vững vị thế là nhà bán lẻ số 1 Việt Nam và Top 100 doanh nghiệp lớn nhất Đông Nam Á (Fortune SEA 500 - 2025). Với hơn 5000 điểm bán trên toàn quốc (thế giới di động, Điện Máy Xanh, Bách Hóa Xanh), MWG thống lĩnh thị phần điện tử/điện máy và đang mở rộng mạnh mẽ sang thực phẩm, dược phẩm, cùng chuỗi EraBlue tại Indonesia."
     },
 
     "business_model": {
-      "description": "Omni-channel kết hợp offline và online."
+      "description": "Thế Giới Di Động (MWG) vận hành mô hình kinh doanh bán lẻ đa kênh (Omni-channel) B2C cốt lõi, kết hợp hệ thống cửa hàng vật lý dày đặc (thegioididong.com, Điện Máy Xanh) với website thương mại điện tử. MWG tập trung vào trải nghiệm khách hàng xuất sắc, dịch vụ hậu mãi đồng bộ và tối ưu hóa chuỗi cung ứng."
     },
 
     "financial": {
       "table": [
-        { "year": 2020, "lnst": "3.918 tỷ", "roea": "28.36%", "roaa": "8.93%", "eps": "8.655" },
-        { "year": 2021, "lnst": "4.899 tỷ", "roea": "27.32%", "roaa": "8.99%", "eps": "8.867" },
-        { "year": 2022, "lnst": "4.099,8 tỷ", "roea": "18.5%", "roaa": "6.9%", "eps": "3.646" },
-        { "year": 2023, "lnst": "168 tỷ", "roea": "0.71%", "roaa": "0.29%", "eps": "115" },
-        { "year": 2024, "lnst": "3.722 tỷ", "roea": "14.46%", "roaa": "5.7%", "eps": "2.546" },
-        { "year": 2025, "lnst": "7.034 tỷ", "roea": "22.95%", "roaa": "9.11%", "eps": "4.773" }
+        { "year": 2020, "revenue_growth": "6.24%","lnst": "3.918 tỷ", "roea": "28.36%", "roaa": "8.93%", "eps": "8.655" },
+        { "year": 2021, "revenue_growth": "13.28%","lnst": "4.899 tỷ", "roea": "27.32%", "roaa": "8.99%", "eps": "8.867" },
+        { "year": 2022, "revenue_growth": "8.5%","lnst": "4.099,8 tỷ", "roea": "18.5%", "roaa": "6.9%", "eps": "3.646" },
+        { "year": 2023, "revenue_growth": "-11.34%","lnst": "168 tỷ", "roea": "0.71%", "roaa": "0.29%", "eps": "115" },
+        { "year": 2024, "revenue_growth": "13.58%","lnst": "3.722 tỷ", "roea": "14.46%", "roaa": "5.7%", "eps": "2.546" },
+        { "year": 2025, "revenue_growth": "16%","lnst": "7.034 tỷ", "roea": "22.95%", "roaa": "9.11%", "eps": "4.773" }
       ],
 
       "analysis": "Biến động theo chu kỳ, phục hồi mạnh.",
@@ -151,11 +151,11 @@
     },
 
     "outlook": {
-      "description": "Tăng trưởng nhờ tiêu dùng nội địa."
+      "description": "Tầm nhìn 2030 là tập đoàn số 1 Đông Nam Á về bán lẻ, thương mại điện tử và dịch vụ liên quan. Sự hồi phục của tiêu dùng nội địa vàLợi thế về quy mô, thương hiệu và hệ thống phân phối."
     },
 
     "time_horizon": {
-      "description": "2–5 năm."
+      "description": "Trung và dài hạn 2–5 năm."
     }
 },
  "HPG": {
