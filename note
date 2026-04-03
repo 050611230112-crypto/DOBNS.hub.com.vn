@@ -1,18 +1,31 @@
-/* HERO */
-.hero{
-  padding:80px 20px;
-  text-align:center;
+  <div class="card">
+  <h3>Stock Selection Criteria</h3>
 
-  color:white;
-  position:relative;
-}
-  background:linear-gradient(to right,#0b3d91,#1e90ff);
-/* hiệu ứng sóng */
-.hero::before{
-  content:'';
-  position:absolute;
-  bottom:-40px;
-  left:0;
-  width:100%;
-  height:100px;
-  background:radial-gradient(circle at 50% -20%, rgba(255,255,255,0.3), transparent 70%);
+  <table>
+    <tr>
+      <th>Investors - Documents</th>
+      <th>Dẫn chứng</th>
+      <th>Tiêu chí lọc </th>
+      <th>Tiêu chí tại thị trường Việt Nam</th>
+      <th>Tiêu chí đầu tư</th>
+      <th>Các mã cổ phiếu</th>
+      
+    </tr>
+
+    <tr>
+      <td>Warrren Buffet - Berkshire Hathaway Inc. Shareholder letters 1987</td>
+      <td>"Only 25 of the 1,000 companies met two tests of economic excellence - an average return on equity of over 20% in the ten years, 1977 through 1986, and no year worse than 15%."</td>
+      <td>ROE >= 20% trong 10 năm liên tục</td>
+      <td>ROE >= 15% trong 5 năm liên tục</td>
+      <td>ROE >= 12% trong 5 năm gần nhất</td>
+      <td>171 mã</td>
+    </tr>
+
+    <tr>
+      <td>Reservation (Cash)</td>
+      <td>25%</td>
+      <td>An initial cash allocation of approximately 200 million VND and a monthly surplus</td>
+    </tr>
+  </table>
+</div>
+</div>
