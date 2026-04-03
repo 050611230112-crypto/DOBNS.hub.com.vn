@@ -124,7 +124,7 @@
     "industry": "Bán lẻ",
 
     "market_position": {
-      "description": "MCông ty Cổ phần Đầu tư Thế Giới Di Động (MWG) giữ vững vị thế là nhà bán lẻ số 1 Việt Nam và Top 100 doanh nghiệp lớn nhất Đông Nam Á (Fortune SEA 500 - 2025). Với hơn 5000 điểm bán trên toàn quốc (thế giới di động, Điện Máy Xanh, Bách Hóa Xanh), MWG thống lĩnh thị phần điện tử/điện máy và đang mở rộng mạnh mẽ sang thực phẩm, dược phẩm, cùng chuỗi EraBlue tại Indonesia."
+      "description": "Công ty Cổ phần Đầu tư Thế Giới Di Động (MWG) giữ vững vị thế là nhà bán lẻ số 1 Việt Nam và Top 100 doanh nghiệp lớn nhất Đông Nam Á (Fortune SEA 500 - 2025). Với hơn 5000 điểm bán trên toàn quốc (thế giới di động, Điện Máy Xanh, Bách Hóa Xanh), MWG thống lĩnh thị phần điện tử/điện máy và đang mở rộng mạnh mẽ sang thực phẩm, dược phẩm, cùng chuỗi EraBlue tại Indonesia."
     },
 
     "business_model": {
@@ -164,21 +164,21 @@
     "industry": "Thép",
 
     "market_position": {
-      "description": "Doanh nghiệp thép lớn nhất Việt Nam."
+      "description": "Tập đoàn Hòa Phát là doanh nghiệp sản xuất thép lớn nhất Việt Nam, giữ vị thế dẫn đầu thép xây dựng trong nhiều năm liên tiếp. Doanh nghiệp hoạt động theo mô hình sản xuất thép khép kín từ quặng sắt đến thành phẩm, tạo ra nhiều lợi thế cạnh tranh về chi phí và quy mô. Hòa Phát tập trung vào các sản phẩm chủ lực bao gồm Thép xây dựng, Thép cuộn cán nóng (HRC), Ống thép, Tôn mạ, Container…Ngoài ra, HPG còn kinh doanh nông nghiệp, bất động sản và điện máy gia dụng. Trong năm 2025, doanh thu và lợi nhuận sau thuế đạt lần lượt là 158.332 tỷ đồng và 15.515 tỷ đồng. HPG hiện đang là cổ phiếu có vốn hóa lớn trên sàn HOSE và thường nằm trong danh mục của các quỹ đầu tư trong và ngoài nước."
     },
 
     "business_model": {
-      "description": "Chuỗi sản xuất khép kín."
+      "description": "Hòa Phát hoạt động theo mô hình công ty mẹ - công ty con, tập đoàn triển khai chiến lược đa ngành nhằm tối ưu hóa hiệu quả kinh doanh và phân tán rủi ro. Hòa Phát mở rộng sang nhiều lĩnh vực khác nhau, trong đó tập trung vào các mảng chính sau: Thép và sản phẩm thép (lĩnh vực chủ lực), Nông nghiệp, Bất động sản, Điện máy gia dụng và Các ngành phụ trợ khác."
     },
 
     "financial": {
       "table": [
-        { "year": 2020, "lnst": "3,918", "roea": "28.36%", "roaa": "8.93%", "eps": "8,655" },
-        { "year": 2021, "lnst": "4,899", "roea": "27.32%", "roaa": "8.99%", "eps": "8,867" },
-        { "year": 2022, "lnst": "4,099", "roea": "18.5%", "roaa": "6.9%", "eps": "3,646" },
-        { "year": 2023, "lnst": "168", "roea": "0.71%", "roaa": "0.29%", "eps": "115" },
-        { "year": 2024, "lnst": "3,722", "roea": "14.46%", "roaa": "5.7%", "eps": "2,546" },
-        { "year": 2025, "lnst": "7,034", "roea": "22.95%", "roaa": "9.11%", "eps": "4,773" }
+        { "year": 2020, "revenue_growth": "41.6%","lnst": "13,450 tỷ", "roea": "25.14%", "roaa": "11.53%", "eps": "4,507" },
+        { "year": 2021, "revenue_growth": "66.1%","lnst": "34,478 tỷ", "roea": "45.97%", "roaa": "22.26%", "eps": "8,630" },
+        { "year": 2022, "revenue_growth": "-5.5%","lnst": "8,483 tỷ", "roea": "9.08", "roaa": "4.87%", "eps": "1,636" },
+        { "year": 2023, "revenue_growth": "-15.9%","lnst": "6,835 tỷ", "roea": "6.87%", "roaa": "3.82%", "eps": "1,175" },
+        { "year": 2024, "revenue_growth": "16.7%","lnst": "12,021 tỷ", "roea": "11.06%", "roaa": "5.83", "eps": "1,951" },
+        { "year": 2025, "revenue_growth": "12.4%","lnst": "15,450 tỷ", "roea": "12.57%", "roaa": "6.41%", "eps": "2,203" }
       ],
       "analysis": "Chu kỳ ngành rõ rệt.",
       "detailed_comment": "Biến động theo giá thép."
@@ -190,7 +190,7 @@
     },
 
     "outlook": {
-      "description": "Phục hồi theo kinh tế."
+      "description": "Chu kỳ ngành đang hồi phục, nhu cầu thép HRC nội địa, mở rộng xuất khẩu và dự án Dung Quất dự kiến nâng tổng công suất sản xuất thép thô."
     },
 
     "time_horizon": {
