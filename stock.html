@@ -48,91 +48,114 @@ async function loadStock(code){
 
   const res = await fetch('data.json');
   const data = await res.json();
-
   const stock = data[code];
 
   if(!stock){
-    document.getElementById('stockContent').innerHTML = "<h3>Không có dữ liệu</h3>";
+    document.getElementById('stockContent').innerHTML = "Không có dữ liệu";
     return;
   }
 
   let html = `
-  <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
-    <img src="${stock.logo}" style="height:100px;">
+  <div style="display:flex; gap:20px;">
+    <img src="${stock.logo}" style="height:120px;">
     <div>
       <h2>${stock.name}</h2>
-      <p><b>Ngành:</b> ${stock.industry}</p>
+      <p>${stock.industry}</p>
     </div>
   </div>
 
   <h3>Market Position</h3>
   <p>${stock.market_position.description}</p>
-  ${stock.market_position.source ? `<p><i>Nguồn: ${stock.market_position.source}</i></p>` : ""}
-
-  <h3>Business Model</h3>
-  <p>${stock.business_model.description}</p>
-
-  <h3>Financial Overview</h3>
-  <p>${stock.financial.analysis}</p>
-  <p>${stock.financial.detailed_comment}</p>
-
-  <table>
-    <tr>
-      <th>Year</th>
-      <th>Revenue Growth</th>
-      <th>Profit</th>
-      <th>ROE</th>
-      <th>ROA</th>
-      <th>EPS</th>
-    </tr>
   `;
 
-  stock.financial.table.forEach(p => {
+  if(stock.business_model){
     html += `
-    <tr>
-      <td>${p.year}</td>
-      <td>${p.revenue_growth || ""}</td>
-      <td>${p.lnst}</td>
-      <td>${p.roea}</td>
-      <td>${p.roaa}</td>
-      <td>${p.eps}</td>
-    </tr>
+    <h3>Business Model</h3>
+    <p>${stock.business_model.description}</p>
     `;
-  });
-
-  html += `</table>`;
-
-  if(stock.financial.data_source){
-    html += `<p><i>Nguồn: ${stock.financial.data_source}</i></p>`;
   }
 
   html += `
-  <h3>${stock.risk.title || "Risk"}</h3>
-  <p><b>Mức độ:</b> ${stock.risk.level}</p>
-  <p>${stock.risk.description}</p>
-
-  <h3>${stock.outlook.title || "Outlook"}</h3>
-  <p>${stock.outlook.description}</p>
-
-  <h3>${stock.time_horizon.title || "Time Horizon"}</h3>
-  <p>${stock.time_horizon.description}</p>
+  <h3>Financial</h3>
+  <p>${stock.financial.analysis}</p>
+  <p>${stock.financial.detailed_comment}</p>
   `;
 
-  if(stock.time_horizon.reasons){
-    html += "<ul>";
-    stock.time_horizon.reasons.forEach(r => {
-      html += `<li>${r}</li>`;
+  if(stock.financial.type === "bank"){
+
+    html += `
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>TOI</th>
+        <th>ROE</th>
+        <th>ROA</th>
+        <th>NIM</th>
+        <th>EPS</th>
+        <th>NPL</th>
+        <th>CAR</th>
+      </tr>
+    `;
+
+    stock.financial.table.forEach(p => {
+      html += `
+      <tr>
+        <td>${p.year}</td>
+        <td>${p.toi}</td>
+        <td>${p.roea}</td>
+        <td>${p.roaa}</td>
+        <td>${p.nim}</td>
+        <td>${p.eps}</td>
+        <td>${p.npl}</td>
+        <td>${p.car}</td>
+      </tr>
+      `;
     });
-    html += "</ul>";
+
+  } else {
+
+    html += `
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Growth</th>
+        <th>Profit</th>
+        <th>ROE</th>
+        <th>ROA</th>
+        <th>EPS</th>
+      </tr>
+    `;
+
+    stock.financial.table.forEach(p => {
+      html += `
+      <tr>
+        <td>${p.year}</td>
+        <td>${p.revenue_growth}</td>
+        <td>${p.lnst}</td>
+        <td>${p.roea}</td>
+        <td>${p.roaa}</td>
+        <td>${p.eps}</td>
+      </tr>
+      `;
+    });
   }
 
-  if(stock.time_horizon.dividend_history){
-    html += `
-    <p><a href="${stock.time_horizon.dividend_history}" target="_blank">
-      Xem lịch sử cổ tức
-    </a></p>`;
-  }
+  html += `</table>
+
+  <h3>Risk</h3>
+  <p>${stock.risk.level}</p>
+  <p>${stock.risk.description}</p>
+
+  <h3>Outlook</h3>
+  <p>${stock.outlook.description}</p>
+
+  <h3>Time Horizon</h3>
+  <p>${stock.time_horizon.description}</p>
+  `;
 
   document.getElementById('stockContent').innerHTML = html;
 }
 </script>
+
+</body>
+</html>
