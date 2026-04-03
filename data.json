@@ -184,3 +184,98 @@
     }
   }
 }
+{
+  "MWG": {
+    "logo": "images/MWG.jpg",
+    "name": "MWG (CTCP ĐẦU TƯ THẾ GIỚI DI ĐỘNG)",
+    "industry": "Tiêu dùng không thiết yếu/ Thương mại hàng không thiết yếu/ Bán lẻ chuyên doanh",
+
+    "market_position": {
+      "description": "Vị thế thị trường (Market position): Công ty Cổ phần Đầu tư Thế Giới Di Động (MWG) giữ vững vị thế là nhà bán lẻ số 1 Việt Nam và Top 100 doanh nghiệp lớn nhất Đông Nam Á (Fortune SEA 500 - 2025). Với hơn 5000 điểm bán trên toàn quốc (thế giới di động, Điện Máy Xanh, Bách Hóa Xanh), MWG thống lĩnh thị phần điện tử/điện máy và đang mở rộng mạnh mẽ sang thực phẩm, dược phẩm, cùng chuỗi EraBlue tại Indonesia."
+    },
+
+    "business_model": {
+      "description": "Mô hình doanh nghiệp (Business model): Thế Giới Di Động (MWG) vận hành mô hình kinh doanh bán lẻ đa kênh (Omni-channel) B2C cốt lõi, kết hợp hệ thống cửa hàng vật lý dày đặc (thegioididong.com, Điện Máy Xanh) với website thương mại điện tử. MWG tập trung vào trải nghiệm khách hàng xuất sắc, dịch vụ hậu mãi đồng bộ và tối ưu hóa chuỗi cung ứng."
+    },
+
+    "financial": {
+      "table": [
+        {
+          "year": 2020,
+          "revenue_growth": "6.24%",
+          "lnst": "3.918 tỷ",
+          "roea": "28.36%",
+          "roaa": "8.93%",
+          "eps": "8.655"
+        },
+        {
+          "year": 2021,
+          "revenue_growth": "13.28%",
+          "lnst": "4.899 tỷ",
+          "roea": "27.32%",
+          "roaa": "8.99%",
+          "eps": "8.867"
+        },
+        {
+          "year": 2022,
+          "revenue_growth": "8.5%",
+          "lnst": "4.099,8 tỷ",
+          "roea": "18.5%",
+          "roaa": "6.9%",
+          "eps": "3.646"
+        },
+        {
+          "year": 2023,
+          "revenue_growth": "–11.34%",
+          "lnst": "168 tỷ",
+          "roea": "0.71%",
+          "roaa": "0.29%",
+          "eps": "115"
+        },
+        {
+          "year": 2024,
+          "revenue_growth": "13.58%",
+          "lnst": "3.722 tỷ",
+          "roea": "14.46%",
+          "roaa": "5.7%",
+          "eps": "2.546"
+        },
+        {
+          "year": 2025,
+          "revenue_growth": "16%",
+          "lnst": "7.034 tỷ",
+          "roea": "22.95%",
+          "roaa": "9.11%",
+          "eps": "4.773"
+        }
+      ],
+
+      "analysis": "Trong giai đoạn 2020 - 2025, các chỉ tiêu tài chính của Công ty Cổ phần Đầu tư Thế Giới Di Động cho thấy sự biến động rõ rệt theo chu kỳ kinh doanh. Tăng trưởng doanh thu duy trì ở mức tích cực trong giai đoạn 2020 - 2022, trước khi ghi nhận mức suy giảm đáng kể vào năm 2023, điều này phản ánh tác động tiêu cực từ bối cảnh tiêu dùng suy yếu. Tuy nhiên, doanh nghiệp đã nhanh chóng phục hồi trong hai năm tiếp theo với mức tăng trưởng lần lượt đạt 13,58% và 16% cho thấy khả năng thích ứng và mở rộng trở lại.",
+
+      "detailed_comment": "Lợi nhuận sau thuế có xu hướng tương đồng khi tăng trưởng tốt đến năm 2021, giảm nhẹ năm 2022 và đặc biệt sụt giảm mạnh trong năm 2023. Dù vậy, từ năm 2024, lợi nhuận đã phục hồi rõ rệt và đến năm 2025 ghi nhận mức tăng trưởng ấn tượng, cho thấy hiệu quả của các biện pháp tái cấu trúc và kiểm soát chi phí. Các chỉ tiêu sinh lời như ROEA và ROAA cũng phản ánh xu hướng tương tự. Cụ thể, ROEA giảm mạnh từ mức cao trên 28% xuống chỉ còn 0,71% trong năm 2023, trong khi ROAA giảm xuống 0,29% cho thấy hiệu quả sử dụng tài sản suy giảm nghiêm trọng trong giai đoạn khó khăn. Tuy nhiên, cả hai chỉ số này đều phục hồi tích cực trong giai đoạn 2024 - 2025 với ROEA đạt gần 23% và ROAA trên 9% - tiệm cận lại mức hiệu quả trước đó. Chỉ tiêu EPS biến động mạnh qua các năm, đặc biệt giảm sâu trong giai đoạn 2022 - 2023 trước khi phục hồi trong hai năm sau. Diễn biến này phản ánh trực tiếp sự suy giảm và phục hồi của lợi nhuận ròng, đồng thời cho thấy mức độ nhạy cảm của thu nhập trên mỗi cổ phiếu trước các biến động kinh doanh."
+    },
+
+    "risk": {
+      "title": "KHẢ NĂNG CHỊU RỦI RO",
+      "level": "Trung bình",
+      "description": "MWG có mức rủi ro trung bình, không phải cổ phiếu phòng thủ nhưng ít rủi ro hơn doanh nghiệp bán lẻ nhỏ. Rủi ro lớn nhất đến từ tính chu kỳ của ngành bán lẻ. Bên cạnh đó, MWG còn chịu áp cạnh tranh trong ngành ngày càng gay gắt, không chỉ từ các đối thủ trực tiếp mà còn từ kênh thương mại điện tử."
+    },
+
+    "outlook": {
+      "title": "TRIỂN VỌNG TRUNG VÀ DÀI HẠN",
+      "description": "Tầm nhìn 2030 là tập đoàn số 1 Đông Nam Á về bán lẻ, thương mại điện tử và dịch vụ liên quan. Sự hồi phục của tiêu dùng nội địa sẽ đóng vai trò là động lực tăng trưởng chính, giúp doanh thu và lợi nhuận cải thiện theo hướng ổn định hơn. Trong dài hạn (từ 3 đến 5 năm), câu chuyện của MWG trở nên hấp dẫn hơn khi doanh nghiệp có cơ hội tận dụng xu hướng tăng trưởng tiêu dùng của Việt Nam và mở rộng hệ sinh thái bán lẻ. Lợi thế về quy mô, thương hiệu và hệ thống phân phối giúp doanh nghiệp duy trì vị thế cạnh tranh trong dài hạn."
+    },
+
+    "time_horizon": {
+      "title": "KHOẢNG THỜI GIAN ĐẦU TƯ",
+      "description": "Phù hợp đầu tư trung đến dài hạn (2 - 5 năm). Sau giai đoạn khó khăn 2022 - 2023 khi sức mua suy yếu, doanh nghiệp đã chủ động tái cấu trúc hệ thống. Nhờ đó, biên lợi nhuận có xu hướng cải thiện rõ rệt, tạo nền tảng cho tăng trưởng lợi nhuận ổn định trong những năm tiếp theo."
+    },
+
+    "references": [
+      "MWG Tự Hào Là Nhà Bán Lẻ Việt Nam Duy Nhất Lọt Top 100 Trên Bảng Xếp Hạng 500 Doanh Nghiệp Lớn Nhất Đông Nam Á 2025",
+      "Chiến lược kinh doanh của Thegioididong – chiếm lĩnh thị trường bán lẻ tại Việt Nam",
+      "Báo cáo của MWG 2020-2025",
+      "https://finance.vietstock.vn/MWG/tai-tai-lieu.htm"
+    ]
+  }
+}
