@@ -158,44 +158,43 @@
       "description": "2–5 năm."
     }
 },
-  "HPG": {
+ "HPG": {
     "logo": "images/HPG.jpg",
-    "name": " HPG (CÔNG TY CỔ PHẦN TẬP ĐOÀN HÒA PHÁT)  ",
-    "industry": "Vật liệu - Thép",
+    "name": "HPG",
+    "industry": "Thép",
 
     "market_position": {
-      "description": "Tập đoàn Hòa Phát là doanh nghiệp sản xuất thép lớn nhất Việt Nam, giữ vị thế dẫn đầu thép xây dựng trong nhiều năm liên tiếp. Doanh nghiệp hoạt động theo mô hình sản xuất thép khép kín từ quặng sắt đến thành phẩm, tạo ra nhiều lợi thế cạnh tranh về chi phí và quy mô. Hòa Phát tập trung vào các sản phẩm chủ lực bao gồm Thép xây dựng, Thép cuộn cán nóng (HRC), Ống thép, Tôn mạ, Container…Ngoài ra, HPG còn kinh doanh nông nghiệp, bất động sản và điện máy gia dụng. Trong năm 2025, doanh thu và lợi nhuận sau thuế đạt lần lượt là 158.332 tỷ đồng và 15.515 tỷ đồng.HPG hiện đang là cổ phiếu có vốn hóa lớn trên sàn HOSE và thường nằm trong danh mục của các quỹ đầu tư trong và ngoài nước."
+      "description": "Doanh nghiệp thép lớn nhất Việt Nam."
     },
 
     "business_model": {
-      "description": "Hòa Phát hoạt động theo mô hình công ty mẹ - công ty con, tập đoàn triển khai chiến lược đa ngành nhằm tối ưu hóa hiệu quả kinh doanh và phân tán rủi ro. Hòa Phát mở rộng sang nhiều lĩnh vực khác nhau, trong đó tập trung vào các mảng chính sau: Thép và sản phẩm thép (lĩnh vực chủ lực), Nông nghiệp, Bất động sản, Điện máy gia dụng, Các ngành phụ trợ khác."
+      "description": "Chuỗi sản xuất khép kín."
     },
 
     "financial": {
       "table": [
-        { "year": 2020, "lnst": "3.918 tỷ", "roea": "28.36%", "roaa": "8.93%", "eps": "8.655" },
-        { "year": 2021, "lnst": "4.899 tỷ", "roea": "27.32%", "roaa": "8.99%", "eps": "8.867" },
-        { "year": 2022, "lnst": "4.099,8 tỷ", "roea": "18.5%", "roaa": "6.9%", "eps": "3.646" },
-        { "year": 2023, "lnst": "168 tỷ", "roea": "0.71%", "roaa": "0.29%", "eps": "115" },
-        { "year": 2024, "lnst": "3.722 tỷ", "roea": "14.46%", "roaa": "5.7%", "eps": "2.546" },
-        { "year": 2025, "lnst": "7.034 tỷ", "roea": "22.95%", "roaa": "9.11%", "eps": "4.773" }
+        { "year": 2020, "lnst": "3,918", "roea": "28.36%", "roaa": "8.93%", "eps": "8,655" },
+        { "year": 2021, "lnst": "4,899", "roea": "27.32%", "roaa": "8.99%", "eps": "8,867" },
+        { "year": 2022, "lnst": "4,099", "roea": "18.5%", "roaa": "6.9%", "eps": "3,646" },
+        { "year": 2023, "lnst": "168", "roea": "0.71%", "roaa": "0.29%", "eps": "115" },
+        { "year": 2024, "lnst": "3,722", "roea": "14.46%", "roaa": "5.7%", "eps": "2,546" },
+        { "year": 2025, "lnst": "7,034", "roea": "22.95%", "roaa": "9.11%", "eps": "4,773" }
       ],
-
-      "analysis": "Biến động theo chu kỳ, phục hồi mạnh.",
-      "detailed_comment": "ROE và ROA phục hồi sau giai đoạn suy giảm."
+      "analysis": "Chu kỳ ngành rõ rệt.",
+      "detailed_comment": "Biến động theo giá thép."
     },
 
     "risk": {
       "level": "Trung bình",
-      "description": "Rủi ro từ chu kỳ tiêu dùng và cạnh tranh."
+      "description": "Rủi ro chu kỳ ngành."
     },
 
     "outlook": {
-      "description": "Tăng trưởng nhờ tiêu dùng nội địa."
+      "description": "Phục hồi theo kinh tế."
     },
 
     "time_horizon": {
-      "description": "Cổ phiếu HPG phù hợp với nhà đầu tư có khẩu vị rủi ro trung bình đến cao và định hướng đầu tư trung đến dài hạn."
+      "description": "Trung - dài hạn."
     }
   }
 }
