@@ -67,7 +67,7 @@ async function loadStock(code){
 
   <h3>Market Position</h3>
   <p>${stock.market_position.description}</p>
-  <p><i>Nguồn: ${stock.market_position.source}</i></p>
+  ${stock.market_position.source ? `<p><i>Nguồn: ${stock.market_position.source}</i></p>` : ""}
 
   <h3>Business Model</h3>
   <p>${stock.business_model.description}</p>
@@ -91,7 +91,7 @@ async function loadStock(code){
     html += `
     <tr>
       <td>${p.year}</td>
-      <td>${p.revenue_growth}</td>
+      <td>${p.revenue_growth || ""}</td>
       <td>${p.lnst}</td>
       <td>${p.roea}</td>
       <td>${p.roaa}</td>
@@ -100,33 +100,38 @@ async function loadStock(code){
     `;
   });
 
-  html += `</table>
-  <p><i>Nguồn: ${stock.financial.data_source}</i></p>
+  html += `</table>`;
 
-  <h3>${stock.risk.title}</h3>
+  if(stock.financial.data_source){
+    html += `<p><i>Nguồn: ${stock.financial.data_source}</i></p>`;
+  }
+
+  html += `
+  <h3>${stock.risk.title || "Risk"}</h3>
   <p><b>Mức độ:</b> ${stock.risk.level}</p>
   <p>${stock.risk.description}</p>
 
-  <h3>${stock.outlook.title}</h3>
+  <h3>${stock.outlook.title || "Outlook"}</h3>
   <p>${stock.outlook.description}</p>
 
-  <h3>${stock.time_horizon.title}</h3>
+  <h3>${stock.time_horizon.title || "Time Horizon"}</h3>
   <p>${stock.time_horizon.description}</p>
-
-  <ul>
   `;
 
-  stock.time_horizon.reasons.forEach(r => {
-    html += `<li>${r}</li>`;
-  });
+  if(stock.time_horizon.reasons){
+    html += "<ul>";
+    stock.time_horizon.reasons.forEach(r => {
+      html += `<li>${r}</li>`;
+    });
+    html += "</ul>";
+  }
 
-  html += `
-  </ul>
-
-  <p><a href="${stock.time_horizon.dividend_history}" target="_blank">
-    Xem lịch sử cổ tức
-  </a></p>
-  `;
+  if(stock.time_horizon.dividend_history){
+    html += `
+    <p><a href="${stock.time_horizon.dividend_history}" target="_blank">
+      Xem lịch sử cổ tức
+    </a></p>`;
+  }
 
   document.getElementById('stockContent').innerHTML = html;
 }
