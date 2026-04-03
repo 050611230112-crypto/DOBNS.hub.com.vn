@@ -13,6 +13,7 @@
     },
 
     "financial": {
+      "type":"normal"
   "table": [
         { "year": 2020, "revenue_growth": "7.6%", "lnst": "4,423 tỷ", "roea": "19.99%", "roaa": "9.42%", "eps": "4,744" },
         { "year": 2021, "revenue_growth": "19.5%", "lnst": "5,349 tỷ", "roea": "21.67%", "roaa": "9.09%", "eps": "5,065" },
@@ -55,6 +56,7 @@
     },
 
     "financial": {
+      "type":"normal"
       "table": [
         { "year": 2020, "revenue_growth": "15.3%", "lnst": "1,713 tỷ", "roea": "13.97%", "roaa": "8.11%", "eps": "5,251" },
         { "year": 2021, "revenue_growth": "3.0%", "lnst": "2,135 tỷ", "roea": "12.99%", "roaa": "7.09%", "eps": "6,002" },
@@ -96,6 +98,7 @@
     },
 
     "financial": {
+      "type":"normal"
       "table": [
         { "year": 2020, "revenue_growth": "6.24%","lnst": "3.918 tỷ", "roea": "28.36%", "roaa": "8.93%", "eps": "8.655" },
         { "year": 2021, "revenue_growth": "13.28%","lnst": "4.899 tỷ", "roea": "27.32%", "roaa": "8.99%", "eps": "8.867" },
@@ -136,6 +139,7 @@
     },
 
     "financial": {
+      "type":"normal"
       "table": [
         { "year": 2020, "revenue_growth": "41.6%","lnst": "13,450 tỷ", "roea": "25.14%", "roaa": "11.53%", "eps": "4,507" },
         { "year": 2021, "revenue_growth": "66.1%","lnst": "34,478 tỷ", "roea": "45.97%", "roaa": "22.26%", "eps": "8,630" },
@@ -159,6 +163,42 @@
 
     "time_horizon": {
       "description": "Trung - dài hạn."
+    }
+  }, 
+"BID": {
+    "logo": "images/BID.jpg",
+    "name": "BIDV",
+    "industry": "Ngân hàng",
+
+    "market_position": {
+      "description": "Một trong Big4 ngân hàng Việt Nam."
+    },
+
+    "financial": {
+      "type": "bank",
+      "table": [
+        { "year": 2020, "TOI": "41.6%","NIM": "13,450 tỷ", "NPL": "25.14%", "CAR": "25.14%","roea": "25.14%", "roaa": "11.53%", "eps": "4,507" },
+        { "year": 2021, "TOI": "66.1%","NIM": "34,478 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "45.97%", "roaa": "22.26%", "eps": "8,630" },
+        { "year": 2022, "TOI": "-5.5%","NIM": "8,483 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "9.08", "roaa": "4.87%", "eps": "1,636" },
+        { "year": 2023, "TOI": "-15.9%","NIM": "6,835 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "6.87%", "roaa": "3.82%", "eps": "1,175" },
+        { "year": 2024, "TOI": "16.7%","NIM": "12,021 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "11.06%", "roaa": "5.83", "eps": "1,951" },
+        { "year": 2025, "TOI": "12.4%","NIM": "15,450 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "12.57%", "roaa": "6.41%", "eps": "2,203" }
+      ],
+      "analysis": "Tăng trưởng ổn định.",
+      "detailed_comment": "Kiểm soát nợ xấu tốt."
+    },
+
+    "risk": {
+      "level": "Trung bình - thấp",
+      "description": "Áp lực nợ xấu."
+    },
+
+    "outlook": {
+      "description": "Hưởng lợi tăng trưởng kinh tế."
+    },
+
+    "time_horizon": {
+      "description": "3–5 năm"
     }
   }
 }
