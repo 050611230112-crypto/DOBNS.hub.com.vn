@@ -1,31 +1,36 @@
-  <div class="card">
-  <h3>Stock Selection Criteria</h3>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOBN CAPITAL</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-  <table>
-    <tr>
-      <th>Investors - Documents</th>
-      <th>Dẫn chứng</th>
-      <th>Tiêu chí lọc </th>
-      <th>Tiêu chí tại thị trường Việt Nam</th>
-      <th>Tiêu chí đầu tư</th>
-      <th>Các mã cổ phiếu</th>
-      
-    </tr>
+<body>
 
-    <tr>
-      <td>Warrren Buffet - Berkshire Hathaway Inc. Shareholder letters 1987</td>
-      <td>"Only 25 of the 1,000 companies met two tests of economic excellence - an average return on equity of over 20% in the ten years, 1977 through 1986, and no year worse than 15%."</td>
-      <td>ROE >= 20% trong 10 năm liên tục</td>
-      <td>ROE >= 15% trong 5 năm liên tục</td>
-      <td>ROE >= 12% trong 5 năm gần nhất</td>
-      <td>171 mã</td>
-    </tr>
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <img src="logo.jpg">
+  </div>
 
-    <tr>
-      <td>Reservation (Cash)</td>
-      <td>25%</td>
-      <td>An initial cash allocation of approximately 200 million VND and a monthly surplus</td>
-    </tr>
-  </table>
+  <nav>
+    <a href="index.html" class="active">Homepage</a>
+    <a href="client.html">Client's Information</a>
+    <a href="Objectives.html">Investment Objectives</a>
+    <a href="asset.html">Asset Management</a>
+    <a href="stock.html">Stock</a>
+    <a href="planning.html">Financial Planning</a>
+    <a href="Characteristics.html">Characteristics</a>
+    <a href="portfolio.html">Portfolio Management</a>
+  </nav>
+</header>
+</header>
+<div class="container">
+<div class="card">
+<h3>Financial Planning</h3>
+<p>- Kế hoạch tài chính 20 năm</p>
+<p>- Dự báo tài sản tương lai</p>
 </div>
 </div>
