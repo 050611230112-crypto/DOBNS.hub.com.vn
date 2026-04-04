@@ -1,7 +1,7 @@
 {
   "FPT": {
     "logo": "images/FPT.jpg",
-    "name": "FPT Corporation",
+    "name": "FPT (CÔNG TY CỔ PHẦN FPT)",
     "industry": "Công nghệ thông tin",
 
     "market_position": {
@@ -127,7 +127,7 @@
 },
  "HPG": {
     "logo": "images/HPG.jpg",
-    "name": "HPG",
+    "name": "HPG (CÔNG TY CỔ PHẦN TẬP ĐOÀN HÒA PHÁT)",
     "industry": "Thép",
 
     "market_position": {
@@ -167,7 +167,7 @@
   }, 
 "BID": {
     "logo": "images/BIDV.jpg",
-    "name": "BIDV",
+    "name": "BID (NGÂN HÀNG THƯƠNG MẠI CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN VIỆT NAM)",
     "industry": "Ngân hàng",
 
     "market_position": {
