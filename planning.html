@@ -4,102 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOBN CAPITAL</title>
-
-<style>
-
-/* ===== RESET ===== */
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #f5f6fa;
-}
-
-/* ===== HEADER ===== */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #2c3e50;
-  padding: 10px 30px;
-}
-
-.logo img {
-  height: 50px;
-}
-
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a.active {
-  font-weight: bold;
-}
-
-/* ===== CONTAINER ===== */
-.container {
-  padding: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* ===== FILTER ===== */
-.filter-box {
-  margin: 15px 0;
-}
-
-.filter-box select {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* ===== TABLE ===== */
-.table-wrapper {
-  overflow-x: auto;
-}
-
-.finance-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 1200px;
-}
-
-.finance-table th,
-.finance-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  font-size: 13px;
-  text-align: right;
-}
-
-.finance-table th {
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-}
-
-.finance-table td:first-child,
-.finance-table td:last-child {
-  text-align: left;
-}
-
-.finance-table tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
-.finance-table tr:hover {
-  background: #f1f1f1;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -111,12 +16,12 @@ nav a.active {
   </div>
 
   <nav>
-    <a href="index.html">Homepage</a>
+    <a href="index.html" class="active">Homepage</a>
     <a href="client.html">Client's Information</a>
     <a href="Objectives.html">Investment Objectives</a>
     <a href="asset.html">Asset Management</a>
     <a href="stock.html">Stock</a>
-    <a href="planning.html" class="active">Financial Planning</a>
+    <a href="planning.html">Financial Planning</a>
     <a href="Characteristics.html">Characteristics</a>
     <a href="portfolio.html">Portfolio Management</a>
   </nav>
