@@ -4,7 +4,102 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOBN CAPITAL</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ===== RESET ===== */
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f5f6fa;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  padding: 10px 30px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a.active {
+  font-weight: bold;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== FILTER ===== */
+.filter-box {
+  margin: 15px 0;
+}
+
+.filter-box select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+}
+
+.finance-table th,
+.finance-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 13px;
+  text-align: right;
+}
+
+.finance-table th {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+}
+
+.finance-table td:first-child,
+.finance-table td:last-child {
+  text-align: left;
+}
+
+.finance-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.finance-table tr:hover {
+  background: #f1f1f1;
+}
+
+</style>
 </head>
 
 <body>
@@ -16,21 +111,126 @@
   </div>
 
   <nav>
-    <a href="index.html" class="active">Homepage</a>
+    <a href="index.html">Homepage</a>
     <a href="client.html">Client's Information</a>
     <a href="Objectives.html">Investment Objectives</a>
     <a href="asset.html">Asset Management</a>
     <a href="stock.html">Stock</a>
-    <a href="planning.html">Financial Planning</a>
+    <a href="planning.html" class="active">Financial Planning</a>
     <a href="Characteristics.html">Characteristics</a>
     <a href="portfolio.html">Portfolio Management</a>
   </nav>
 </header>
-</header>
+
+<!-- CONTENT -->
 <div class="container">
-<div class="card">
-<h3>Financial Planning</h3>
-<p>- Kế hoạch tài chính 20 năm</p>
-<p>- Dự báo tài sản tương lai</p>
+  <div class="card">
+
+    <h3>Financial Planning</h3>
+    <p>- Kế hoạch tài chính dài hạn</p>
+    <p>- Dự báo tài sản tương lai</p>
+
+    <!-- FILTER -->
+    <div class="filter-box">
+      <label>Chọn năm: </label>
+      <select id="yearFilter" onchange="filterYear()">
+        <option value="all">Tất cả</option>
+      </select>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+      <table class="finance-table" id="financeTable">
+
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Savings</th>
+            <th>Provision</th>
+            <th>Fund</th>
+            <th>Beginning</th>
+            <th>Investment</th>
+            <th>Ending Value</th>
+            <th>Withdraw</th>
+            <th>Ending Balance</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr><td>01/01/26</td><td>50,000,000</td><td>6,700,000</td><td>56,700,000</td><td>150,000,000</td><td>20,000,000</td><td>170,000,000</td><td>0</td><td>170,000,000</td><td></td></tr>
+
+          <tr><td>01/02/26</td><td>50,000,000</td><td>13,400,000</td><td>63,400,000</td><td>170,000,000</td><td>20,000,000</td><td>192,833,333</td><td>0</td><td>192,833,333</td><td></td></tr>
+
+          <tr><td>01/01/27</td><td>52,500,000</td><td>87,100,000</td><td>139,600,000</td><td>501,589,641</td><td>20,705,000</td><td>530,654,468</td><td>0</td><td>530,654,468</td><td></td></tr>
+
+          <tr><td>01/01/28</td><td>55,125,000</td><td>167,500,000</td><td>222,625,000</td><td>932,918,771</td><td>18,403,475</td><td>966,870,892</td><td>901,925,024</td><td>64,043,943</td><td>Buy Car</td></tr>
+
+          <tr><td>01/01/29</td><td>57,881,250</td><td>180,900,000</td><td>238,781,250</td><td>622,179,722</td><td>20,082,482</td><td>652,631,867</td><td>0</td><td>652,631,867</td><td></td></tr>
+
+          <tr><td>01/01/30</td><td>60,775,313</td><td>180,900,000</td><td>241,675,313</td><td>1,108,551,518</td><td>20,371,467</td><td>1,147,398,843</td><td>0</td><td>1,147,398,843</td><td></td></tr>
+
+          <tr><td>01/01/35</td><td>77,566,411</td><td>180,900,000</td><td>258,466,411</td><td>5,766,251,290</td><td>32,079,029</td><td>5,894,434,507</td><td>0</td><td>5,894,434,507</td><td></td></tr>
+
+          <tr><td>01/09/35</td><td>77,566,411</td><td>180,900,000</td><td>258,466,411</td><td>6,984,054,640</td><td>54,742,797</td><td>7,155,198,347</td><td>990,990,000</td><td>6,163,217,357</td><td>Tuition</td></tr>
+
+          <tr><td>01/09/39</td><td>94,282,457</td><td>180,900,000</td><td>275,182,457</td><td>17,855,007,828</td><td>91,153,640</td><td>18,243,744,932</td><td>1,319,383,000</td><td>16,923,042,549</td><td>Tuition 2</td></tr>
+
+          <tr><td>01/12/45</td><td>126,347,510</td><td>180,900,000</td><td>307,247,510</td><td>70,705,721,296</td><td>74,366,449</td><td>71,958,516,433</td><td>26,308,875,562</td><td>45,623,331,995</td><td>Final Goal</td></tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
 </div>
-</div>
+
+<!-- SCRIPT -->
+<script>
+
+// AUTO LOAD YEAR vào dropdown
+window.onload = function () {
+  const table = document.getElementById("financeTable");
+  const rows = table.getElementsByTagName("tr");
+  const yearSet = new Set();
+
+  for (let i = 1; i < rows.length; i++) {
+    const dateText = rows[i].cells[0].innerText;
+    const year = "20" + dateText.split("/")[2];
+    yearSet.add(year);
+  }
+
+  const select = document.getElementById("yearFilter");
+
+  yearSet.forEach(year => {
+    const option = document.createElement("option");
+    option.value = year;
+    option.text = year;
+    select.appendChild(option);
+  });
+};
+
+
+// FILTER
+function filterYear() {
+  const selectedYear = document.getElementById("yearFilter").value;
+  const rows = document.querySelectorAll("#financeTable tbody tr");
+
+  rows.forEach(row => {
+    const dateText = row.cells[0].innerText;
+    const year = "20" + dateText.split("/")[2];
+
+    if (selectedYear === "all" || year === selectedYear) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+
+</script>
+
+</body>
+</html>
