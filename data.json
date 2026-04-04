@@ -177,12 +177,12 @@
     "financial": {
       "type": "bank",
       "table": [
-        { "year": 2020, "TOI": "41.6%","NIM": "13,450 tỷ", "NPL": "25.14%", "CAR": "25.14%","roea": "25.14%", "roaa": "11.53%", "eps": "4,507" },
-        { "year": 2021, "TOI": "66.1%","NIM": "34,478 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "45.97%", "roaa": "22.26%", "eps": "8,630" },
-        { "year": 2022, "TOI": "-5.5%","NIM": "8,483 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "9.08", "roaa": "4.87%", "eps": "1,636" },
-        { "year": 2023, "TOI": "-15.9%","NIM": "6,835 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "6.87%", "roaa": "3.82%", "eps": "1,175" },
-        { "year": 2024, "TOI": "16.7%","NIM": "12,021 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "11.06%", "roaa": "5.83", "eps": "1,951" },
-        { "year": 2025, "TOI": "12.4%","NIM": "15,450 tỷ", "NPL": "25.14%","CAR": "25.14%","roea": "12.57%", "roaa": "6.41%", "eps": "2,203" }
+        { "year": 2020, "TOI": "3.98%","NIM": "2.45%", "NPL": "1.76%", "CAR": "8.61%","roea": "8.9%", "roaa": "0.47%", "eps": "1,740" },
+        { "year": 2021, "TOI": "24.89%","NIM": "2.9%", "NPL": "1.00%","CAR": "8.97%","roea": "12.7%", "roaa": "0.64%", "eps": "2,615" },
+        { "year": 2022, "TOI": "11.34%","NIM": "2.93%", "NPL": "0.96%","CAR": "9.34%","roea": "19.48", "roaa": "0.93%", "eps": "3,575" },
+        { "year": 2023, "TOI": "4.93%","NIM": "2.57%", "NPL": "1.26%","CAR": "8.6%","roea": "19.35%", "roaa": "0.97%", "eps": "4,219" },
+        { "year": 2024, "TOI": "11.02%","NIM": "2.33%", "NPL": "1.27%","CAR": "9.03%","roea": "19.17%", "roaa": "1.00%", "eps": "4,423" },
+        { "year": 2025, "TOI": "12.53%","NIM": "2.22%", "NPL": "1.47%","CAR": "9.34%","roea": "19.11%", "roaa": "0.98%", "eps": "4,278" }
       ],
       "analysis": "Tăng trưởng ổn định.",
       "detailed_comment": "Kiểm soát nợ xấu tốt."
@@ -190,11 +190,11 @@
 
     "risk": {
       "level": "Trung bình - thấp",
-      "description": "Áp lực nợ xấu."
+      "description": "Chịu ảnh hưởng từ yếu tố chu kỳ và cấu trúc của nền kinh tế, phản ánh định hướng hoạt động thận trọng của một ngân hàng thương mại nhà nước. Ngân hàng duy trì các chỉ tiêu an toàn như CAR ở mức đáp ứng quy định, nhưng vẫn chịu áp lực tăng vốn khi quy mô tài sản mở rộng nhanh, buộc ngân hàng phải liên tục bổ sung vốn để duy trì tốc độ tăng trưởng. Tuy phải chịu áp lực từ chất lượng tài sản khi tỷ lệ nợ xấu có xu hướng tăng và biên lãi ròng (NIM) thấp hơn mặt bằng ngành, quy mô lớn và vai trò trụ cột trong hệ thống của BIDV giúp duy trì tăng trưởng ổn định, qua đó củng cố mức rủi ro tổng thể ở mức trung bình – thấp."
     },
 
     "outlook": {
-      "description": "Hưởng lợi tăng trưởng kinh tế."
+      "description": "Triển vọng trung và dài hạn của BIDV được đánh giá tích cực trong bối cảnh nền tảng vĩ mô tiếp tục duy trì ổn định, với tăng trưởng GDP Việt Nam dự kiến quanh mức 6–7% trong trung và dài hạn, qua đó tạo dư địa lớn cho nhu cầu tín dụng và mở rộng hoạt động ngân hàng. Trong bối cảnh đó, tăng trưởng của BIDV không chỉ đến từ yếu tố thị trường mà còn gắn chặt với định hướng phát triển của nền kinh tế và khu vực doanh nghiệp nhà nước. Nhờ quy mô lớn và mạng lưới khách hàng doanh nghiệp rộng, ngân hàng có lợi thế đáng kể trong việc hưởng lợi từ xu hướng đẩy mạnh đầu tư công, dòng vốn FDI và tín dụng bán buôn. Đồng thời, Nghị quyết 79-NQ/TW đặt mục tiêu đưa ít nhất 3 ngân hàng thương mại nhà nước lọt Top 100 ngân hàng lớn nhất châu Á, qua đó tạo thêm động lực để BIDV tiếp tục mở rộng quy mô, nâng cao năng lực tài chính và củng cố vị thế trong khu vực."
     },
 
     "time_horizon": {
