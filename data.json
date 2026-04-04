@@ -166,12 +166,12 @@
     }
   }, 
 "BID": {
-    "logo": "images/BID.jpg",
+    "logo": "images/BIDV.jpg",
     "name": "BIDV",
     "industry": "Ngân hàng",
 
     "market_position": {
-      "description": "Một trong Big4 ngân hàng Việt Nam."
+      "description": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV) là một trong bốn ngân hàng thương mại lớn nhất Việt Nam, được thành lập từ năm 1957 và giữ vai trò trụ cột trong hệ thống tài chính quốc gia. Ngân hàng có quy mô tài sản, nguồn vốn và doanh thu thuộc nhóm dẫn đầu và mạng lưới hoạt động rộng khắp phục vụ đa dạng khách hàng. BIDV từng là ngân hàng có tổng tài sản lớn nhất Việt Nam năm 2019 và được vinh danh “Ngân hàng bán lẻ tốt nhất Việt Nam” năm 2020. Giai đoạn 2020–2025, BIDV duy trì tăng trưởng ổn định với tổng tài sản vượt 3,25 triệu tỷ đồng và lợi nhuận trước thuế đạt hơn 36.000 tỷ đồng vào năm 2025. Tuy nhiên, đến quý III/2025, nợ xấu tăng lên khoảng 42–43 nghìn tỷ đồng cao hơn so với khoảng 29 nghìn tỷ đồng cuối năm 2024, khiến tỷ lệ nợ xấu tăng từ ~1,41% lên ~1,88%."
     },
 
     "financial": {
