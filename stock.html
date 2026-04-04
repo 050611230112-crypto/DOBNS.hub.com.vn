@@ -46,116 +46,121 @@
 <script>
 async function loadStock(code){
 
-  const res = await fetch('data.json');
-  const data = await res.json();
-  const stock = data[code];
+  try{
+    const res = await fetch('data.json');
+    const data = await res.json();
+    const stock = data[code];
 
-  if(!stock){
-    document.getElementById('stockContent').innerHTML = "Không có dữ liệu";
-    return;
-  }
+    if(!stock){
+      document.getElementById('stockContent').innerHTML = "<h3>Không có dữ liệu</h3>";
+      return;
+    }
 
-  let html = `
-  <div style="display:flex; gap:20px;">
-    <img src="${stock.logo}" style="height:120px;">
-    <div>
-      <h2>${stock.name}</h2>
-      <p>${stock.industry}</p>
+    let html = `
+    <div style="display:flex; gap:20px; align-items:center;">
+      <img src="${stock.logo}" style="height:120px;">
+      <div>
+        <h2>${stock.name}</h2>
+        <p>${stock.industry}</p>
+      </div>
     </div>
-  </div>
 
-  <h3>Market Position</h3>
-  <p>${stock.market_position.description}</p>
-  `;
-
-  if(stock.business_model){
-    html += `
-    <h3>Business Model</h3>
-    <p>${stock.business_model.description}</p>
-    `;
-  }
-
-  html += `
-  <h3>Financial</h3>
-  <p>${stock.financial.analysis}</p>
-  <p>${stock.financial.detailed_comment}</p>
-  `;
-
-  if(stock.financial.type === "bank"){
-
-    html += `
-    <table>
-      <tr>
-        <th>Year</th>
-        <th>TOI</th>
-        <th>ROE</th>
-        <th>ROA</th>
-        <th>NIM</th>
-        <th>EPS</th>
-        <th>NPL</th>
-        <th>CAR</th>
-      </tr>
+    <h3>Market Position</h3>
+    <p>${stock.market_position?.description || ""}</p>
     `;
 
-    stock.financial.table.forEach(p => {
+    // ✅ FIX: tránh lỗi nếu không có business_model
+    if(stock.business_model && stock.business_model.description){
       html += `
-      <tr>
-        <td>${p.year}</td>
-        <td>${p.toi}</td>
-        <td>${p.roea}</td>
-        <td>${p.roaa}</td>
-        <td>${p.nim}</td>
-        <td>${p.eps}</td>
-        <td>${p.npl}</td>
-        <td>${p.car}</td>
-      </tr>
+      <h3>Business Model</h3>
+      <p>${stock.business_model.description}</p>
       `;
-    });
-
-  } else {
+    }
 
     html += `
-    <table>
-      <tr>
-        <th>Year</th>
-        <th>Growth</th>
-        <th>Profit</th>
-        <th>ROE</th>
-        <th>ROA</th>
-        <th>EPS</th>
-      </tr>
+    <h3>Financial</h3>
+    <p>${stock.financial?.analysis || ""}</p>
+    <p>${stock.financial?.detailed_comment || ""}</p>
     `;
 
-    stock.financial.table.forEach(p => {
+    // ✅ FIX: kiểm tra tồn tại trước khi dùng
+    if(stock.financial && stock.financial.type === "bank"){
+
       html += `
-      <tr>
-        <td>${p.year}</td>
-        <td>${p.revenue_growth}</td>
-        <td>${p.lnst}</td>
-        <td>${p.roea}</td>
-        <td>${p.roaa}</td>
-        <td>${p.eps}</td>
-      </tr>
+      <table>
+        <tr>
+          <th>Year</th>
+          <th>TOI</th>
+          <th>ROE</th>
+          <th>ROA</th>
+          <th>NIM</th>
+          <th>EPS</th>
+          <th>NPL</th>
+          <th>CAR</th>
+        </tr>
       `;
-    });
+
+      stock.financial.table.forEach(p => {
+        html += `
+        <tr>
+          <td>${p.year}</td>
+          <td>${p.toi || ""}</td>
+          <td>${p.roea || ""}</td>
+          <td>${p.roaa || ""}</td>
+          <td>${p.nim || ""}</td>
+          <td>${p.eps || ""}</td>
+          <td>${p.npl || ""}</td>
+          <td>${p.car || ""}</td>
+        </tr>
+        `;
+      });
+
+    } else {
+
+      html += `
+      <table>
+        <tr>
+          <th>Year</th>
+          <th>Growth</th>
+          <th>Profit</th>
+          <th>ROE</th>
+          <th>ROA</th>
+          <th>EPS</th>
+        </tr>
+      `;
+
+      stock.financial.table.forEach(p => {
+        html += `
+        <tr>
+          <td>${p.year}</td>
+          <td>${p.revenue_growth || ""}</td>
+          <td>${p.lnst || ""}</td>
+          <td>${p.roea || ""}</td>
+          <td>${p.roaa || ""}</td>
+          <td>${p.eps || ""}</td>
+        </tr>
+        `;
+      });
+    }
+
+    html += `</table>
+
+    <h3>Risk</h3>
+    <p><b>Mức độ:</b> ${stock.risk?.level || ""}</p>
+    <p>${stock.risk?.description || ""}</p>
+
+    <h3>Outlook</h3>
+    <p>${stock.outlook?.description || ""}</p>
+
+    <h3>Time Horizon</h3>
+    <p>${stock.time_horizon?.description || ""}</p>
+    `;
+
+    document.getElementById('stockContent').innerHTML = html;
+
+  } catch(error){
+    document.getElementById('stockContent').innerHTML = "<h3>Lỗi load dữ liệu</h3>";
+    console.error(error);
   }
-
-  html += `</table>
-
-  <h3>Risk</h3>
-  <p>${stock.risk.level}</p>
-  <p>${stock.risk.description}</p>
-
-  <h3>Outlook</h3>
-  <p>${stock.outlook.description}</p>
-
-  <h3>Time Horizon</h3>
-  <p>${stock.time_horizon.description}</p>
-  `;
-
-  document.getElementById('stockContent').innerHTML = html;
 }
 </script>
-
-</body>
-</html>
