@@ -114,11 +114,11 @@
 
     "risk": {
       "level": "Trung bình",
-      "description": "Rủi ro từ chu kỳ tiêu dùng và cạnh tranh."
+      "description": "MWG có mức rủi ro trung bình, không phải cổ phiếu phòng thủ nhưng ít rủi ro hơn doanh nghiệp bán lẻ nhỏ. Rủi ro lớn nhất đến từ tính chu kỳ của ngành bán lẻ. Bên cạnh đó, MWG còn chịu áp cạnh tranh trong ngành ngày càng gay gắt, không chỉ từ các đối thủ trực tiếp mà còn từ kênh thương mại điện tử."
     },
 
     "outlook": {
-      "description": "Tầm nhìn 2030 là tập đoàn số 1 Đông Nam Á về bán lẻ, thương mại điện tử và dịch vụ liên quan. Sự hồi phục của tiêu dùng nội địa vàLợi thế về quy mô, thương hiệu và hệ thống phân phối."
+      "description": "Tầm nhìn 2030 là tập đoàn số 1 Đông Nam Á về bán lẻ, thương mại điện tử và dịch vụ liên quan. Sự hồi phục của tiêu dùng nội địa và lợi thế về quy mô, thương hiệu và hệ thống phân phối."
     },
 
     "time_horizon": {
@@ -154,7 +154,7 @@
 
     "risk": {
       "level": "Trung bình",
-      "description": "Rủi ro chu kỳ ngành."
+      "description": "Cổ phiếu HPG có mức rủi ro trung bình - cao, do đặc thù ngành thép có tính chu kỳ mạnh. Các yếu tố rủi ro chính:Biến động giá quặng sắt và than cốc, phụ thuộc vào thị trường bất động sản và đầu tư công, áp lực cạnh tranh từ thép nhập khẩu. Tuy nhiên với quy mô lớn và lợi thế về chi phí, Hòa Phát có khả năng chống chịu tốt hơn so với nhiều doanh nghiệp cùng ngành."
     },
 
     "outlook": {
@@ -198,7 +198,7 @@
     },
 
     "time_horizon": {
-      "description": "3–5 năm"
+      "description": "Trung và dài hạn 3–5 năm"
     }
   }
 }
