@@ -71,7 +71,7 @@ nav a.active::after{
   text-align: center;
   color: white;
 
-  background: url('imanage1.png') center 50%/cover no-repeat;
+  background: url('imanage1.png') center 20%/cover no-repeat;
 
   display: flex;
   flex-direction: column;
