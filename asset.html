@@ -29,68 +29,127 @@
 
 <div class="container">
 
+  <!-- BUTTON -->
   <div class="card">
     <h3>Chọn nội dung</h3>
-    <button onclick="show('assets')">Assets</button>
     <button onclick="show('liabilities')">Liabilities</button>
     <button onclick="show('income')">Income</button>
     <button onclick="show('expenses')">Expenses</button>
     <button onclick="show('surplus')">Surplus</button>
   </div>
 
-  <div id="assets" class="card content">Bảng Assets từ Excel</div>
-  <div id="liabilities" class="card content" style="display:none">Bảng Liabilities</div>
-  <div id="income" class="card content" style="display:none">Monthly Income</div>
-  <div id="expenses" class="card content" style="display:none">Monthly Expenses</div>
- <div id="surplus" class="card content" style="display:none">Monthly Surplus</div>
+  <!-- ================= LIABILITIES ================= -->
+  <div id="liabilities" class="card content">
+    <h3>Liabilities</h3>
+    <table border="1">
+      <tr>
+        <th>Time</th>
+        <th>Beginning Mortgage</th>
+        <th>Interest</th>
+        <th>Principal</th>
+        <th>Total Payment</th>
+        <th>Ending</th>
+      </tr>
+      <tr>
+        <td>1/1/2026</td>
+        <td>750.000.000</td>
+        <td>5.000.000</td>
+        <td>5.000.000</td>
+        <td>10.000.000</td>
+        <td>745.000.000</td>
+      </tr>
+      <tr>
+        <td>1/2/2026</td>
+        <td>745.000.000</td>
+        <td>4.966.667</td>
+        <td>5.033.333</td>
+        <td>10.000.000</td>
+        <td>739.966.667</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ================= INCOME ================= -->
+  <div id="income" class="card content" style="display:none">
+    <h3>Monthly Income</h3>
+    <table border="1">
+      <tr>
+        <th>Time</th>
+        <th>Anh Nam</th>
+        <th>Chi Nu</th>
+        <th>Rental</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>01/01/26</td>
+        <td>60.000.000</td>
+        <td>25.000.000</td>
+        <td>20.000.000</td>
+        <td>105.000.000</td>
+      </tr>
+      <tr>
+        <td>01/02/26</td>
+        <td>60.000.000</td>
+        <td>25.000.000</td>
+        <td>20.000.000</td>
+        <td>105.000.000</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ================= EXPENSES ================= -->
+  <div id="expenses" class="card content" style="display:none">
+    <h3>Monthly Expenses</h3>
+    <table border="1">
+      <tr>
+        <th>Time</th>
+        <th>Living</th>
+        <th>Entertainment</th>
+        <th>Mortgage</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>01/01/26</td>
+        <td>18.000.000</td>
+        <td>8.000.000</td>
+        <td>10.000.000</td>
+        <td>78.300.000</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ================= SURPLUS ================= -->
+  <div id="surplus" class="card content" style="display:none">
+    <h3>Monthly Surplus</h3>
+    <table border="1">
+      <tr>
+        <th>Time</th>
+        <th>Surplus</th>
+        <th>Investment</th>
+        <th>Provision</th>
+      </tr>
+      <tr>
+        <td>01/01/26</td>
+        <td>26.700.000</td>
+        <td>20.000.000</td>
+        <td>6.700.000</td>
+      </tr>
+    </table>
+  </div>
+
 </div>
-// AUTO LOAD YEAR vào dropdown
-window.onload = function () {
-  const table = document.getElementById("financeTable");
-  const rows = table.getElementsByTagName("tr");
-  const yearSet = new Set();
 
-  for (let i = 1; i < rows.length; i++) {
-    const dateText = rows[i].cells[0].innerText;
-    const year = "20" + dateText.split("/")[2];
-    yearSet.add(year);
-  }
-
-  const select = document.getElementById("yearFilter");
-
-  yearSet.forEach(year => {
-    const option = document.createElement("option");
-    option.value = year;
-    option.text = year;
-    select.appendChild(option);
-  });
-};
-
-
-// FILTER
-function filterYear() {
-  const selectedYear = document.getElementById("yearFilter").value;
-  const rows = document.querySelectorAll("#financeTable tbody tr");
-
-  rows.forEach(row => {
-    const dateText = row.cells[0].innerText;
-    const year = "20" + dateText.split("/")[2];
-
-    if (selectedYear === "all" || year === selectedYear) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-  });
-}
+<!-- SCRIPT -->
 <script>
 function show(id){
   document.querySelectorAll('.content').forEach(el=>el.style.display='none');
   document.getElementById(id).style.display='block';
 }
 </script>
+
 <footer>
   <p>© 2026 DOBN CAPITAL - Demo Website</p>
 </footer>
+
 </body>
 </html>
