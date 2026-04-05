@@ -80,7 +80,7 @@ nav a.active::after{
 }
 
 /* overlay */
-.hero:: before {
+.hero::before {
   content: "";
   position: absolute;
   inset: 0;
