@@ -5,119 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOBN CAPITAL</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+body{font-family:Arial;background:#f5f5f5}
+header{display:flex;justify-content:space-between;padding:10px 20px;background:#111;color:white}
+nav a{color:white;margin:0 10px;text-decoration:none}
+.container{padding:20px}
+.card{background:white;padding:20px;margin-bottom:20px;border-radius:10px}
+button{margin:5px;padding:8px 15px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border:1px solid #ccc;padding:8px;text-align:center}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="logo">
-    <img src="logo.jpg">
-  </div>
-
+  <h2>DOBN CAPITAL</h2>
   <nav>
-    <a href="index.html" class="active">Homepage</a>
-    <a href="client.html">Client's Information</a>
-    <a href="Objectives.html">Investment Objectives</a>
-    <a href="asset.html">Asset Management</a>
-    <a href="stock.html">Stock</a>
-    <a href="planning.html">Financial Planning</a>
-    <a href="Characteristics.html">Characteristics</a>
-    <a href="portfolio.html">Portfolio Management</a>
+    <a href="#">Homepage</a>
+    <a href="#">Planning</a>
   </nav>
 </header>
 
 <div class="container">
 
-<!-- BUTTON -->
 <div class="card">
   <h3>Chọn nội dung</h3>
-  
   <button onclick="show('assets')">Assets</button>
   <button onclick="show('liabilities')">Liabilities</button>
-  <button onclick="show('income')">Monthly Income</button>
-  <button onclick="show('expenses')">Monthly Expenses</button>
-  <button onclick="show('surplus')">Monthly Surplus</button>
+  <button onclick="show('income')">Income</button>
+  <button onclick="show('expenses')">Expenses</button>
+  <button onclick="show('surplus')">Surplus</button>
 </div>
+
 <!-- ================= ASSETS ================= -->
-  <div id="assets" class="card content" style="display:none">
+<div id="assets" class="card content" style="display:none">
   <h3>Assets</h3>
 
-  <div class="filter-box">
-    <label>Chọn năm:</label>
-    <select onchange="filterYear(this,'table1')">
-      <option value="all">Tất cả</option>
-    </select>
-  </div>
+  <select onchange="filterYear(this,['assetsTable'])">
+    <option value="all">Tất cả</option>
+  </select>
 
-  <table id="table1">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Apartment</th>
-        <th>Land</th>
-        <th>Cash</th>
-        <th>Loan to friend</th>
-        <th>Accumulated savings</th>
-        <th>Investment</th>
-        <th>Objective 1</th>
-       <th>Objective 2</th>
-        <th>Objective 3</th>
-        <th>Objective 4</th>
-         <th>Total asset</th>
-         <th>Note</th>
-      </tr>
-    </thead>
+  <table id="assetsTable">
     <tbody>
-       <tr><td>31/12/2025</td><td>3.500.000.000</td><td>1.500.000.000</td><td>200.000.000</td><td>200.000.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5.400.000.000</td><td>price of land plots and apartment are projected to rise by 10% annually</td></tr>
-      <tr><td>1/1/2026</td><td>3.500.000.000</td><td>1.500.000.000</td><td>6.700.000</td><td>200.000.000</td><td>50.000.000</td><td>170.000.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5.400.000.000</td><td></td></tr>
-      <tr><td>1/2/2026</td><td>745.000.000</td><td>4.966.667</td><td>5.033.333</td><td>10.000.000</td><td>739.966.667</td></tr>
+      <tr><td>31/12/2025</td><td>5.400.000.000</td></tr>
+      <tr><td>1/1/2026</td><td>5.400.000.000</td></tr>
     </tbody>
   </table>
 </div>
+
 <!-- ================= LIABILITIES ================= -->
 <div id="liabilities" class="card content" style="display:none">
   <h3>Liabilities</h3>
 
-  <div class="filter-box">
-    <label>Chọn năm:</label>
-    <select onchange="filterYear(this,['table1','table1'])">
-      <option value="all">Tất cả</option>
-    </select>
-  </div>
+  <select onchange="filterYear(this,['liab1','liab2'])">
+    <option value="all">Tất cả</option>
+  </select>
 
-  <table id="table1">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th> Beginning Mortgage Balance</th>
-        <th>Interest</th>
-        <th>Principal</th>
-        <th>Total</th>
-        <th>Ending</th>
-      </tr>
-    </thead>
+  <table id="liab1">
     <tbody>
-      <tr><td>1/12/2025</td><td>750.000.000</td><td>5.000.000</td><td>5.000.000</td><td>10.000.000</td><td>745.000.000</td></tr>
-      <tr><td>1/1/2026</td><td>750.000.000</td><td>5.000.000</td><td>5.000.000</td><td>10.000.000</td><td>745.000.000</td></tr>
-      <tr><td>1/2/2026</td><td>745.000.000</td><td>4.966.667</td><td>5.033.333</td><td>10.000.000</td><td>739.966.667</td></tr>
+      <tr><td>1/12/2025</td><td>750.000.000</td></tr>
+      <tr><td>1/1/2026</td><td>745.000.000</td></tr>
     </tbody>
   </table>
-    <table id="table2">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Beginning Land Balance</th>
-        <th>Interest</th>
-        <th>Principal</th>
-        <th>Total</th>
-        <th>Ending</th>
-      </tr>
-    </thead>
+
+  <table id="liab2">
     <tbody>
-      <tr><td>1/12/2025</td><td>750.000.000</td><td>5.000.000</td><td>5.000.000</td><td>10.000.000</td><td>745.000.000</td></tr>
-      <tr><td>1/1/2026</td><td>750.000.000</td><td>5.000.000</td><td>5.000.000</td><td>10.000.000</td><td>745.000.000</td></tr>
-      <tr><td>1/2/2026</td><td>745.000.000</td><td>4.966.667</td><td>5.033.333</td><td>10.000.000</td><td>739.966.667</td></tr>
+      <tr><td>1/12/2025</td><td>520.000.000</td></tr>
+      <tr><td>1/1/2026</td><td>516.000.000</td></tr>
     </tbody>
   </table>
 </div>
@@ -126,26 +82,14 @@
 <div id="income" class="card content" style="display:none">
   <h3>Income</h3>
 
-  <div class="filter-box">
-    <label>Chọn năm:</label>
-    <select onchange="filterYear(this,'table2')">
-      <option value="all">Tất cả</option>
-    </select>
-  </div>
+  <select onchange="filterYear(this,['incomeTable'])">
+    <option value="all">Tất cả</option>
+  </select>
 
-  <table id="table2">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Anh Nam</th>
-        <th>Chi Nu</th>
-        <th>Rental</th>
-        <th>Total</th>
-      </tr>
-    </thead>
+  <table id="incomeTable">
     <tbody>
-      <tr><td>01/01/26</td><td>60.000.000</td><td>25.000.000</td><td>20.000.000</td><td>105.000.000</td></tr>
-      <tr><td>01/02/26</td><td>60.000.000</td><td>25.000.000</td><td>20.000.000</td><td>105.000.000</td></tr>
+      <tr><td>01/01/26</td><td>105.000.000</td></tr>
+      <tr><td>01/02/26</td><td>105.000.000</td></tr>
     </tbody>
   </table>
 </div>
@@ -154,25 +98,13 @@
 <div id="expenses" class="card content" style="display:none">
   <h3>Expenses</h3>
 
-  <div class="filter-box">
-    <label>Chọn năm:</label>
-    <select onchange="filterYear(this,'table3')">
-      <option value="all">Tất cả</option>
-    </select>
-  </div>
+  <select onchange="filterYear(this,['expensesTable'])">
+    <option value="all">Tất cả</option>
+  </select>
 
-  <table id="table3">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Living</th>
-        <th>Entertainment</th>
-        <th>Mortgage</th>
-        <th>Total</th>
-      </tr>
-    </thead>
+  <table id="expensesTable">
     <tbody>
-      <tr><td>01/01/26</td><td>18.000.000</td><td>8.000.000</td><td>10.000.000</td><td>78.300.000</td></tr>
+      <tr><td>01/01/26</td><td>78.300.000</td></tr>
     </tbody>
   </table>
 </div>
@@ -181,24 +113,13 @@
 <div id="surplus" class="card content" style="display:none">
   <h3>Surplus</h3>
 
-  <div class="filter-box">
-    <label>Chọn năm:</label>
-    <select onchange="filterYear(this,'table4')">
-      <option value="all">Tất cả</option>
-    </select>
-  </div>
+  <select onchange="filterYear(this,['surplusTable'])">
+    <option value="all">Tất cả</option>
+  </select>
 
-  <table id="table4">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Surplus</th>
-        <th>Investment</th>
-        <th>Provision</th>
-      </tr>
-    </thead>
+  <table id="surplusTable">
     <tbody>
-      <tr><td>01/01/26</td><td>26.700.000</td><td>20.000.000</td><td>6.700.000</td></tr>
+      <tr><td>01/01/26</td><td>26.700.000</td></tr>
     </tbody>
   </table>
 </div>
@@ -207,19 +128,17 @@
 
 <script>
 
-// SWITCH TAB
+// TAB
 function show(id){
   document.querySelectorAll('.content').forEach(el=>el.style.display='none');
   document.getElementById(id).style.display='block';
 }
 
-// LOAD YEAR THEO TỪNG CARD
+// LOAD YEAR
 window.onload = function(){
-
   const contents = document.querySelectorAll(".content");
 
   contents.forEach(content => {
-
     const tables = content.querySelectorAll("table");
     const select = content.querySelector("select");
 
@@ -228,9 +147,11 @@ window.onload = function(){
     const yearSet = new Set();
 
     tables.forEach(table=>{
-      const rows = table.querySelectorAll("tbody tr");
+      const rows = table.querySelectorAll("tr");
 
       rows.forEach(row=>{
+        if(row.cells.length === 0) return;
+
         let text = row.cells[0].innerText;
         let year = text.split("/").pop();
 
@@ -240,26 +161,25 @@ window.onload = function(){
       });
     });
 
-    // add year vào dropdown
     yearSet.forEach(y=>{
       const opt = document.createElement("option");
       opt.value = y;
       opt.text = y;
       select.appendChild(opt);
     });
-
   });
 }
 
-
-// FILTER (dùng cho nhiều table trong 1 card luôn)
+// FILTER
 function filterYear(select, tableIds){
   const year = select.value;
 
   tableIds.forEach(id=>{
-    const rows = document.querySelectorAll(`#${id} tbody tr`);
+    const rows = document.querySelectorAll(`#${id} tr`);
 
     rows.forEach(row=>{
+      if(row.cells.length === 0) return;
+
       let text = row.cells[0].innerText;
       let y = text.split("/").pop();
 
@@ -275,8 +195,6 @@ function filterYear(select, tableIds){
 }
 
 </script>
-<footer>
-  <p>© 2026 DOBN CAPITAL - Demo Website</p>
-</footer>
+
 </body>
 </html>
