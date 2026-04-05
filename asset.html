@@ -32,12 +32,48 @@
 <!-- BUTTON -->
 <div class="card">
   <h3>Chọn nội dung</h3>
+  
+  <button onclick="show('assets')">Assets</button>
   <button onclick="show('liabilities')">Liabilities</button>
-  <button onclick="show('income')">Income</button>
-  <button onclick="show('expenses')">Expenses</button>
-  <button onclick="show('surplus')">Surplus</button>
+  <button onclick="show('income')">Monthly Income</button>
+  <button onclick="show('expenses')">Monthly Expenses</button>
+  <button onclick="show('surplus')">Monthly Surplus</button>
 </div>
+<!-- ================= ASSETS ================= -->
+  <div id="assets" class="card content">
+  <h3>Assets</h3>
 
+  <div class="filter-box">
+    <label>Chọn năm:</label>
+    <select onchange="filterYear(this,'table1')">
+      <option value="all">Tất cả</option>
+    </select>
+  </div>
+
+  <table id="table1">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Apartment</th>
+        <th>Land</th>
+        <th>Cash</th>
+        <th>Loan to friend</th>
+        <th>Accumulated savings</th>
+        <th>Investment</th>
+        <th>Objective 1</th>
+       <th>Objective 2</th>
+        <th>Objective 3</th>
+        <th>Objective 4</th>
+         <th>Total asset</th>
+         <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1/1/2026</td><td>3.500.000.000</td><td>1.500.000.000</td><td>200.000.000</td><td>200.000.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5.400.000.000</td><td>price of land plots and apartment are projected to rise by 10% annually</td></tr>
+      <tr><td>1/2/2026</td><td>745.000.000</td><td>4.966.667</td><td>5.033.333</td><td>10.000.000</td><td>739.966.667</td></tr>
+    </tbody>
+  </table>
+</div>
 <!-- ================= LIABILITIES ================= -->
 <div id="liabilities" class="card content">
   <h3>Liabilities</h3>
