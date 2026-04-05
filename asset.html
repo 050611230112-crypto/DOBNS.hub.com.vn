@@ -4,75 +4,125 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DOBN CAPITAL</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+  font-family: Arial;
+  background:#f5f5f5;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 20px;
+  background:#111;
+  color:white;
+}
+
+nav a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+}
+
+.container{
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+}
+
+button{
+  margin:5px;
+  padding:8px 15px;
+  cursor:pointer;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th, td{
+  border:1px solid #ccc;
+  padding:8px;
+  text-align:center;
+}
+
+.filter-box{
+  margin-bottom:10px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-  <div class="logo">
-    <img src="logo.jpg">
-  </div>
-
+  <h2>DOBN CAPITAL</h2>
   <nav>
-    <a href="index.html" class="active">Homepage</a>
-    <a href="client.html">Client's Information</a>
-    <a href="Objectives.html">Investment Objectives</a>
-    <a href="asset.html">Asset Management</a>
-    <a href="stock.html">Stock</a>
-    <a href="planning.html">Financial Planning</a>
-    <a href="Characteristics.html">Characteristics</a>
-    <a href="portfolio.html">Portfolio Management</a>
+    <a href="#">Homepage</a>
+    <a href="#">Planning</a>
   </nav>
 </header>
 
 <div class="container">
 
-  <!-- BUTTON -->
-  <div class="card">
-    <h3>Chọn nội dung</h3>
-    <button onclick="show('liabilities')">Liabilities</button>
-    <button onclick="show('income')">Income</button>
-    <button onclick="show('expenses')">Expenses</button>
-    <button onclick="show('surplus')">Surplus</button>
+<!-- BUTTON -->
+<div class="card">
+  <h3>Chọn nội dung</h3>
+  <button onclick="show('liabilities')">Liabilities</button>
+  <button onclick="show('income')">Income</button>
+  <button onclick="show('expenses')">Expenses</button>
+  <button onclick="show('surplus')">Surplus</button>
+</div>
+
+<!-- ================= LIABILITIES ================= -->
+<div id="liabilities" class="card content">
+  <h3>Liabilities</h3>
+
+  <div class="filter-box">
+    <label>Chọn năm:</label>
+    <select onchange="filterYear(this,'table1')">
+      <option value="all">Tất cả</option>
+    </select>
   </div>
 
-  <!-- ================= LIABILITIES ================= -->
-  <div id="liabilities" class="card content">
-    <h3>Liabilities</h3>
-    <table border="1">
+  <table id="table1">
+    <thead>
       <tr>
         <th>Time</th>
-        <th>Beginning Mortgage</th>
+        <th>Mortgage Begin</th>
         <th>Interest</th>
         <th>Principal</th>
-        <th>Total Payment</th>
+        <th>Total</th>
         <th>Ending</th>
       </tr>
-      <tr>
-        <td>1/1/2026</td>
-        <td>750.000.000</td>
-        <td>5.000.000</td>
-        <td>5.000.000</td>
-        <td>10.000.000</td>
-        <td>745.000.000</td>
-      </tr>
-      <tr>
-        <td>1/2/2026</td>
-        <td>745.000.000</td>
-        <td>4.966.667</td>
-        <td>5.033.333</td>
-        <td>10.000.000</td>
-        <td>739.966.667</td>
-      </tr>
-    </table>
+    </thead>
+    <tbody>
+      <tr><td>1/1/2026</td><td>750.000.000</td><td>5.000.000</td><td>5.000.000</td><td>10.000.000</td><td>745.000.000</td></tr>
+      <tr><td>1/2/2026</td><td>745.000.000</td><td>4.966.667</td><td>5.033.333</td><td>10.000.000</td><td>739.966.667</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================= INCOME ================= -->
+<div id="income" class="card content" style="display:none">
+  <h3>Income</h3>
+
+  <div class="filter-box">
+    <label>Chọn năm:</label>
+    <select onchange="filterYear(this,'table2')">
+      <option value="all">Tất cả</option>
+    </select>
   </div>
 
-  <!-- ================= INCOME ================= -->
-  <div id="income" class="card content" style="display:none">
-    <h3>Monthly Income</h3>
-    <table border="1">
+  <table id="table2">
+    <thead>
       <tr>
         <th>Time</th>
         <th>Anh Nam</th>
@@ -80,27 +130,27 @@
         <th>Rental</th>
         <th>Total</th>
       </tr>
-      <tr>
-        <td>01/01/26</td>
-        <td>60.000.000</td>
-        <td>25.000.000</td>
-        <td>20.000.000</td>
-        <td>105.000.000</td>
-      </tr>
-      <tr>
-        <td>01/02/26</td>
-        <td>60.000.000</td>
-        <td>25.000.000</td>
-        <td>20.000.000</td>
-        <td>105.000.000</td>
-      </tr>
-    </table>
+    </thead>
+    <tbody>
+      <tr><td>01/01/26</td><td>60.000.000</td><td>25.000.000</td><td>20.000.000</td><td>105.000.000</td></tr>
+      <tr><td>01/02/26</td><td>60.000.000</td><td>25.000.000</td><td>20.000.000</td><td>105.000.000</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================= EXPENSES ================= -->
+<div id="expenses" class="card content" style="display:none">
+  <h3>Expenses</h3>
+
+  <div class="filter-box">
+    <label>Chọn năm:</label>
+    <select onchange="filterYear(this,'table3')">
+      <option value="all">Tất cả</option>
+    </select>
   </div>
 
-  <!-- ================= EXPENSES ================= -->
-  <div id="expenses" class="card content" style="display:none">
-    <h3>Monthly Expenses</h3>
-    <table border="1">
+  <table id="table3">
+    <thead>
       <tr>
         <th>Time</th>
         <th>Living</th>
@@ -108,48 +158,98 @@
         <th>Mortgage</th>
         <th>Total</th>
       </tr>
-      <tr>
-        <td>01/01/26</td>
-        <td>18.000.000</td>
-        <td>8.000.000</td>
-        <td>10.000.000</td>
-        <td>78.300.000</td>
-      </tr>
-    </table>
+    </thead>
+    <tbody>
+      <tr><td>01/01/26</td><td>18.000.000</td><td>8.000.000</td><td>10.000.000</td><td>78.300.000</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ================= SURPLUS ================= -->
+<div id="surplus" class="card content" style="display:none">
+  <h3>Surplus</h3>
+
+  <div class="filter-box">
+    <label>Chọn năm:</label>
+    <select onchange="filterYear(this,'table4')">
+      <option value="all">Tất cả</option>
+    </select>
   </div>
 
-  <!-- ================= SURPLUS ================= -->
-  <div id="surplus" class="card content" style="display:none">
-    <h3>Monthly Surplus</h3>
-    <table border="1">
+  <table id="table4">
+    <thead>
       <tr>
         <th>Time</th>
         <th>Surplus</th>
         <th>Investment</th>
         <th>Provision</th>
       </tr>
-      <tr>
-        <td>01/01/26</td>
-        <td>26.700.000</td>
-        <td>20.000.000</td>
-        <td>6.700.000</td>
-      </tr>
-    </table>
-  </div>
+    </thead>
+    <tbody>
+      <tr><td>01/01/26</td><td>26.700.000</td><td>20.000.000</td><td>6.700.000</td></tr>
+    </tbody>
+  </table>
+</div>
 
 </div>
 
 <!-- SCRIPT -->
 <script>
+
+// SWITCH TAB
 function show(id){
   document.querySelectorAll('.content').forEach(el=>el.style.display='none');
   document.getElementById(id).style.display='block';
 }
-</script>
 
-<footer>
-  <p>© 2026 DOBN CAPITAL - Demo Website</p>
-</footer>
+// LOAD YEAR CHO TẤT CẢ TABLE
+window.onload = function(){
+  const tables = document.querySelectorAll("table");
+
+  tables.forEach((table, index)=>{
+    const rows = table.querySelectorAll("tbody tr");
+    const yearSet = new Set();
+
+    rows.forEach(row=>{
+      const text = row.cells[0].innerText;
+      let year = text.split("/").pop();
+
+      if(year.length === 2) year = "20" + year;
+
+      yearSet.add(year);
+    });
+
+    const select = table.parentElement.querySelector("select");
+
+    yearSet.forEach(y=>{
+      const opt = document.createElement("option");
+      opt.value = y;
+      opt.text = y;
+      select.appendChild(opt);
+    });
+  });
+}
+
+// FILTER
+function filterYear(select, tableId){
+  const year = select.value;
+  const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+
+  rows.forEach(row=>{
+    let text = row.cells[0].innerText;
+    let y = text.split("/").pop();
+
+    if(y.length === 2) y = "20" + y;
+
+    if(year === "all" || y === year){
+      row.style.display = "";
+    }else{
+      row.style.display = "none";
+    }
+  });
+}
+
+</script>
 
 </body>
 </html>
