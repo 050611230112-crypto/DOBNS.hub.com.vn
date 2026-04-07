@@ -32,6 +32,7 @@
 <div class="card">
   <h3>Chọn nội dung</h3>
   <button onclick="show('price')">Price</button>
+  <button onclick="show('dividend')">Devidend history</button>
   <button onclick="show('return')">Return</button>
   <button onclick="show('expected')">Expected Return</button>
   <button onclick="show('cov')">Covariance</button>
@@ -122,7 +123,32 @@
 </tbody>
 </table>
 </div>
+<!-- RETURN -->
+<div id="Devidend" class="card content" style="display:none">
+<h3>Devidend History</h3>
 
+<select onchange="filterYear(this,['returnTable'])">
+<option value="all">Tất cả</option>
+</select>
+
+<table id="returnTable">
+<thead>
+<tr>
+<th>Date</th>
+<th>FPT</th>
+<th>HPG</th>
+<th>BID</th>
+<th>MWG</th>
+<th>REE</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>01/02/2021</td><td>0.10</td><td>0.10</td><td>0.05</td><td>0.08</td><td>0.07</td></tr>
+<tr><td>01/01/2022</td><td>0.18</td><td>0.18</td><td>0.19</td><td>0.15</td><td>0.25</td></tr>
+<tr><td>01/01/2023</td><td>0.08</td><td>0.15</td><td>0.10</td><td>0.13</td><td>0.12</td></tr>
+</tbody>
+</table>
+</div>
 <!-- RETURN -->
 <div id="return" class="card content" style="display:none">
 <h3>Return</h3>
