@@ -182,7 +182,21 @@ button{
 button:hover{
   background:#0b3d91;
 }
+.container {
+  width: 95%;
+  margin: auto;
+  overflow-x: auto; /* ✅ cho phép scroll ngang */
+}
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px; /* ✅ giữ layout không bị bể */
+}
+
+.card {
+  overflow-x: auto; /* ✅ backup thêm */
+}
 /* FOOTER */
 footer{
   background:#0b3d91;
