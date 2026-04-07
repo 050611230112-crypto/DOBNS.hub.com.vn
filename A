@@ -99,12 +99,12 @@
 <table id="liab2">
 <thead>
 <tr>
-<th>Time</th>
-<th>Land Begin</th>
-<th>Interest</th>
-<th>Principal</th>
-<th>Total</th>
-<th>Ending</th>
+        <th>Time</th>
+        <th>Beginning Land Balance</th>
+        <th>Interest</th>
+        <th>Principal</th>
+        <th>Total</th>
+        <th>Ending</th>
 </tr>
 </thead>
 <tbody>
@@ -125,13 +125,16 @@
 <table id="incomeTable">
 <thead>
 <tr>
-<th>Time</th>
-<th>Total Income</th>
+  <th>Time</th>
+        <th>Anh Nam</th>
+        <th>Chi Nu</th>
+        <th>Rental</th>
+        <th>Total Income</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>01/01/26</td><td>105.000.000</td></tr>
-<tr><td>01/02/26</td><td>105.000.000</td></tr>
+ <tr><td>01/01/26</td><td>60.000.000</td><td>25.000.000</td><td>20.000.000</td><td>105.000.000</td></tr>
+
 </tbody>
 </table>
 </div>
@@ -147,8 +150,17 @@
 <table id="expensesTable">
 <thead>
 <tr>
-<th>Time</th>
-<th>Total Expenses</th>
+        <th>Time</th>
+        <th>Education - Child 1</th>
+        <th>Education - Child 2</th>
+        <th>Extra classes</th>
+        <th>Essential Living</th>
+        <th>Entertainment</th>
+        <th>Shopping</th>
+        <th>Family gifts</th>
+        <th>Mortgage payment</th>
+        <th>Land loan payment</th>
+        <th>Total</th>
 </tr>
 </thead>
 <tbody>
@@ -169,11 +181,13 @@
 <thead>
 <tr>
 <th>Time</th>
-<th>Surplus</th>
+<th>Monthly Surplus</th>
+<th>Monthly Investment</th>
+<th>Monthly Provisioning</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>01/01/26</td><td>26.700.000</td></tr>
+<tr><td>01/01/26</td><td>26.700.000</td><td>26.700.000</td><td>26.700.000</td></tr>
 </tbody>
 </table>
 </div>
