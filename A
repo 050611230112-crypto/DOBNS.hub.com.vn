@@ -49,16 +49,24 @@
 <table id="assetsTable">
 <thead>
 <tr>
-<th>Time</th>
-<th>Apartment</th>
-<th>Land</th>
-<th>Cash</th>
-<th>Total</th>
+        <th>Time</th>
+        <th>Apartment</th>
+        <th>Land</th>
+        <th>Cash</th>
+        <th>Loan to friend</th>
+        <th>Accumulated savings</th>
+        <th>Investment</th>
+        <th>Objective 1</th>
+       <th>Objective 2</th>
+        <th>Objective 3</th>
+        <th>Objective 4</th>
+         <th>Total asset</th>
+         <th>Note</th>
 </tr>
 </thead>
 <tbody>
-<tr><td>31/12/2025</td><td>3.500.000.000</td><td>1.500.000.000</td><td>200.000.000</td><td>5.400.000.000</td></tr>
-<tr><td>1/1/2026</td><td>3.500.000.000</td><td>1.500.000.000</td><td>6.700.000</td><td>5.400.000.000</td></tr>
+  <tr><td>31/12/2025</td><td>3.500.000.000</td><td>1.500.000.000</td><td>200.000.000</td><td>200.000.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5.400.000.000</td><td>price of land plots and apartment are projected to rise by 10% annually</td></tr>
+      <tr><td>1/1/2026</td><td>3.500.000.000</td><td>1.500.000.000</td><td>6.700.000</td><td>200.000.000</td><td>50.000.000</td><td>170.000.000</td><td>0</td><td>0</td><td>0</td><td>0</td><td>5.400.000.000</td><td></td></tr>
 </tbody>
 </table>
 </div>
