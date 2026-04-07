@@ -322,10 +322,10 @@
 <tr>
 <th>Time</th>
 <th>Mortgage Begin</th>
-<th>Interest</th>
-<th>Principal</th>
-<th>Total</th>
-<th>Ending</th>
+<th>Accrued Interest</th>
+<th>Principal Repayment</th>
+<th>Total Payment</th>
+<th>Ending Balance</th>
 </tr>
 </thead>
 <tbody>
