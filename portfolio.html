@@ -33,11 +33,77 @@
     <button onclick="showPort('cop')">Optimal Complete Portfolio</button>
      <button onclick="showPort('allocation')">Asset Allocation Detail</button>
   </div>
+<!-- risky -->
+ <div id="orp" class="card content" style="display:none">
+  <h3>Optimal Risky Portfolio</h3>
+  <table border="1">
+    <tr>
+      <th>Option</th><th>Portfolio</th><th>w_i</th><th>w_j</th><th>w_k</th>
+      <th>W*</th><th>E(Rp)</th><th>Var(Rp)</th><th>Stdev(Rp)</th><th>Sharpe</th><th>Assessment</th>
+    </tr>
+    <tr>
+      <td>1</td><td>(FPT-HPG-BID)</td><td>80%</td><td>10%</td><td>10%</td>
+      <td>100%</td><td>2.34%</td><td>0.46%</td><td>6.81%</td><td>0.3060</td>
+      <td>Moderate return, moderate risk</td>
+    </tr>
+    <tr>
+      <td>2</td><td>(FPT-HPG-MWG)</td><td>80%</td><td>10%</td><td>10%</td>
+      <td>100%</td><td>2.46%</td><td>0.49%</td><td>7.00%</td><td>0.3155</td>
+      <td>High return, high risk</td>
+    </tr>
+    <tr>
+      <td>3</td><td>(FPT-HPG-REE)</td><td>70.52%</td><td>10%</td><td>19.48%</td>
+      <td>100%</td><td>2.37%</td><td>0.43%</td><td>6.57%</td><td>0.3214</td>
+      <td>Balanced return, moderate risk</td>
+    </tr>
+  </table>
+</div>
+  <!-- complete -->
+  <div id="cop" class="card content" style="display:none">
+  <h3>Optimal Complete Portfolio</h3>
+  <table border="1">
+    <tr>
+      <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
+      <th>y*</th><th>1-y*</th><th>E(Rc)</th><th>σ(c)</th><th>U</th>
+    </tr>
+    <tr>
+      <td>5.0804</td><td>2.43%</td><td>0.26%</td><td>6.57%</td>
+      <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
+    </tr>
+  </table>
+</div>
+    <!--  -->
+ <div id="allocation" class="card content" style="display:none">
+  <h3>Capital Allocation Detail</h3>
 
-  <div id="orp" class="card content" style="display:none">Optimal Risky Portfolio</div>
-  <div id="cop" class="card content" style="display:none">Optimal Complete Portfolio</div>
-   <div id="allocation" class="card content" style="display:none">Optimal Complete Portfolio</div>
+  <h4>Overall Allocation</h4>
+  <table border="1">
+    <tr>
+      <th>Type</th><th>Allocation (%)</th><th>Investment (VND)</th>
+    </tr>
+    <tr>
+      <td>Risky Portfolio</td><td>99.35%</td><td>168,891,022</td>
+    </tr>
+    <tr>
+      <td>Risk-free Assets</td><td>0.65%</td><td>1,108,978</td>
+    </tr>
+  </table>
 
+  <h4>Stock Allocation</h4>
+  <table border="1">
+    <tr>
+      <th>Stock</th><th>Allocation (%)</th><th>Investment (VND)</th>
+    </tr>
+    <tr>
+      <td>FPT</td><td>70.48%</td><td>119,028,502</td>
+    </tr>
+    <tr>
+      <td>MWG</td><td>10%</td><td>16,889,102</td>
+    </tr>
+    <tr>
+      <td>REE</td><td>19.52%</td><td>32,973,419</td>
+    </tr>
+  </table>
 </div>
 
 <script>
