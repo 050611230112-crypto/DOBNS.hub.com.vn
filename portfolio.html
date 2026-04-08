@@ -34,28 +34,83 @@
      <button onclick="showPort('allocation')">Capital Allocation Detail</button>
   </div>
 <!-- risky -->
- <div id="orp" class="card content" style="display:none">
+<div id="orp" class="card content" style="display:none">
   <h3>Optimal Risky Portfolio</h3>
+
   <table border="1">
     <tr>
-      <th>Option</th><th>Portfolio</th><th>w_i</th><th>w_j</th><th>w_k</th>
-      <th>W*</th><th>E(Rp)</th><th>Var(Rp)</th><th>Stdev(Rp)</th><th>Sharpe</th><th>Assessment</th>
+      <th>Option</th>
+      <th>Portfolio</th>
+      <th>w_i</th>
+      <th>w_j</th>
+      <th>w_k</th>
+      <th>E(Rp)</th>
+      <th>Var(Rp)</th>
+      <th>Stdev(Rp)</th>
+      <th>Sharpe</th>
+      <th>Assessment</th>
     </tr>
+
     <tr>
       <td>1</td><td>(FPT-HPG-BID)</td><td>80%</td><td>10%</td><td>10%</td>
-      <td>100%</td><td>2.34%</td><td>0.46%</td><td>6.81%</td><td>0.3060</td>
+      <td>2.34%</td><td>0.46%</td><td>6.81%</td><td>0.3060</td>
       <td>Moderate return, moderate risk</td>
     </tr>
+
     <tr>
       <td>2</td><td>(FPT-HPG-MWG)</td><td>80%</td><td>10%</td><td>10%</td>
-      <td>100%</td><td>2.46%</td><td>0.49%</td><td>7.00%</td><td>0.3155</td>
+      <td>2.46%</td><td>0.49%</td><td>7.00%</td><td>0.3155</td>
       <td>High return, high risk</td>
     </tr>
+
     <tr>
       <td>3</td><td>(FPT-HPG-REE)</td><td>70.52%</td><td>10%</td><td>19.48%</td>
-      <td>100%</td><td>2.37%</td><td>0.43%</td><td>6.57%</td><td>0.3214</td>
+      <td>2.37%</td><td>0.43%</td><td>6.57%</td><td>0.3214</td>
       <td>Balanced return, moderate risk</td>
     </tr>
+
+    <tr>
+      <td>4</td><td>(FPT-BID-MWG)</td><td>79.21%</td><td>10%</td><td>10.79%</td>
+      <td>2.40%</td><td>0.45%</td><td>6.74%</td><td>0.3181</td>
+      <td>Balanced return, moderate risk</td>
+    </tr>
+
+    <tr>
+      <td>5</td><td>(FPT-BID-REE)</td><td>69.66%</td><td>10%</td><td>20.34%</td>
+      <td>2.30%</td><td>0.40%</td><td>6.31%</td><td>0.3241</td>
+      <td>Lowest risk, stable return</td>
+    </tr>
+
+    <tr>
+      <td>6</td><td>(FPT-MWG-REE)</td><td>70.48%</td><td>10%</td><td>19.52%</td>
+      <td>2.43%</td><td>0.43%</td><td>6.57%</td><td>0.3316</td>
+      <td>Highest Sharpe, best performance</td>
+    </tr>
+
+    <tr>
+      <td>7</td><td>(HPG-BID-MWG)</td><td>14.00%</td><td>10%</td><td>76.00%</td>
+      <td>1.71%</td><td>0.63%</td><td>7.92%</td><td>0.1840</td>
+      <td>Lowest return, highest risk</td>
+    </tr>
+
+    <tr>
+      <td>8</td><td>(HPG-BID-REE)</td><td>13.42%</td><td>10%</td><td>76.58%</td>
+      <td>1.62%</td><td>0.45%</td><td>6.69%</td><td>0.2042</td>
+      <td>Low return, moderate risk</td>
+    </tr>
+
+    <tr>
+      <td>9</td><td>(HPG-MWG-REE)</td><td>10%</td><td>35.31%</td><td>54.69%</td>
+      <td>1.80%</td><td>0.45%</td><td>6.69%</td><td>0.2303</td>
+      <td>Moderate return, moderate risk</td>
+    </tr>
+
+    <tr>
+      <td>10</td><td>(BID-MWG-REE)</td><td>10%</td><td>36.36%</td><td>53.64%</td>
+      <td>1.74%</td><td>0.41%</td><td>6.42%</td><td>0.2309</td>
+      <td>Moderate return, relatively low risk</td>
+    </tr>
+
   </table>
 </div>
   <!-- complete -->
