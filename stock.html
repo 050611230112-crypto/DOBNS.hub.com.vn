@@ -174,13 +174,13 @@ async function loadStock(code){
       stock.financial.table.forEach(p => {
         html += `<tr>
           <td>${p.year}</td>
-          <td>${p.toi || ""}</td>
+          <td>${p.TOI || ""}</td>
           <td>${p.roea || ""}</td>
           <td>${p.roaa || ""}</td>
-          <td>${p.nim || ""}</td>
+          <td>${p.NIM || ""}</td>
           <td>${p.eps || ""}</td>
-          <td>${p.npl || ""}</td>
-          <td>${p.car || ""}</td>
+          <td>${p.NPL || ""}</td>
+          <td>${p.CAR || ""}</td>
         </tr>`;
       });
 
