@@ -124,9 +124,9 @@
 <tr><td>01/12/2025</td><td>95.800</td><td>26.400</td><td>38.900</td><td>88.400</td><td>60.032</td><td>1784</td></tr>
 </tbody>
 </table>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <canvas id="priceChart"></canvas>
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
 function drawChart() {
     const table = document.getElementById("priceTable");
     const rows = table.querySelectorAll("tbody tr");
@@ -135,7 +135,7 @@ function drawChart() {
     let fpt = [], hpg = [], bid = [], mwg = [], ree = [], vnindex = [];
 
     rows.forEach(row => {
-        if(row.style.display === "none") return; // 🔥 thêm: respect filter
+        if(row.style.display === "none") return;
 
         const cols = row.querySelectorAll("td");
 
@@ -156,23 +156,39 @@ function drawChart() {
         data: {
             labels: dates,
             datasets: [
-                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4 },
-                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4 },
-                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4 },
-                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4 },
-                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4 },
-                { label: 'VNINDEX', data: vnindex, borderWidth: 3, tension: 0.4 }
+                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4, pointRadius: 0 },
+                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
+                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0 },
+                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
+                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0 },
+                { label: 'VNINDEX', data: vnindex, borderWidth: 3, tension: 0.4, pointRadius: 0 }
             ]
         },
         options: {
             responsive: true,
-            animation: {
-                duration: 2000,
-                easing: 'easeOutQuart'
-            },
             interaction: {
                 mode: 'index',
                 intersect: false
+            },
+            animation: {
+                x: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: 1000,
+                    from: NaN,
+                    delay(ctx) {
+                        return ctx.dataIndex * 50;
+                    }
+                },
+                y: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: 500,
+                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                    delay(ctx) {
+                        return ctx.dataIndex * 50;
+                    }
+                }
             },
             plugins: {
                 legend: { position: 'top' },
@@ -185,7 +201,7 @@ function drawChart() {
     });
 }
 
-// ✅ CHỈ VẼ KHI SCROLL TỚI
+// 🔥 chỉ chạy khi scroll tới
 let chartDrawn = false;
 
 const observer = new IntersectionObserver(entries => {
