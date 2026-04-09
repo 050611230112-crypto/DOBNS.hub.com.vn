@@ -97,7 +97,7 @@ nav a.active::after{
 },
 .hero h2 {
   position:r relative;
-  z-index: 2;
+  z-index: 3;
   color:white; /* đảm bảo trắng 100% */
   text-shadow: 0 3px 10px rgba(0,0,0,0.8);
 }
