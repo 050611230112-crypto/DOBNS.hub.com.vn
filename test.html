@@ -132,7 +132,7 @@ function drawChart() {
     const rows = table.querySelectorAll("tbody tr");
 
     let dates = [];
-    let fpt = [], hpg = [], bid = [], mwg = [], ree = [], vnindex = [];
+    let fpt = [], hpg = [], bid = [], mwg = [], ree = [];
 
     rows.forEach(row => {
         if(row.style.display === "none") return;
@@ -146,7 +146,6 @@ function drawChart() {
         bid.push(parseFloat(cols[3].innerText));
         mwg.push(parseFloat(cols[4].innerText));
         ree.push(parseFloat(cols[5].innerText));
-        vnindex.push(parseFloat(cols[6].innerText));
     });
 
     const ctx = document.getElementById('priceChart').getContext('2d');
@@ -160,8 +159,7 @@ function drawChart() {
                 { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
                 { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0 },
                 { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'VNINDEX', data: vnindex, borderWidth: 3, tension: 0.4, pointRadius: 0 }
+                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0 }
             ]
         },
         options: {
