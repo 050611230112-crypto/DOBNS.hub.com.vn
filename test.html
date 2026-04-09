@@ -132,9 +132,11 @@ function drawChart() {
     const rows = table.querySelectorAll("tbody tr");
 
     let dates = [];
-    let fpt = [], hpg = [], bid = [], mwg = [], ree = [];
+    let fpt = [], hpg = [], bid = [], mwg = [], ree = [], vnindex = [];
 
     rows.forEach(row => {
+        if(row.style.display === "none") return; // 🔥 thêm: respect filter
+
         const cols = row.querySelectorAll("td");
 
         dates.push(cols[0].innerText);
@@ -154,66 +156,48 @@ function drawChart() {
         data: {
             labels: dates,
             datasets: [
-                {
-                    label: 'FPT',
-                    data: fpt,
-                    borderWidth: 2
-                },
-                {
-                    label: 'HPG',
-                    data: hpg,
-                    borderWidth: 2
-                },
-                {
-                    label: 'BID',
-                    data: bid,
-                    borderWidth: 2
-                },
-                {
-                    label: 'MWG',
-                    data: mwg,
-                    borderWidth: 2
-                },
-                {
-                    label: 'REE',
-                    data: ree,
-                    borderWidth: 2
-                },
-                {
-                    label: 'VNINDEX',
-                    data: vnindex,
-                    borderWidth: 3
-                }
+                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4 },
+                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4 },
+                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4 },
+                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4 },
+                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4 },
+                { label: 'VNINDEX', data: vnindex, borderWidth: 3, tension: 0.4 }
             ]
         },
         options: {
             responsive: true,
+            animation: {
+                duration: 2000,
+                easing: 'easeOutQuart'
+            },
             interaction: {
                 mode: 'index',
                 intersect: false
             },
             plugins: {
-                legend: {
-                    position: 'top'
-                },
+                legend: { position: 'top' },
                 title: {
                     display: true,
                     text: 'Stock Price Over Time'
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        maxTicksLimit: 10
-                    }
                 }
             }
         }
     });
 }
 
-// gọi sau khi load
-drawChart();
+// ✅ CHỈ VẼ KHI SCROLL TỚI
+let chartDrawn = false;
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !chartDrawn) {
+            drawChart();
+            chartDrawn = true;
+        }
+    });
+}, { threshold: 0.3 });
+
+observer.observe(document.getElementById("priceChart"));
 </script>
 </div>
 <!-- RETURN -->
