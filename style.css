@@ -40,6 +40,12 @@ header{
 }
 
 /* MENU */
+nav{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /* 👈 thêm dòng này */
+}
+
 nav a{
   color:#1d3f8f;
   margin-left:20px;
