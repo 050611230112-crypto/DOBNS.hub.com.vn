@@ -125,8 +125,57 @@
 </tbody>
 </table>
   <canvas id="priceChart"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+// ===== LOAD LOGO =====
+const fptLogo = new Image();
+fptLogo.src = 'FPT.jpg';
+
+const hpgLogo = new Image();
+hpgLogo.src = 'HPG.jpg';
+
+const bidLogo = new Image();
+bidLogo.src = 'BIDV.jpg';
+
+const mwgLogo = new Image();
+mwgLogo.src = 'MWG.jpg';
+
+const reeLogo = new Image();
+reeLogo.src = 'REE.jpg';
+
+// ===== PLUGIN VẼ LOGO =====
+const logoPlugin = {
+    id: 'logoPlugin',
+    afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+
+        chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            const lastPoint = meta.data[meta.data.length - 1];
+
+            if (!lastPoint) return;
+
+            const x = lastPoint.x;
+            const y = lastPoint.y;
+
+            const img = dataset.logo;
+
+            if (img && img.complete) {
+                // vẽ nền trắng cho logo nổi hơn
+                ctx.beginPath();
+                ctx.arc(x, y, 12, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff";
+                ctx.fill();
+
+                // vẽ logo
+                ctx.drawImage(img, x - 10, y - 10, 20, 20);
+            }
+        });
+    }
+};
+
+// ===== DRAW CHART =====
 function drawChart() {
     const table = document.getElementById("priceTable");
     const rows = table.querySelectorAll("tbody tr");
@@ -155,11 +204,11 @@ function drawChart() {
         data: {
             labels: dates,
             datasets: [
-                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0 },
-                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0 }
+                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: fptLogo },
+                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: hpgLogo },
+                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: bidLogo },
+                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: mwgLogo },
+                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: reeLogo }
             ]
         },
         options: {
@@ -195,7 +244,7 @@ function drawChart() {
                     text: 'Stock Price Over Time'
                 }
             },
-            scales: {   // ✅ phải nằm TRONG options
+            scales: {
                 x: {
                     grid: { display: false }
                 },
@@ -203,11 +252,12 @@ function drawChart() {
                     grid: { display: false }
                 }
             }
-        }
+        },
+        plugins: [logoPlugin] // 👈 gắn plugin
     });
 }
 
-// 🔥 scroll mới chạy
+// ===== SCROLL MỚI CHẠY =====
 let chartDrawn = false;
 
 const observer = new IntersectionObserver(entries => {
