@@ -127,30 +127,53 @@
   <canvas id="priceChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-let activeDataset = null;
+// ===== LOAD LOGO =====
+const fptLogo = new Image();
+fptLogo.src = 'fpt.png';
 
-// ===== SIMPLE HIGHLIGHT PLUGIN =====
-const highlightPlugin = {
-    id: 'highlightPlugin',
+const hpgLogo = new Image();
+hpgLogo.src = 'hpg.png';
 
-    beforeDatasetDraw(chart, args) {
+const bidLogo = new Image();
+bidLogo.src = 'bid.png';
+
+const mwgLogo = new Image();
+mwgLogo.src = 'mwg.png';
+
+const reeLogo = new Image();
+reeLogo.src = 'ree.png';
+
+// ===== PLUGIN VẼ LOGO =====
+const logoPlugin = {
+    id: 'logoPlugin',
+    afterDatasetsDraw(chart) {
         const { ctx } = chart;
-        const datasetIndex = args.index;
 
-        // làm mờ line không được chọn
-        if (activeDataset !== null && datasetIndex !== activeDataset) {
-            ctx.save();
-            ctx.globalAlpha = 0.15;
-        }
-    },
+        chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            const lastPoint = meta.data[meta.data.length - 1];
 
-    afterDatasetDraw(chart, args) {
-        const { ctx } = chart;
+            if (!lastPoint) return;
 
-        if (activeDataset !== null && args.index !== activeDataset) {
-            ctx.restore();
-        }
+            const x = lastPoint.x;
+            const y = lastPoint.y;
+
+            const img = dataset.logo;
+
+            if (img && img.complete) {
+                // vẽ nền trắng cho logo nổi hơn
+                ctx.beginPath();
+                ctx.arc(x, y, 12, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff";
+                ctx.fill();
+
+                // vẽ logo
+                ctx.drawImage(img, x - 10, y - 10, 20, 20);
+            }
+        });
     }
 };
 
@@ -163,62 +186,59 @@ function drawChart() {
     let fpt = [], hpg = [], bid = [], mwg = [], ree = [];
 
     rows.forEach(row => {
-        if (row.style.display === "none") return;
+        if(row.style.display === "none") return;
 
         const cols = row.querySelectorAll("td");
 
         dates.push(cols[0].innerText);
-        fpt.push(+cols[1].innerText);
-        hpg.push(+cols[2].innerText);
-        bid.push(+cols[3].innerText);
-        mwg.push(+cols[4].innerText);
-        ree.push(+cols[5].innerText);
+
+        fpt.push(parseFloat(cols[1].innerText));
+        hpg.push(parseFloat(cols[2].innerText));
+        bid.push(parseFloat(cols[3].innerText));
+        mwg.push(parseFloat(cols[4].innerText));
+        ree.push(parseFloat(cols[5].innerText));
     });
 
     const ctx = document.getElementById('priceChart').getContext('2d');
 
-    const chart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: dates,
             datasets: [
-                { label: 'FPT', data: fpt, tension: 0.4, pointRadius: 0, borderWidth: 3 },
-                { label: 'HPG', data: hpg, tension: 0.4, pointRadius: 0, borderWidth: 3 },
-                { label: 'BID', data: bid, tension: 0.4, pointRadius: 0, borderWidth: 3 },
-                { label: 'MWG', data: mwg, tension: 0.4, pointRadius: 0, borderWidth: 3 },
-                { label: 'REE', data: ree, tension: 0.4, pointRadius: 0, borderWidth: 3 }
+                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: fptLogo },
+                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: hpgLogo },
+                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: bidLogo },
+                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: mwgLogo },
+                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: reeLogo }
             ]
         },
         options: {
             responsive: true,
-
             interaction: {
-                mode: 'nearest',
+                mode: 'index',
                 intersect: false
             },
-
-            // 🔥 ANIMATION LEFT → RIGHT
             animation: {
                 x: {
                     type: 'number',
                     easing: 'linear',
-                    duration: 800,
+                    duration: 1000,
                     from: NaN,
                     delay(ctx) {
-                        return ctx.dataIndex * 30;
+                        return ctx.dataIndex * 50;
                     }
                 },
                 y: {
                     type: 'number',
-                    easing: 'easeOutQuart',
+                    easing: 'linear',
                     duration: 500,
                     from: ctx => ctx.chart.scales.y.getPixelForValue(0),
                     delay(ctx) {
-                        return ctx.dataIndex * 30;
+                        return ctx.dataIndex * 50;
                     }
                 }
             },
-
             plugins: {
                 legend: { position: 'top' },
                 title: {
@@ -226,40 +246,20 @@ function drawChart() {
                     text: 'Stock Price Over Time'
                 }
             },
-
-            // ❌ bỏ grid
             scales: {
-                x: { grid: { display: false } },
-                y: { grid: { display: false } }
-            },
-
-            // 🔥 CLICK highlight
-            onClick: (e, elements) => {
-                if (elements.length > 0) {
-                    activeDataset = elements[0].datasetIndex;
-                } else {
-                    activeDataset = null;
+                x: {
+                    grid: { display: false }
+                },
+                y: {
+                    grid: { display: false }
                 }
-                chart.update();
             }
         },
-        plugins: [highlightPlugin]
-    });
-
-    // 🔥 HOVER highlight
-    document.getElementById("priceChart").addEventListener("mousemove", (e) => {
-        const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
-
-        if (points.length) {
-            activeDataset = points[0].datasetIndex;
-        } else {
-            activeDataset = null;
-        }
-        chart.update();
+        plugins: [logoPlugin] // 👈 gắn plugin
     });
 }
 
-// ===== SCROLL LOAD =====
+// ===== SCROLL MỚI CHẠY =====
 let chartDrawn = false;
 
 const observer = new IntersectionObserver(entries => {
