@@ -131,6 +131,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 // ===== LOAD LOGO =====
 const fptLogo = new Image(); fptLogo.src = 'images/FPT.jpg';
@@ -139,37 +141,59 @@ const bidLogo = new Image(); bidLogo.src = 'images/BIDV.jpg';
 const mwgLogo = new Image(); mwgLogo.src = 'images/MWG.jpg';
 const reeLogo = new Image(); reeLogo.src = 'images/REE.jpg';
 
-// ===== PLUGIN LOGO (KHÔNG highlight nữa) =====
-const logoPlugin = {
-    id: 'logoPlugin',
-    afterDatasetsDraw(chart) {
+let activeDataset = null;
+let chart;
+
+// ===== PLUGIN HIGHLIGHT + LOGO =====
+const highlightPlugin = {
+    id: 'highlightPlugin',
+
+    beforeDatasetDraw(chart, args) {
         const { ctx } = chart;
+        const i = args.index;
 
-        chart.data.datasets.forEach((dataset, i) => {
-            const meta = chart.getDatasetMeta(i);
-            const lastPoint = meta.data[meta.data.length - 1];
-            if (!lastPoint) return;
+        // 🔥 làm mờ line khác
+        if (activeDataset !== null && i !== activeDataset) {
+            ctx.save();
+            ctx.globalAlpha = 0.15;
+        }
+    },
 
-            const x = lastPoint.x;
-            const y = lastPoint.y;
+    afterDatasetDraw(chart, args) {
+        const { ctx } = chart;
+        const i = args.index;
 
-            const img = dataset.logo;
+        if (activeDataset !== null && i !== activeDataset) {
+            ctx.restore();
+        }
 
-            if (img && img.complete) {
-                const size = 30;
+        // ===== vẽ logo =====
+        const meta = chart.getDatasetMeta(i);
+        const lastPoint = meta.data[meta.data.length - 1];
+        if (!lastPoint) return;
 
-                ctx.save();
+        const x = lastPoint.x;
+        const y = lastPoint.y;
 
-                ctx.beginPath();
-                ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
-                ctx.fillStyle = "#fff";
-                ctx.fill();
+        const img = chart.data.datasets[i].logo;
 
-                ctx.drawImage(img, x - size/2, y - size/2, size, size);
+        if (img && img.complete) {
+            const size = (activeDataset === i) ? 42 : 28;
 
-                ctx.restore();
-            }
-        });
+            ctx.save();
+
+            ctx.shadowColor = "rgba(0,0,0,0.2)";
+            ctx.shadowBlur = 6;
+
+            ctx.beginPath();
+            ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
+            ctx.fillStyle = "#fff";
+            ctx.fill();
+
+            ctx.drawImage(img, x - size/2, y - size/2, size, size);
+
+            ctx.restore();
+        }
     }
 };
 
@@ -194,61 +218,16 @@ function drawChart() {
         ree.push(parseFloat(cols[5].innerText));
     });
 
-    new Chart(document.getElementById('priceChart'), {
+    chart = new Chart(document.getElementById('priceChart'), {
         type: 'line',
         data: {
             labels: dates,
             datasets: [
-                {
-                    label: 'FPT',
-                    data: fpt,
-                    borderColor: '#FF8C00',
-                    tension: 0.4,
-                    pointRadius: 0,
-                    hoverBorderWidth: 4, // 🔥 hover tự tăng
-                    borderWidth: 2,
-                    logo: fptLogo
-                },
-                {
-                    label: 'HPG',
-                    data: hpg,
-                    borderColor: '#1E90FF',
-                    tension: 0.4,
-                    pointRadius: 0,
-                    hoverBorderWidth: 4,
-                    borderWidth: 2,
-                    logo: hpgLogo
-                },
-                {
-                    label: 'BID',
-                    data: bid,
-                    borderColor: '#008B45',
-                    tension: 0.4,
-                    pointRadius: 0,
-                    hoverBorderWidth: 4,
-                    borderWidth: 2,
-                    logo: bidLogo
-                },
-                {
-                    label: 'MWG',
-                    data: mwg,
-                    borderColor: '#FFD700',
-                    tension: 0.4,
-                    pointRadius: 0,
-                    hoverBorderWidth: 4,
-                    borderWidth: 2,
-                    logo: mwgLogo
-                },
-                {
-                    label: 'REE',
-                    data: ree,
-                    borderColor: '#BA55D3',
-                    tension: 0.4,
-                    pointRadius: 0,
-                    hoverBorderWidth: 4,
-                    borderWidth: 2,
-                    logo: reeLogo
-                }
+                { label: 'FPT', data: fpt, borderColor: '#FF8C00', tension: 0.4, pointRadius: 0, logo: fptLogo },
+                { label: 'HPG', data: hpg, borderColor: '#1E90FF', tension: 0.4, pointRadius: 0, logo: hpgLogo },
+                { label: 'BID', data: bid, borderColor: '#008B45', tension: 0.4, pointRadius: 0, logo: bidLogo },
+                { label: 'MWG', data: mwg, borderColor: '#FFD700', tension: 0.4, pointRadius: 0, logo: mwgLogo },
+                { label: 'REE', data: ree, borderColor: '#BA55D3', tension: 0.4, pointRadius: 0, logo: reeLogo }
             ]
         },
         options: {
@@ -276,19 +255,30 @@ function drawChart() {
                 title: {
                     display: true,
                     text: 'Stock Price Over Time',
-                    font: {
-                        size: 18,
-                        weight: 'bold'
-                    }
+                    font: { size: 18, weight: 'bold' }
                 }
             },
 
             scales: {
                 x: { grid: { display: false } },
                 y: { grid: { display: false } }
+            },
+
+            // 🔥 CLICK highlight (CHỈ update ở đây)
+            onClick: (e, elements) => {
+                if (elements.length > 0) {
+                    const clicked = elements[0].datasetIndex;
+
+                    // toggle (click lại để bỏ chọn)
+                    activeDataset = (activeDataset === clicked) ? null : clicked;
+                } else {
+                    activeDataset = null;
+                }
+
+                chart.update();
             }
         },
-        plugins: [logoPlugin]
+        plugins: [highlightPlugin]
     });
 }
 
