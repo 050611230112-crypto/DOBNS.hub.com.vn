@@ -486,20 +486,44 @@ observer.observe(document.getElementById("priceChart"));
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
-    // ===== EXPECTED RETURN =====
-    function drawExpectedChart() {
+    const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+
+    function getRowData(rowIndex) {
         const table = document.getElementById("expectedTable");
+        if (!table) return [];
+
         const rows = table.querySelectorAll("tbody tr");
+        const cols = rows[rowIndex].querySelectorAll("td");
 
-        const cols = rows[0].querySelectorAll("td");
-
-        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
         let data = [];
-
         for (let i = 1; i < cols.length; i++) {
-            let value = cols[i].innerText.replace('%','');
+            let value = cols[i].innerText.replace('%','').trim();
             data.push(parseFloat(value) || 0);
         }
+        return data;
+    }
+
+    // ===== HOVER PLUGIN =====
+    const hoverPlugin = {
+        id: 'hoverEffect',
+        afterEvent(chart, args) {
+            const {event} = args;
+
+            const active = chart.getElementsAtEventForMode(
+                event,
+                'nearest',
+                { intersect: true },
+                false
+            );
+
+            chart._active = active;
+            chart.update();
+        }
+    };
+
+    // ===== EXPECTED RETURN =====
+    function drawExpectedChart() {
+        const data = getRowData(0);
 
         new Chart(document.getElementById('expectedChart'), {
             type: 'bar',
@@ -507,20 +531,46 @@ window.addEventListener("DOMContentLoaded", () => {
                 labels: labels,
                 datasets: [{
                     data: data,
-                    backgroundColor: '#0A2A66',
                     borderRadius: 10,
-                    barPercentage: 0.6
+                    barPercentage: 0.6,
+
+                    backgroundColor: (ctx) => {
+                        const index = ctx.dataIndex;
+                        const chart = ctx.chart;
+
+                        if (!chart._active || chart._active.length === 0) {
+                            return '#0A2A66';
+                        }
+
+                        return chart._active[0].index === index
+                            ? '#0A2A66'
+                            : 'rgba(10,42,102,0.2)';
+                    }
                 }]
             },
             options: {
                 plugins: {
                     legend: { display: false },
-                    title: { display: true, text: 'Expected Return', front: {size:25,weight:'bold' 
-                  }
-                }
+                    title: { 
+                        display: true, 
+                        text: 'Expected Return',
+                        font: { size: 25, weight: 'bold' }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                elements: {
+                    bar: {
+                        borderWidth: 1
+                    }
                 },
                 scales: {
-                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
+                    x: { 
+                        grid: { display: false },
+                        ticks: { font: { size: 14, weight: 'bold' } }
+                    },
                     y: {
                         grid: { display: false },
                         ticks: { callback: v => v + "%" }
@@ -528,29 +578,20 @@ window.addEventListener("DOMContentLoaded", () => {
                 },
                 animation: {
                     y: {
-                        duration: 1500,
+                        duration: 3000,
+                        easing: 'easeOutQuart',
                         from: ctx => ctx.chart.scales.y.getPixelForValue(0),
-                        delay: ctx => ctx.dataIndex * 100
+                        delay: ctx => ctx.dataIndex * 150
                     }
                 }
-            }
+            },
+            plugins: [hoverPlugin]
         });
     }
 
     // ===== RISK =====
     function drawRiskChart() {
-        const table = document.getElementById("expectedTable");
-        const rows = table.querySelectorAll("tbody tr");
-
-        const cols = rows[2].querySelectorAll("td");
-
-        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
-        let data = [];
-
-        for (let i = 1; i < cols.length; i++) {
-            let value = cols[i].innerText.replace('%','');
-            data.push(parseFloat(value) || 0);
-        }
+        const data = getRowData(2);
 
         new Chart(document.getElementById('riskChart'), {
             type: 'bar',
@@ -558,20 +599,46 @@ window.addEventListener("DOMContentLoaded", () => {
                 labels: labels,
                 datasets: [{
                     data: data,
-                    backgroundColor: '#008B45',
                     borderRadius: 10,
-                    barPercentage: 0.6
+                    barPercentage: 0.6,
+
+                    backgroundColor: (ctx) => {
+                        const index = ctx.dataIndex;
+                        const chart = ctx.chart;
+
+                        if (!chart._active || chart._active.length === 0) {
+                            return '#008B45';
+                        }
+
+                        return chart._active[0].index === index
+                            ? '#008B45'
+                            : 'rgba(0,139,69,0.2)';
+                    }
                 }]
             },
             options: {
                 plugins: {
                     legend: { display: false },
-                    title: { display: true, text: 'Risk (Standard Deviation)',front: {size:25,weight:'bold' 
-                  } 
-                }
+                    title: { 
+                        display: true, 
+                        text: 'Risk (Standard Deviation)',
+                        font: { size: 25, weight: 'bold' }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                elements: {
+                    bar: {
+                        borderWidth: 1
+                    }
                 },
                 scales: {
-                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
+                    x: { 
+                        grid: { display: false },
+                        ticks: { font: { size: 14, weight: 'bold' } }
+                    },
                     y: {
                         grid: { display: false },
                         ticks: { callback: v => v + "%" }
@@ -579,12 +646,14 @@ window.addEventListener("DOMContentLoaded", () => {
                 },
                 animation: {
                     y: {
-                        duration: 2000,
+                        duration: 4000,
+                        easing: 'easeOutQuart',
                         from: ctx => ctx.chart.scales.y.getPixelForValue(0),
-                        delay: ctx => ctx.dataIndex * 100
+                        delay: ctx => ctx.dataIndex * 200
                     }
                 }
-            }
+            },
+            plugins: [hoverPlugin]
         });
     }
 
@@ -596,12 +665,12 @@ window.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
 
             if (entry.target.id === "expectedChart" && entry.isIntersecting && !expectedDrawn) {
-                drawExpectedChart();
+                setTimeout(drawExpectedChart, 300);
                 expectedDrawn = true;
             }
 
             if (entry.target.id === "riskChart" && entry.isIntersecting && !riskDrawn) {
-                drawRiskChart();
+                setTimeout(drawRiskChart, 300);
                 riskDrawn = true;
             }
 
