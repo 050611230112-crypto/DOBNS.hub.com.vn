@@ -127,8 +127,6 @@
   <canvas id="priceChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
 // ===== LOAD LOGO =====
 const fptLogo = new Image();
@@ -141,21 +139,31 @@ const bidLogo = new Image();
 bidLogo.src = 'images/BIDV.jpg';
 
 const mwgLogo = new Image();
-mwgLogo.src = 'mimages/MWG.jpg';
+mwgLogo.src = 'images/MWG.jpg'; // ⚠️ fix typo mimages -> images
 
 const reeLogo = new Image();
 reeLogo.src = 'images/REE.jpg';
 
-// ===== PLUGIN VẼ LOGO =====
+let activeDataset = null;
+
+// ===== PLUGIN LOGO + HIGHLIGHT =====
 const logoPlugin = {
     id: 'logoPlugin',
+
     afterDatasetsDraw(chart) {
         const { ctx } = chart;
 
         chart.data.datasets.forEach((dataset, i) => {
             const meta = chart.getDatasetMeta(i);
-            const lastPoint = meta.data[meta.data.length - 1];
 
+            // ===== highlight =====
+            meta.dataset.options.borderWidth =
+                (activeDataset === null || activeDataset === i) ? 3 : 1;
+
+            meta.dataset.options.opacity =
+                (activeDataset === null || activeDataset === i) ? 1 : 0.2;
+
+            const lastPoint = meta.data[meta.data.length - 1];
             if (!lastPoint) return;
 
             const x = lastPoint.x;
@@ -164,14 +172,29 @@ const logoPlugin = {
             const img = dataset.logo;
 
             if (img && img.complete) {
-                // vẽ nền trắng cho logo nổi hơn
+                const size = (activeDataset === i) ? 42 : 32; // 🔥 logo to hơn khi hover
+
+                ctx.save();
+
+                // shadow
+                ctx.shadowColor = "rgba(0,0,0,0.25)";
+                ctx.shadowBlur = 8;
+
+                // nền trắng
                 ctx.beginPath();
-                ctx.arc(x, y, 12, 0, Math.PI * 2);
+                ctx.arc(x, y, size/2 + 4, 0, Math.PI * 2);
                 ctx.fillStyle = "#fff";
                 ctx.fill();
 
-                // vẽ logo
-                ctx.drawImage(img, x - 10, y - 10, 20, 20);
+                // viền
+                ctx.strokeStyle = "#ddd";
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // logo
+                ctx.drawImage(img, x - size/2, y - size/2, size, size);
+
+                ctx.restore();
             }
         });
     }
@@ -201,24 +224,62 @@ function drawChart() {
 
     const ctx = document.getElementById('priceChart').getContext('2d');
 
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: dates,
             datasets: [
-                { label: 'FPT', data: fpt, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: fptLogo },
-                { label: 'HPG', data: hpg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: hpgLogo },
-                { label: 'BID', data: bid, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: bidLogo },
-                { label: 'MWG', data: mwg, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: mwgLogo },
-                { label: 'REE', data: ree, borderWidth: 2, tension: 0.4, pointRadius: 0, logo: reeLogo }
+                {
+                    label: 'FPT',
+                    data: fpt,
+                    borderColor: '#FF8C00', // 🟠 cam
+                    tension: 0.4,
+                    pointRadius: 0,
+                    logo: fptLogo
+                },
+                {
+                    label: 'HPG',
+                    data: hpg,
+                    borderColor: '#1E90FF', // 🔵 xanh dương
+                    tension: 0.4,
+                    pointRadius: 0,
+                    logo: hpgLogo
+                },
+                {
+                    label: 'BID',
+                    data: bid,
+                    borderColor: '#008B45', // 🟢 springgreen đậm
+                    tension: 0.4,
+                    pointRadius: 0,
+                    logo: bidLogo
+                },
+                {
+                    label: 'MWG',
+                    data: mwg,
+                    borderColor: '#FFD700', // 🟡 vàng
+                    tension: 0.4,
+                    pointRadius: 0,
+                    logo: mwgLogo
+                },
+                {
+                    label: 'REE',
+                    data: ree,
+                    borderColor: '#BA55D3', // 🟣 tím
+                    tension: 0.4,
+                    pointRadius: 0,
+                    logo: reeLogo
+                }
             ]
         },
         options: {
             responsive: true,
+
             interaction: {
-                mode: 'index',
+                mode: 'nearest',
                 intersect: false
             },
+
+            // 🔥 animation trái → phải
             animation: {
                 x: {
                     type: 'number',
@@ -226,40 +287,64 @@ function drawChart() {
                     duration: 1000,
                     from: NaN,
                     delay(ctx) {
-                        return ctx.dataIndex * 50;
+                        return ctx.dataIndex * 40;
                     }
                 },
                 y: {
                     type: 'number',
-                    easing: 'linear',
+                    easing: 'easeOutQuart',
                     duration: 500,
                     from: ctx => ctx.chart.scales.y.getPixelForValue(0),
                     delay(ctx) {
-                        return ctx.dataIndex * 50;
+                        return ctx.dataIndex * 40;
                     }
                 }
             },
+
             plugins: {
                 legend: { position: 'top' },
                 title: {
                     display: true,
-                    text: 'Stock Price Over Time'
+                    text: 'Stock Price Over Time',
+                    font: {
+                        size: 18,
+                        weight: 'bold'
+                    }
                 }
             },
+
             scales: {
-                x: {
-                    grid: { display: false }
-                },
-                y: {
-                    grid: { display: false }
+                x: { grid: { display: false } },
+                y: { grid: { display: false } }
+            },
+
+            // 🔥 CLICK giữ highlight
+            onClick: (e, elements) => {
+                if (elements.length > 0) {
+                    activeDataset = elements[0].datasetIndex;
+                } else {
+                    activeDataset = null;
                 }
+                chart.update();
             }
         },
-        plugins: [logoPlugin] // 👈 gắn plugin
+        plugins: [logoPlugin]
+    });
+
+    // 🔥 HOVER highlight
+    document.getElementById("priceChart").addEventListener("mousemove", (e) => {
+        const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
+
+        if (points.length) {
+            activeDataset = points[0].datasetIndex;
+        } else {
+            activeDataset = null;
+        }
+        chart.update();
     });
 }
 
-// ===== SCROLL MỚI CHẠY =====
+// ===== SCROLL LOAD =====
 let chartDrawn = false;
 
 const observer = new IntersectionObserver(entries => {
