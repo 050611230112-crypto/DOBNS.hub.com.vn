@@ -124,7 +124,8 @@
 <tr><td>01/12/2025</td><td>95.800</td><td>26.400</td><td>38.900</td><td>88.400</td><td>60.032</td><td>1784</td></tr>
 </tbody>
 </table>
-  <canvas id="priceChart"></canvas>
+ <canvas id="priceChart"></canvas>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -135,32 +136,28 @@ const bidLogo = new Image(); bidLogo.src = 'images/BIDV.jpg';
 const mwgLogo = new Image(); mwgLogo.src = 'images/MWG.jpg';
 const reeLogo = new Image(); reeLogo.src = 'images/REE.jpg';
 
-// ===== PLUGIN HIGHLIGHT =====
-const hoverHighlightPlugin = {
-    id: 'hoverHighlightPlugin',
+// ===== HOVER HIGHLIGHT + LOGO =====
+const hoverPlugin = {
+    id: 'hoverPlugin',
 
     beforeDatasetDraw(chart, args) {
-        const { ctx } = chart;
-
         const active = chart.getActiveElements();
         if (!active.length) return;
 
         const activeDataset = active[0].datasetIndex;
 
         if (args.index !== activeDataset) {
-            ctx.save();
-            ctx.globalAlpha = 0.15; // mờ line khác
+            chart.ctx.save();
+            chart.ctx.globalAlpha = 0.15;
         }
     },
 
     afterDatasetDraw(chart, args) {
-        const { ctx } = chart;
-
         const active = chart.getActiveElements();
         const activeDataset = active.length ? active[0].datasetIndex : null;
 
         if (activeDataset !== null && args.index !== activeDataset) {
-            ctx.restore();
+            chart.ctx.restore();
         }
 
         // ===== DRAW LOGO =====
@@ -170,18 +167,17 @@ const hoverHighlightPlugin = {
 
         const x = lastPoint.x;
         const y = lastPoint.y;
-
         const img = chart.data.datasets[args.index].logo;
 
         if (img && img.complete) {
             const size = (activeDataset === args.index) ? 44 : 26;
 
-            ctx.beginPath();
-            ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
-            ctx.fillStyle = "#fff";
-            ctx.fill();
+            chart.ctx.beginPath();
+            chart.ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
+            chart.ctx.fillStyle = "#fff";
+            chart.ctx.fill();
 
-            ctx.drawImage(img, x - size/2, y - size/2, size, size);
+            chart.ctx.drawImage(img, x - size/2, y - size/2, size, size);
         }
     }
 };
@@ -223,8 +219,28 @@ function drawChart() {
             responsive: true,
 
             interaction: {
-                mode: 'nearest',   // 🔥 quan trọng
-                intersect: false   // 🔥 hover gần cũng bắt
+                mode: 'nearest',
+                intersect: false
+            },
+
+            // 🔥 ANIMATION CHẠY TỪ TRÁI SANG PHẢI
+            animation: {
+                x: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: 1200,
+                    from: NaN,
+                    delay(ctx) {
+                        return ctx.dataIndex * 40;
+                    }
+                },
+                y: {
+                    duration: 400,
+                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                    delay(ctx) {
+                        return ctx.dataIndex * 40;
+                    }
+                }
             },
 
             plugins: {
@@ -241,11 +257,11 @@ function drawChart() {
                 y: { grid: { display: false }}
             }
         },
-        plugins: [hoverHighlightPlugin]
+        plugins: [hoverPlugin]
     });
 }
 
-// ===== SCROLL LOAD =====
+// ===== SCROLL TỚI MỚI CHẠY =====
 let drawn = false;
 
 const observer = new IntersectionObserver(entries => {
@@ -255,7 +271,9 @@ const observer = new IntersectionObserver(entries => {
             drawn = true;
         }
     });
-}, { threshold: 0.3 });
+}, {
+    threshold: 0.4 // 🔥 chỉnh độ xuất hiện
+});
 
 observer.observe(document.getElementById("priceChart"));
 </script>
