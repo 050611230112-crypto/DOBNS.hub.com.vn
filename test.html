@@ -35,11 +35,11 @@
     <button onclick="showPort('assmana')">Assessment & Management</button>
   </div>
 <!-- risky -->
-<!-- risky -->
+<!-- ORP -->
 <div id="orp" class="card content" style="display:none">
   <h3>Optimal Risky Portfolio</h3>
 
-  <!-- 🔥 thêm id cho table -->
+  <!-- ===== TABLE ===== -->
   <table id="orpTable" border="1">
     <tr>
       <th>Option</th>
@@ -71,6 +71,7 @@
     <tr><td>10</td><td>BID-MWG-REE</td><td>10%</td><td>36.36%</td><td>53.64%</td><td>1.74%</td><td>0.41%</td><td>6.42%</td><td>0.2309</td><td>Moderate</td></tr>
   </table>
 
+  <!-- ===== SELECT ===== -->
   <h4>Portfolio Allocation Visualization</h4>
 
   <select id="optionSelect">
@@ -86,7 +87,25 @@
     <option value="9">Option 10</option>
   </select>
 
+  <!-- ===== PIE ===== -->
   <canvas id="pieChart" style="max-width:500px;margin-top:20px;"></canvas>
+
+  <!-- ===== MARKET (CHUNG ORP) ===== -->
+  <h4 style="margin-top:40px;">The Market Portfolio</h4>
+  <table border="1">
+    <tr>
+      <th>E(Rm)</th>
+      <th>Rf</th>
+      <th>Standard Deviation</th>
+      <th>Sharpe</th>
+    </tr>
+    <tr>
+      <td>0.95%</td>
+      <td>0.26%</td>
+      <td>5.44%</td>
+      <td>12.77%</td>
+    </tr>
+  </table>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
@@ -99,113 +118,100 @@ function showPort(id){
   const el = document.getElementById(id);
   el.style.display='block';
 
-  // 🔥 redraw khi mở ORP
   if(id === 'orp'){
-    setTimeout(() => {
+    setTimeout(()=>{
       document.getElementById("optionSelect")
         .dispatchEvent(new Event("change"));
-    }, 100);
+    },100);
   }
 }
 
-// ===== PIE CHART =====
-window.addEventListener("DOMContentLoaded", () => {
+// ===== PIE =====
+window.addEventListener("DOMContentLoaded",()=>{
 
-    const table = document.getElementById("orpTable");
-    const rows = table.querySelectorAll("tr");
+  const table = document.getElementById("orpTable");
+  const rows = table.querySelectorAll("tr");
 
-    function getWeights(i){
-        const cols = rows[i+1].querySelectorAll("td");
+  function getWeights(i){
+    const cols = rows[i+1].querySelectorAll("td");
 
-        return [
-            parseFloat(cols[2].innerText.replace('%','')),
-            parseFloat(cols[3].innerText.replace('%','')),
-            parseFloat(cols[4].innerText.replace('%',''))
-        ];
-    }
+    return [
+      parseFloat(cols[2].innerText.replace('%','')),
+      parseFloat(cols[3].innerText.replace('%','')),
+      parseFloat(cols[4].innerText.replace('%',''))
+    ];
+  }
 
-    function getLabels(i){
-        return rows[i+1].children[1].innerText.split("-");
-    }
+  function getLabels(i){
+    return rows[i+1].children[1].innerText.split("-");
+  }
 
-    let pieChart;
+  let pieChart;
 
-    function drawChart(i){
+  function drawChart(i){
 
-        const data = getWeights(i);
-        const labels = getLabels(i);
+    const data = getWeights(i);
+    const labels = getLabels(i);
 
-        if(pieChart) pieChart.destroy();
+    if(pieChart) pieChart.destroy();
 
-        pieChart = new Chart(document.getElementById("pieChart"),{
-            type:'pie',
-            data:{
-                labels:labels,
-                datasets:[{
-                    data:data,
+    pieChart = new Chart(document.getElementById("pieChart"),{
+      type:'pie',
+      data:{
+        labels:labels,
+        datasets:[{
+          data:data,
 
-                    backgroundColor:(ctx)=>{
-                        const colors=[
-                          'rgba(10,42,102,1)',
-                          'rgba(0,139,69,1)',
-                          'rgba(255,140,0,1)'
-                        ];
+          backgroundColor:(ctx)=>{
+            const colors=[
+              'rgba(10,42,102,1)',
+              'rgba(0,139,69,1)',
+              'rgba(255,140,0,1)'
+            ];
 
-                        const active = ctx.chart._active;
+            const active = ctx.chart._active;
 
-                        if(!active || active.length===0) return colors[ctx.dataIndex];
+            if(!active || active.length===0) return colors[ctx.dataIndex];
 
-                        return active[0].index===ctx.dataIndex
-                          ? colors[ctx.dataIndex]
-                          : colors[ctx.dataIndex].replace("1)","0.2)");
-                    }
-                }]
-            },
-            options:{
-                plugins:{
-                    legend:{position:'bottom'},
-                    title:{
-                        display:true,
-                        text:'Portfolio Allocation',
-                        font:{size:20,weight:'bold'}
-                    }
-                },
-                interaction:{mode:'nearest',intersect:true}
-            },
-            plugins:[{
-                id:'hoverEffect',
-                afterEvent(chart,args){
-                    chart._active = chart.getElementsAtEventForMode(
-                        args.event,'nearest',{intersect:true},false
-                    );
-                    chart.update();
-                }
-            }]
-        });
-    }
-
-    const select = document.getElementById("optionSelect");
-
-    drawChart(select.value);
-
-    select.addEventListener("change",()=>{
-        drawChart(select.value);
+            return active[0].index===ctx.dataIndex
+              ? colors[ctx.dataIndex]
+              : colors[ctx.dataIndex].replace("1)","0.2)");
+          }
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{position:'bottom'},
+          title:{
+            display:true,
+            text:'Portfolio Allocation',
+            font:{size:20,weight:'bold'}
+          }
+        },
+        interaction:{mode:'nearest',intersect:true}
+      },
+      plugins:[{
+        id:'hoverEffect',
+        afterEvent(chart,args){
+          chart._active = chart.getElementsAtEventForMode(
+            args.event,'nearest',{intersect:true},false
+          );
+          chart.update();
+        }
+      }]
     });
+  }
+
+  const select = document.getElementById("optionSelect");
+
+  drawChart(select.value);
+
+  select.addEventListener("change",()=>{
+    drawChart(select.value);
+  });
 
 });
 </script>
-</div>
-  <div id="orp" class="card content" style="display:none">
-   <h4>The Market Portfolio</h4>
-  <table border="1">
-    <tr>
-      <th>E(Rm)</th><th>Rf</th><th>Standard Deviation</th><th>Sharpe of market portfolio</th>
-    </tr>
-    <tr>
-      <td>0.95%</td><td>0.26%</td><td>5.44%</td><td>12.77%</td>
-    </tr>
-  </table>
-</div>
   <!-- complete -->
   <div id="cop" class="card content" style="display:none">
   <h3>Optimal Complete Portfolio</h3>
