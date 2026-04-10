@@ -130,70 +130,27 @@
 <script>
 let activeDataset = null;
 
-// ===== LOAD LOGO =====
-function loadLogo(src) {
-    const img = new Image();
-    img.src = src;
-    return img;
-}
+// ===== SIMPLE HIGHLIGHT PLUGIN =====
+const highlightPlugin = {
+    id: 'highlightPlugin',
 
-// ===== PLUGIN LOGO + HIGHLIGHT =====
-const advancedPlugin = {
-    id: 'advancedPlugin',
+    beforeDatasetDraw(chart, args) {
+        const { ctx } = chart;
+        const datasetIndex = args.index;
 
-    afterDatasetsDraw(chart) {
+        // làm mờ line không được chọn
+        if (activeDataset !== null && datasetIndex !== activeDataset) {
+            ctx.save();
+            ctx.globalAlpha = 0.15;
+        }
+    },
+
+    afterDatasetDraw(chart, args) {
         const { ctx } = chart;
 
-        chart.data.datasets.forEach((dataset, i) => {
-            const meta = chart.getDatasetMeta(i);
-
-            // ===== highlight line =====
-            meta.dataset.options.borderWidth =
-                (activeDataset === null || activeDataset === i) ? 3 : 1;
-
-            meta.dataset.options.opacity =
-                (activeDataset === null || activeDataset === i) ? 1 : 0.2;
-
-            // ===== lấy điểm hiện tại (theo animation) =====
-            const total = meta.data.length;
-            let index = Math.floor(total * (chart._animationsDisabled ? 1 : chart.animator?.currentStep / chart.animator?.numSteps));
-
-            if (!index || index >= total) index = total - 1;
-
-            const point = meta.data[index];
-            if (!point) return;
-
-            const x = point.x;
-            const y = point.y;
-
-            const img = dataset.logo;
-
-            if (img && img.complete) {
-                const size = 36;
-
-                ctx.save();
-
-                // shadow
-                ctx.shadowColor = "rgba(0,0,0,0.2)";
-                ctx.shadowBlur = 6;
-
-                // nền trắng
-                ctx.beginPath();
-                ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
-                ctx.fillStyle = "#fff";
-                ctx.fill();
-
-                // viền nhẹ
-                ctx.strokeStyle = "#ddd";
-                ctx.lineWidth = 1;
-                ctx.stroke();
-
-                // logo
-                ctx.drawImage(img, x - size/2, y - size/2, size, size);
-
-                ctx.restore();
-            }
-        });
+        if (activeDataset !== null && args.index !== activeDataset) {
+            ctx.restore();
+        }
     }
 };
 
@@ -206,7 +163,7 @@ function drawChart() {
     let fpt = [], hpg = [], bid = [], mwg = [], ree = [];
 
     rows.forEach(row => {
-        if(row.style.display === "none") return;
+        if (row.style.display === "none") return;
 
         const cols = row.querySelectorAll("td");
 
@@ -225,11 +182,11 @@ function drawChart() {
         data: {
             labels: dates,
             datasets: [
-                { label: 'FPT', data: fpt, logo: loadLogo('images/FPT.jpg'), tension: 0.4, pointRadius: 0 },
-                { label: 'HPG', data: hpg, logo: loadLogo('images/HPG.jpg'), tension: 0.4, pointRadius: 0 },
-                { label: 'BID', data: bid, logo: loadLogo('images/BIDV.jpg'), tension: 0.4, pointRadius: 0 },
-                { label: 'MWG', data: mwg, logo: loadLogo('images/MWG.jpg'), tension: 0.4, pointRadius: 0 },
-                { label: 'REE', data: ree, logo: loadLogo('images/REE.jpg'), tension: 0.4, pointRadius: 0 }
+                { label: 'FPT', data: fpt, tension: 0.4, pointRadius: 0, borderWidth: 3 },
+                { label: 'HPG', data: hpg, tension: 0.4, pointRadius: 0, borderWidth: 3 },
+                { label: 'BID', data: bid, tension: 0.4, pointRadius: 0, borderWidth: 3 },
+                { label: 'MWG', data: mwg, tension: 0.4, pointRadius: 0, borderWidth: 3 },
+                { label: 'REE', data: ree, tension: 0.4, pointRadius: 0, borderWidth: 3 }
             ]
         },
         options: {
@@ -240,7 +197,7 @@ function drawChart() {
                 intersect: false
             },
 
-            // 🔥 ANIMATION TRÁI → PHẢI
+            // 🔥 ANIMATION LEFT → RIGHT
             animation: {
                 x: {
                     type: 'number',
@@ -267,17 +224,10 @@ function drawChart() {
                 title: {
                     display: true,
                     text: 'Stock Price Over Time'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(ctx) {
-                            return ctx.dataset.label + ": " + ctx.formattedValue;
-                        }
-                    }
                 }
             },
 
-            // ❌ bỏ grid line
+            // ❌ bỏ grid
             scales: {
                 x: { grid: { display: false } },
                 y: { grid: { display: false } }
@@ -293,7 +243,7 @@ function drawChart() {
                 chart.update();
             }
         },
-        plugins: [advancedPlugin]
+        plugins: [highlightPlugin]
     });
 
     // 🔥 HOVER highlight
