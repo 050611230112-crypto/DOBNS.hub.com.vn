@@ -129,75 +129,47 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 // ===== LOAD LOGO =====
-const fptLogo = new Image();
-fptLogo.src = 'images/FPT.jpg';
+const fptLogo = new Image(); fptLogo.src = 'images/FPT.jpg';
+const hpgLogo = new Image(); hpgLogo.src = 'images/HPG.jpg';
+const bidLogo = new Image(); bidLogo.src = 'images/BIDV.jpg';
+const mwgLogo = new Image(); mwgLogo.src = 'images/MWG.jpg';
+const reeLogo = new Image(); reeLogo.src = 'images/REE.jpg';
 
-const hpgLogo = new Image();
-hpgLogo.src = 'images/HPG.jpg';
-
-const bidLogo = new Image();
-bidLogo.src = 'images/BIDV.jpg';
-
-const mwgLogo = new Image();
-mwgLogo.src = 'images/MWG.jpg';
-
-const reeLogo = new Image();
-reeLogo.src = 'images/REE.jpg';
-
-let activeDataset = null;
-let lastActive = null;
-let chart; // 🔥 global chart
-
-// ===== PLUGIN (FIX KHÔNG GIẬT) =====
+// ===== PLUGIN LOGO (KHÔNG highlight nữa) =====
 const logoPlugin = {
     id: 'logoPlugin',
-
-    beforeDatasetDraw(chart, args) {
+    afterDatasetsDraw(chart) {
         const { ctx } = chart;
-        const i = args.index;
 
-        if (activeDataset !== null && i !== activeDataset) {
-            ctx.save();
-            ctx.globalAlpha = 0.15; // làm mờ line khác
-        }
-    },
+        chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            const lastPoint = meta.data[meta.data.length - 1];
+            if (!lastPoint) return;
 
-    afterDatasetDraw(chart, args) {
-        const { ctx } = chart;
-        const i = args.index;
+            const x = lastPoint.x;
+            const y = lastPoint.y;
 
-        if (activeDataset !== null && i !== activeDataset) {
-            ctx.restore();
-        }
+            const img = dataset.logo;
 
-        const meta = chart.getDatasetMeta(i);
-        const lastPoint = meta.data[meta.data.length - 1];
-        if (!lastPoint) return;
+            if (img && img.complete) {
+                const size = 30;
 
-        const x = lastPoint.x;
-        const y = lastPoint.y;
+                ctx.save();
 
-        const img = chart.data.datasets[i].logo;
+                ctx.beginPath();
+                ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
+                ctx.fillStyle = "#fff";
+                ctx.fill();
 
-        if (img && img.complete) {
-            const size = (activeDataset === i) ? 42 : 28;
+                ctx.drawImage(img, x - size/2, y - size/2, size, size);
 
-            ctx.save();
-
-            ctx.shadowColor = "rgba(0,0,0,0.25)";
-            ctx.shadowBlur = 8;
-
-            ctx.beginPath();
-            ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
-            ctx.fillStyle = "#fff";
-            ctx.fill();
-
-            ctx.drawImage(img, x - size/2, y - size/2, size, size);
-
-            ctx.restore();
-        }
+                ctx.restore();
+            }
+        });
     }
 };
 
@@ -222,9 +194,7 @@ function drawChart() {
         ree.push(parseFloat(cols[5].innerText));
     });
 
-    const ctx = document.getElementById('priceChart').getContext('2d');
-
-    chart = new Chart(ctx, {
+    new Chart(document.getElementById('priceChart'), {
         type: 'line',
         data: {
             labels: dates,
@@ -235,6 +205,8 @@ function drawChart() {
                     borderColor: '#FF8C00',
                     tension: 0.4,
                     pointRadius: 0,
+                    hoverBorderWidth: 4, // 🔥 hover tự tăng
+                    borderWidth: 2,
                     logo: fptLogo
                 },
                 {
@@ -243,6 +215,8 @@ function drawChart() {
                     borderColor: '#1E90FF',
                     tension: 0.4,
                     pointRadius: 0,
+                    hoverBorderWidth: 4,
+                    borderWidth: 2,
                     logo: hpgLogo
                 },
                 {
@@ -251,6 +225,8 @@ function drawChart() {
                     borderColor: '#008B45',
                     tension: 0.4,
                     pointRadius: 0,
+                    hoverBorderWidth: 4,
+                    borderWidth: 2,
                     logo: bidLogo
                 },
                 {
@@ -259,6 +235,8 @@ function drawChart() {
                     borderColor: '#FFD700',
                     tension: 0.4,
                     pointRadius: 0,
+                    hoverBorderWidth: 4,
+                    borderWidth: 2,
                     logo: mwgLogo
                 },
                 {
@@ -267,6 +245,8 @@ function drawChart() {
                     borderColor: '#BA55D3',
                     tension: 0.4,
                     pointRadius: 0,
+                    hoverBorderWidth: 4,
+                    borderWidth: 2,
                     logo: reeLogo
                 }
             ]
@@ -279,22 +259,12 @@ function drawChart() {
                 intersect: false
             },
 
-            // 🔥 animation trái → phải
             animation: {
                 x: {
                     type: 'number',
                     easing: 'linear',
                     duration: 1000,
                     from: NaN,
-                    delay(ctx) {
-                        return ctx.dataIndex * 40;
-                    }
-                },
-                y: {
-                    type: 'number',
-                    easing: 'easeOutQuart',
-                    duration: 500,
-                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
                     delay(ctx) {
                         return ctx.dataIndex * 40;
                     }
@@ -316,32 +286,9 @@ function drawChart() {
             scales: {
                 x: { grid: { display: false } },
                 y: { grid: { display: false } }
-            },
-
-            // 🔥 CLICK giữ highlight
-            onClick: (e, elements) => {
-                if (elements.length > 0) {
-                    activeDataset = elements[0].datasetIndex;
-                } else {
-                    activeDataset = null;
-                }
-                chart.update();
             }
         },
         plugins: [logoPlugin]
-    });
-
-    // ===== HOVER (FIX KHÔNG GIẬT) =====
-    document.getElementById("priceChart").addEventListener("mousemove", (e) => {
-        const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
-
-        let newActive = points.length ? points[0].datasetIndex : null;
-
-        if (newActive !== lastActive) {
-            activeDataset = newActive;
-            lastActive = newActive;
-            chart.update();
-        }
     });
 }
 
