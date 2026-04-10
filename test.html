@@ -525,6 +525,153 @@ observer.observe(document.getElementById("priceChart"));
 <tr><td>Standard Deviation</td><td></td><td>7.57%</td><td>10.17%</td><td>9.15%</td><td>9.34%</td><td>7.83%</td><td>5.44%</td></tr>
 </tbody>
 </table>
+  <canvas id="expectedChart"></canvas>
+<canvas id="riskChart" style="margin-top:40px;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// ===== DRAW EXPECTED RETURN =====
+function drawExpectedChart() {
+    const table = document.getElementById("expectedTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    const cols = rows[0].querySelectorAll("td");
+
+    const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+    let data = [];
+
+    for (let i = 1; i < cols.length; i++) {
+        let value = cols[i].innerText.replace('%','');
+        data.push(parseFloat(value));
+    }
+
+    const ctx = document.getElementById('expectedChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Expected Return (%)',
+                data: data,
+                backgroundColor: '#0A2A66', // 🔵 xanh đậm
+                borderRadius: 10,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Expected Return'
+                }
+            },
+            scales: {
+                x: { grid: { display: false }},
+                y: {
+                    grid: { display: false },
+                    ticks: {
+                        callback: v => v + "%"
+                    }
+                }
+            },
+            animation: {
+                y: {
+                    duration: 1000,
+                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                    delay: ctx => ctx.dataIndex * 100
+                }
+            }
+        }
+    });
+}
+
+
+// ===== DRAW STANDARD DEVIATION =====
+function drawRiskChart() {
+    const table = document.getElementById("expectedTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    const cols = rows[2].querySelectorAll("td"); // dòng Std Dev
+
+    const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+    let data = [];
+
+    for (let i = 1; i < cols.length; i++) {
+        let value = cols[i].innerText.replace('%','');
+        data.push(parseFloat(value));
+    }
+
+    const ctx = document.getElementById('riskChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Standard Deviation (%)',
+                data: data,
+                backgroundColor: '#0A2A66', // 🔵 cùng màu cho đồng bộ
+                borderRadius: 10,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Risk (Standard Deviation)'
+                }
+            },
+            scales: {
+                x: { grid: { display: false }},
+                y: {
+                    grid: { display: false },
+                    ticks: {
+                        callback: v => v + "%"
+                    }
+                }
+            },
+            animation: {
+                y: {
+                    duration: 1000,
+                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                    delay: ctx => ctx.dataIndex * 100
+                }
+            }
+        }
+    });
+}
+
+
+// ===== SCROLL LOAD =====
+let expectedDrawn = false;
+let riskDrawn = false;
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+
+        if (entry.target.id === "expectedChart" && entry.isIntersecting && !expectedDrawn) {
+            drawExpectedChart();
+            expectedDrawn = true;
+        }
+
+        if (entry.target.id === "riskChart" && entry.isIntersecting && !riskDrawn) {
+            drawRiskChart();
+            riskDrawn = true;
+        }
+
+    });
+}, { threshold: 0.3 });
+
+// observe từng chart
+observer.observe(document.getElementById("expectedChart"));
+observer.observe(document.getElementById("riskChart"));
+</script>
 </div>
 
 <!-- COV -->
