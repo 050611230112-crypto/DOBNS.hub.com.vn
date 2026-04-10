@@ -480,147 +480,130 @@ observer.observe(document.getElementById("priceChart"));
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// ===== DRAW EXPECTED RETURN =====
-function drawExpectedChart() {
-    const table = document.getElementById("expectedTable");
-    const rows = table.querySelectorAll("tbody tr");
+window.addEventListener("DOMContentLoaded", () => {
 
-    const cols = rows[0].querySelectorAll("td");
+    // ===== EXPECTED RETURN =====
+    function drawExpectedChart() {
+        const table = document.getElementById("expectedTable");
+        const rows = table.querySelectorAll("tbody tr");
 
-    const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
-    let data = [];
+        const cols = rows[0].querySelectorAll("td");
 
-    for (let i = 1; i < cols.length; i++) {
-        let value = cols[i].innerText.replace('%','');
-        data.push(parseFloat(value));
-    }
+        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+        let data = [];
 
-    const ctx = document.getElementById('expectedChart').getContext('2d');
+        for (let i = 1; i < cols.length; i++) {
+            let value = cols[i].innerText.replace('%','');
+            data.push(parseFloat(value) || 0);
+        }
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Expected Return (%)',
-                data: data,
-                backgroundColor: '#0A2A66', // 🔵 xanh đậm
-                borderRadius: 10,
-                barPercentage: 0.6
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: 'Expected Return'
-                }
+        new Chart(document.getElementById('expectedChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: '#0A2A66',
+                    borderRadius: 10,
+                    barPercentage: 0.6
+                }]
             },
-            scales: {
-                x: { grid: { display: false }},
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        callback: v => v + "%"
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Expected Return' }
+                },
+                scales: {
+                    x: { grid: { display: false }},
+                    y: {
+                        grid: { display: false },
+                        ticks: { callback: v => v + "%" }
+                    }
+                },
+                animation: {
+                    y: {
+                        duration: 1000,
+                        from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                        delay: ctx => ctx.dataIndex * 100
                     }
                 }
-            },
-            animation: {
-                y: {
-                    duration: 1000,
-                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
-                    delay: ctx => ctx.dataIndex * 100
-                }
             }
-        }
-    });
-}
-
-
-// ===== DRAW STANDARD DEVIATION =====
-function drawRiskChart() {
-    const table = document.getElementById("expectedTable");
-    const rows = table.querySelectorAll("tbody tr");
-
-    const cols = rows[2].querySelectorAll("td"); // dòng Std Dev
-
-    const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
-    let data = [];
-
-    for (let i = 1; i < cols.length; i++) {
-        let value = cols[i].innerText.replace('%','');
-        data.push(parseFloat(value));
+        });
     }
 
-    const ctx = document.getElementById('riskChart').getContext('2d');
+    // ===== RISK =====
+    function drawRiskChart() {
+        const table = document.getElementById("expectedTable");
+        const rows = table.querySelectorAll("tbody tr");
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Standard Deviation (%)',
-                data: data,
-                backgroundColor: '#0A2A66', // 🔵 cùng màu cho đồng bộ
-                borderRadius: 10,
-                barPercentage: 0.6
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: 'Risk (Standard Deviation)'
-                }
+        const cols = rows[2].querySelectorAll("td");
+
+        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+        let data = [];
+
+        for (let i = 1; i < cols.length; i++) {
+            let value = cols[i].innerText.replace('%','');
+            data.push(parseFloat(value) || 0);
+        }
+
+        new Chart(document.getElementById('riskChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: '#0A2A66',
+                    borderRadius: 10,
+                    barPercentage: 0.6
+                }]
             },
-            scales: {
-                x: { grid: { display: false }},
-                y: {
-                    grid: { display: false },
-                    ticks: {
-                        callback: v => v + "%"
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Risk (Standard Deviation)' }
+                },
+                scales: {
+                    x: { grid: { display: false }},
+                    y: {
+                        grid: { display: false },
+                        ticks: { callback: v => v + "%" }
+                    }
+                },
+                animation: {
+                    y: {
+                        duration: 1000,
+                        from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                        delay: ctx => ctx.dataIndex * 100
                     }
                 }
-            },
-            animation: {
-                y: {
-                    duration: 1000,
-                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
-                    delay: ctx => ctx.dataIndex * 100
-                }
             }
-        }
-    });
-}
+        });
+    }
 
+    // ===== SCROLL TRIGGER =====
+    let expectedDrawn = false;
+    let riskDrawn = false;
 
-// ===== SCROLL LOAD =====
-let expectedDrawn = false;
-let riskDrawn = false;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+            if (entry.target.id === "expectedChart" && entry.isIntersecting && !expectedDrawn) {
+                drawExpectedChart();
+                expectedDrawn = true;
+            }
 
-        if (entry.target.id === "expectedChart" && entry.isIntersecting && !expectedDrawn) {
-            drawExpectedChart();
-            expectedDrawn = true;
-        }
+            if (entry.target.id === "riskChart" && entry.isIntersecting && !riskDrawn) {
+                drawRiskChart();
+                riskDrawn = true;
+            }
 
-        if (entry.target.id === "riskChart" && entry.isIntersecting && !riskDrawn) {
-            drawRiskChart();
-            riskDrawn = true;
-        }
+        });
+    }, { threshold: 0.3 });
 
-    });
-}, { threshold: 0.3 });
+    observer.observe(document.getElementById("expectedChart"));
+    observer.observe(document.getElementById("riskChart"));
 
-// observe từng chart
-observer.observe(document.getElementById("expectedChart"));
-observer.observe(document.getElementById("riskChart"));
+});
 </script>
 </div>
 
