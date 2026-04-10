@@ -127,12 +127,6 @@
   <canvas id="priceChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
 // ===== LOAD LOGO =====
 const fptLogo = new Image(); fptLogo.src = 'images/FPT.jpg';
@@ -141,49 +135,46 @@ const bidLogo = new Image(); bidLogo.src = 'images/BIDV.jpg';
 const mwgLogo = new Image(); mwgLogo.src = 'images/MWG.jpg';
 const reeLogo = new Image(); reeLogo.src = 'images/REE.jpg';
 
-let activeDataset = null;
-let chart;
-
-// ===== PLUGIN HIGHLIGHT + LOGO =====
-const highlightPlugin = {
-    id: 'highlightPlugin',
+// ===== PLUGIN HIGHLIGHT =====
+const hoverHighlightPlugin = {
+    id: 'hoverHighlightPlugin',
 
     beforeDatasetDraw(chart, args) {
         const { ctx } = chart;
-        const i = args.index;
 
-        // 🔥 làm mờ line khác
-        if (activeDataset !== null && i !== activeDataset) {
+        const active = chart.getActiveElements();
+        if (!active.length) return;
+
+        const activeDataset = active[0].datasetIndex;
+
+        if (args.index !== activeDataset) {
             ctx.save();
-            ctx.globalAlpha = 0.15;
+            ctx.globalAlpha = 0.15; // mờ line khác
         }
     },
 
     afterDatasetDraw(chart, args) {
         const { ctx } = chart;
-        const i = args.index;
 
-        if (activeDataset !== null && i !== activeDataset) {
+        const active = chart.getActiveElements();
+        const activeDataset = active.length ? active[0].datasetIndex : null;
+
+        if (activeDataset !== null && args.index !== activeDataset) {
             ctx.restore();
         }
 
-        // ===== vẽ logo =====
-        const meta = chart.getDatasetMeta(i);
+        // ===== DRAW LOGO =====
+        const meta = chart.getDatasetMeta(args.index);
         const lastPoint = meta.data[meta.data.length - 1];
         if (!lastPoint) return;
 
         const x = lastPoint.x;
         const y = lastPoint.y;
 
-        const img = chart.data.datasets[i].logo;
+        const img = chart.data.datasets[args.index].logo;
 
         if (img && img.complete) {
-            const size = (activeDataset === i) ? 42 : 28;
-
-            ctx.save();
-
-            ctx.shadowColor = "rgba(0,0,0,0.2)";
-            ctx.shadowBlur = 6;
+            const size = (activeDataset === args.index) ? 44 : 26;
 
             ctx.beginPath();
             ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
@@ -191,8 +182,6 @@ const highlightPlugin = {
             ctx.fill();
 
             ctx.drawImage(img, x - size/2, y - size/2, size, size);
-
-            ctx.restore();
         }
     }
 };
@@ -218,7 +207,7 @@ function drawChart() {
         ree.push(parseFloat(cols[5].innerText));
     });
 
-    chart = new Chart(document.getElementById('priceChart'), {
+    new Chart(document.getElementById('priceChart'), {
         type: 'line',
         data: {
             labels: dates,
@@ -234,20 +223,8 @@ function drawChart() {
             responsive: true,
 
             interaction: {
-                mode: 'nearest',
-                intersect: false
-            },
-
-            animation: {
-                x: {
-                    type: 'number',
-                    easing: 'linear',
-                    duration: 1000,
-                    from: NaN,
-                    delay(ctx) {
-                        return ctx.dataIndex * 40;
-                    }
-                }
+                mode: 'nearest',   // 🔥 quan trọng
+                intersect: false   // 🔥 hover gần cũng bắt
             },
 
             plugins: {
@@ -260,36 +237,22 @@ function drawChart() {
             },
 
             scales: {
-                x: { grid: { display: false } },
-                y: { grid: { display: false } }
-            },
-
-            // 🔥 CLICK highlight (CHỈ update ở đây)
-            onClick: (e, elements) => {
-                if (elements.length > 0) {
-                    const clicked = elements[0].datasetIndex;
-
-                    // toggle (click lại để bỏ chọn)
-                    activeDataset = (activeDataset === clicked) ? null : clicked;
-                } else {
-                    activeDataset = null;
-                }
-
-                chart.update();
+                x: { grid: { display: false }},
+                y: { grid: { display: false }}
             }
         },
-        plugins: [highlightPlugin]
+        plugins: [hoverHighlightPlugin]
     });
 }
 
 // ===== SCROLL LOAD =====
-let chartDrawn = false;
+let drawn = false;
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting && !chartDrawn) {
+        if (entry.isIntersecting && !drawn) {
             drawChart();
-            chartDrawn = true;
+            drawn = true;
         }
     });
 }, { threshold: 0.3 });
