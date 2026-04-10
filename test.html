@@ -511,10 +511,12 @@ window.addEventListener("DOMContentLoaded", () => {
             options: {
                 plugins: {
                     legend: { display: false },
-                    title: { display: true, text: 'Expected Return' }
+                    title: { display: true, text: 'Expected Return', front: {size:25,weight:'bold' 
+                  }
+                }
                 },
                 scales: {
-                    x: { grid: { display: false }},
+                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
                     y: {
                         grid: { display: false },
                         ticks: { callback: v => v + "%" }
@@ -522,7 +524,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 },
                 animation: {
                     y: {
-                        duration: 1000,
+                        duration: 1500,
                         from: ctx => ctx.chart.scales.y.getPixelForValue(0),
                         delay: ctx => ctx.dataIndex * 100
                     }
@@ -560,10 +562,12 @@ window.addEventListener("DOMContentLoaded", () => {
             options: {
                 plugins: {
                     legend: { display: false },
-                    title: { display: true, text: 'Risk (Standard Deviation)' }
+                    title: { display: true, text: 'Risk (Standard Deviation)',front: {size:25,weight:'bold' 
+                  } 
+                }
                 },
                 scales: {
-                    x: { grid: { display: false }},
+                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
                     y: {
                         grid: { display: false },
                         ticks: { callback: v => v + "%" }
@@ -571,7 +575,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 },
                 animation: {
                     y: {
-                        duration: 1000,
+                        duration: 2000,
                         from: ctx => ctx.chart.scales.y.getPixelForValue(0),
                         delay: ctx => ctx.dataIndex * 100
                     }
