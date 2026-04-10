@@ -127,6 +127,8 @@
   <canvas id="priceChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
 // ===== LOAD LOGO =====
 const fptLogo = new Image();
@@ -139,64 +141,63 @@ const bidLogo = new Image();
 bidLogo.src = 'images/BIDV.jpg';
 
 const mwgLogo = new Image();
-mwgLogo.src = 'images/MWG.jpg'; // ⚠️ fix typo mimages -> images
+mwgLogo.src = 'images/MWG.jpg';
 
 const reeLogo = new Image();
 reeLogo.src = 'images/REE.jpg';
 
 let activeDataset = null;
+let lastActive = null;
+let chart; // 🔥 global chart
 
-// ===== PLUGIN LOGO + HIGHLIGHT =====
+// ===== PLUGIN (FIX KHÔNG GIẬT) =====
 const logoPlugin = {
     id: 'logoPlugin',
 
-    afterDatasetsDraw(chart) {
+    beforeDatasetDraw(chart, args) {
         const { ctx } = chart;
+        const i = args.index;
 
-        chart.data.datasets.forEach((dataset, i) => {
-            const meta = chart.getDatasetMeta(i);
+        if (activeDataset !== null && i !== activeDataset) {
+            ctx.save();
+            ctx.globalAlpha = 0.15; // làm mờ line khác
+        }
+    },
 
-            // ===== highlight =====
-            meta.dataset.options.borderWidth =
-                (activeDataset === null || activeDataset === i) ? 3 : 1;
+    afterDatasetDraw(chart, args) {
+        const { ctx } = chart;
+        const i = args.index;
 
-            meta.dataset.options.opacity =
-                (activeDataset === null || activeDataset === i) ? 1 : 0.2;
+        if (activeDataset !== null && i !== activeDataset) {
+            ctx.restore();
+        }
 
-            const lastPoint = meta.data[meta.data.length - 1];
-            if (!lastPoint) return;
+        const meta = chart.getDatasetMeta(i);
+        const lastPoint = meta.data[meta.data.length - 1];
+        if (!lastPoint) return;
 
-            const x = lastPoint.x;
-            const y = lastPoint.y;
+        const x = lastPoint.x;
+        const y = lastPoint.y;
 
-            const img = dataset.logo;
+        const img = chart.data.datasets[i].logo;
 
-            if (img && img.complete) {
-                const size = (activeDataset === i) ? 42 : 32; // 🔥 logo to hơn khi hover
+        if (img && img.complete) {
+            const size = (activeDataset === i) ? 42 : 28;
 
-                ctx.save();
+            ctx.save();
 
-                // shadow
-                ctx.shadowColor = "rgba(0,0,0,0.25)";
-                ctx.shadowBlur = 8;
+            ctx.shadowColor = "rgba(0,0,0,0.25)";
+            ctx.shadowBlur = 8;
 
-                // nền trắng
-                ctx.beginPath();
-                ctx.arc(x, y, size/2 + 4, 0, Math.PI * 2);
-                ctx.fillStyle = "#fff";
-                ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
+            ctx.fillStyle = "#fff";
+            ctx.fill();
 
-                // viền
-                ctx.strokeStyle = "#ddd";
-                ctx.lineWidth = 1;
-                ctx.stroke();
+            ctx.drawImage(img, x - size/2, y - size/2, size, size);
 
-                // logo
-                ctx.drawImage(img, x - size/2, y - size/2, size, size);
-
-                ctx.restore();
-            }
-        });
+            ctx.restore();
+        }
     }
 };
 
@@ -214,7 +215,6 @@ function drawChart() {
         const cols = row.querySelectorAll("td");
 
         dates.push(cols[0].innerText);
-
         fpt.push(parseFloat(cols[1].innerText));
         hpg.push(parseFloat(cols[2].innerText));
         bid.push(parseFloat(cols[3].innerText));
@@ -224,7 +224,7 @@ function drawChart() {
 
     const ctx = document.getElementById('priceChart').getContext('2d');
 
-    const chart = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: dates,
@@ -232,7 +232,7 @@ function drawChart() {
                 {
                     label: 'FPT',
                     data: fpt,
-                    borderColor: '#FF8C00', // 🟠 cam
+                    borderColor: '#FF8C00',
                     tension: 0.4,
                     pointRadius: 0,
                     logo: fptLogo
@@ -240,7 +240,7 @@ function drawChart() {
                 {
                     label: 'HPG',
                     data: hpg,
-                    borderColor: '#1E90FF', // 🔵 xanh dương
+                    borderColor: '#1E90FF',
                     tension: 0.4,
                     pointRadius: 0,
                     logo: hpgLogo
@@ -248,7 +248,7 @@ function drawChart() {
                 {
                     label: 'BID',
                     data: bid,
-                    borderColor: '#008B45', // 🟢 springgreen đậm
+                    borderColor: '#008B45',
                     tension: 0.4,
                     pointRadius: 0,
                     logo: bidLogo
@@ -256,7 +256,7 @@ function drawChart() {
                 {
                     label: 'MWG',
                     data: mwg,
-                    borderColor: '#FFD700', // 🟡 vàng
+                    borderColor: '#FFD700',
                     tension: 0.4,
                     pointRadius: 0,
                     logo: mwgLogo
@@ -264,7 +264,7 @@ function drawChart() {
                 {
                     label: 'REE',
                     data: ree,
-                    borderColor: '#BA55D3', // 🟣 tím
+                    borderColor: '#BA55D3',
                     tension: 0.4,
                     pointRadius: 0,
                     logo: reeLogo
@@ -331,16 +331,17 @@ function drawChart() {
         plugins: [logoPlugin]
     });
 
-    // 🔥 HOVER highlight
+    // ===== HOVER (FIX KHÔNG GIẬT) =====
     document.getElementById("priceChart").addEventListener("mousemove", (e) => {
         const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: false }, false);
 
-        if (points.length) {
-            activeDataset = points[0].datasetIndex;
-        } else {
-            activeDataset = null;
+        let newActive = points.length ? points[0].datasetIndex : null;
+
+        if (newActive !== lastActive) {
+            activeDataset = newActive;
+            lastActive = newActive;
+            chart.update();
         }
-        chart.update();
     });
 }
 
