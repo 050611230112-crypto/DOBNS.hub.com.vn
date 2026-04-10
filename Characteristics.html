@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -40,6 +41,7 @@
 </div>
 
 <!-- PRICE -->
+  
 <div id="price" class="card content" style="display:none">
 <h3>Price</h3>
 
@@ -123,6 +125,159 @@
 <tr><td>01/12/2025</td><td>95.800</td><td>26.400</td><td>38.900</td><td>88.400</td><td>60.032</td><td>1784</td></tr>
 </tbody>
 </table>
+ <canvas id="priceChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// ===== LOAD LOGO =====
+const fptLogo = new Image(); fptLogo.src = 'images/FPT.jpg';
+const hpgLogo = new Image(); hpgLogo.src = 'images/HPG.jpg';
+const bidLogo = new Image(); bidLogo.src = 'images/BIDV.jpg';
+const mwgLogo = new Image(); mwgLogo.src = 'images/MWG.jpg';
+const reeLogo = new Image(); reeLogo.src = 'images/REE.jpg';
+
+// ===== HOVER HIGHLIGHT + LOGO =====
+const hoverPlugin = {
+    id: 'hoverPlugin',
+
+    beforeDatasetDraw(chart, args) {
+        const active = chart.getActiveElements();
+        if (!active.length) return;
+
+        const activeDataset = active[0].datasetIndex;
+
+        if (args.index !== activeDataset) {
+            chart.ctx.save();
+            chart.ctx.globalAlpha = 0.15;
+        }
+    },
+
+    afterDatasetDraw(chart, args) {
+        const active = chart.getActiveElements();
+        const activeDataset = active.length ? active[0].datasetIndex : null;
+
+        if (activeDataset !== null && args.index !== activeDataset) {
+            chart.ctx.restore();
+        }
+
+        // ===== DRAW LOGO =====
+        const meta = chart.getDatasetMeta(args.index);
+        const lastPoint = meta.data[meta.data.length - 1];
+        if (!lastPoint) return;
+
+        const x = lastPoint.x;
+        const y = lastPoint.y;
+        const img = chart.data.datasets[args.index].logo;
+
+        if (img && img.complete) {
+            const size = (activeDataset === args.index) ? 44 : 26;
+
+            chart.ctx.beginPath();
+            chart.ctx.arc(x, y, size/2 + 3, 0, Math.PI * 2);
+            chart.ctx.fillStyle = "#fff";
+            chart.ctx.fill();
+
+            chart.ctx.drawImage(img, x - size/2, y - size/2, size, size);
+        }
+    }
+};
+
+// ===== DRAW CHART =====
+function drawChart() {
+    const table = document.getElementById("priceTable");
+    const rows = table.querySelectorAll("tbody tr");
+
+    let dates = [];
+    let fpt = [], hpg = [], bid = [], mwg = [], ree = [];
+
+    rows.forEach(row => {
+        if(row.style.display === "none") return;
+
+        const cols = row.querySelectorAll("td");
+
+        dates.push(cols[0].innerText);
+        fpt.push(parseFloat(cols[1].innerText));
+        hpg.push(parseFloat(cols[2].innerText));
+        bid.push(parseFloat(cols[3].innerText));
+        mwg.push(parseFloat(cols[4].innerText));
+        ree.push(parseFloat(cols[5].innerText));
+    });
+
+    new Chart(document.getElementById('priceChart'), {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [
+                { label: 'FPT', data: fpt, borderColor: '#FF8C00', tension: 0.4, pointRadius: 0, logo: fptLogo },
+                { label: 'HPG', data: hpg, borderColor: '#1E90FF', tension: 0.4, pointRadius: 0, logo: hpgLogo },
+                { label: 'BID', data: bid, borderColor: '#008B45', tension: 0.4, pointRadius: 0, logo: bidLogo },
+                { label: 'MWG', data: mwg, borderColor: '#FFD700', tension: 0.4, pointRadius: 0, logo: mwgLogo },
+                { label: 'REE', data: ree, borderColor: '#BA55D3', tension: 0.4, pointRadius: 0, logo: reeLogo }
+            ]
+        },
+        options: {
+            responsive: true,
+
+            interaction: {
+                mode: 'nearest',
+                intersect: false
+            },
+
+            // 🔥 ANIMATION CHẠY TỪ TRÁI SANG PHẢI
+            animation: {
+                x: {
+                    type: 'number',
+                    easing: 'linear',
+                    duration: 1200,
+                    from: NaN,
+                    delay(ctx) {
+                        return ctx.dataIndex * 40;
+                    }
+                },
+                y: {
+                    duration: 400,
+                    from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                    delay(ctx) {
+                        return ctx.dataIndex * 40;
+                    }
+                }
+            },
+
+            plugins: {
+                legend: { position: 'top' },
+                title: {
+                    display: true,
+                    text: 'Stock Price Over Time',
+                    font: { size: 18, weight: 'bold' }
+                }
+            },
+
+            scales: {
+                x: { grid: { display: false }},
+                y: { grid: { display: false }}
+            }
+        },
+        plugins: [hoverPlugin]
+    });
+}
+
+// ===== SCROLL TỚI MỚI CHẠY =====
+let drawn = false;
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !drawn) {
+            drawChart();
+            drawn = true;
+        }
+    });
+}, {
+    threshold: 0.4 // 🔥 chỉnh độ xuất hiện
+});
+
+observer.observe(document.getElementById("priceChart"));
+</script>
 </div>
 <!-- RETURN -->
 <div id="dividend" class="card content" style="display:none">
@@ -325,6 +480,140 @@
 <tr><td>Standard Deviation</td><td></td><td>7.57%</td><td>10.17%</td><td>9.15%</td><td>9.34%</td><td>7.83%</td><td>5.44%</td></tr>
 </tbody>
 </table>
+  <canvas id="expectedChart"></canvas>
+<canvas id="riskChart" style="margin-top:40px;"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    // ===== EXPECTED RETURN =====
+    function drawExpectedChart() {
+        const table = document.getElementById("expectedTable");
+        const rows = table.querySelectorAll("tbody tr");
+
+        const cols = rows[0].querySelectorAll("td");
+
+        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+        let data = [];
+
+        for (let i = 1; i < cols.length; i++) {
+            let value = cols[i].innerText.replace('%','');
+            data.push(parseFloat(value) || 0);
+        }
+
+        new Chart(document.getElementById('expectedChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: '#0A2A66',
+                    borderRadius: 10,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Expected Return', front: {size:25,weight:'bold' 
+                  }
+                }
+                },
+                scales: {
+                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
+                    y: {
+                        grid: { display: false },
+                        ticks: { callback: v => v + "%" }
+                    }
+                },
+                animation: {
+                    y: {
+                        duration: 1500,
+                        from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                        delay: ctx => ctx.dataIndex * 100
+                    }
+                }
+            }
+        });
+    }
+
+    // ===== RISK =====
+    function drawRiskChart() {
+        const table = document.getElementById("expectedTable");
+        const rows = table.querySelectorAll("tbody tr");
+
+        const cols = rows[2].querySelectorAll("td");
+
+        const labels = ["Rf","FPT","HPG","BID","MWG","REE","VN-Index"];
+        let data = [];
+
+        for (let i = 1; i < cols.length; i++) {
+            let value = cols[i].innerText.replace('%','');
+            data.push(parseFloat(value) || 0);
+        }
+
+        new Chart(document.getElementById('riskChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: '#008B45',
+                    borderRadius: 10,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Risk (Standard Deviation)',front: {size:25,weight:'bold' 
+                  } 
+                }
+                },
+                scales: {
+                    x: { grid: { display: false },ticks:{front:{14,weight:'bold'}}},
+                    y: {
+                        grid: { display: false },
+                        ticks: { callback: v => v + "%" }
+                    }
+                },
+                animation: {
+                    y: {
+                        duration: 2000,
+                        from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+                        delay: ctx => ctx.dataIndex * 100
+                    }
+                }
+            }
+        });
+    }
+
+    // ===== SCROLL TRIGGER =====
+    let expectedDrawn = false;
+    let riskDrawn = false;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+
+            if (entry.target.id === "expectedChart" && entry.isIntersecting && !expectedDrawn) {
+                drawExpectedChart();
+                expectedDrawn = true;
+            }
+
+            if (entry.target.id === "riskChart" && entry.isIntersecting && !riskDrawn) {
+                drawRiskChart();
+                riskDrawn = true;
+            }
+
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(document.getElementById("expectedChart"));
+    observer.observe(document.getElementById("riskChart"));
+
+});
+</script>
 </div>
 
 <!-- COV -->
