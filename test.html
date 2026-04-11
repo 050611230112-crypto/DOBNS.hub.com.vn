@@ -37,6 +37,8 @@
   </div>
 <!-- risky -->
 <div id="orp" class="card content" style="display:none">
+
+  <!-- ===== 1. OPTIMAL RISKY PORTFOLIO ===== -->
   <h3>Optimal Risky Portfolio</h3>
 
   <table id="orpTable" border="1">
@@ -70,24 +72,52 @@
     <tr><td>10</td><td>BID-MWG-REE</td><td>10%</td><td>36.36%</td><td>53.64%</td><td>1.74%</td><td>0.41%</td><td>6.42%</td><td>0.2309</td><td>Moderate</td></tr>
   </table>
 
-  <h4>Portfolio Allocation Visualization</h4>
 
-  <select id="optionSelect">
-    <option value="0">Option 1</option>
-    <option value="1">Option 2</option>
-    <option value="2">Option 3</option>
-    <option value="3">Option 4</option>
-    <option value="4">Option 5</option>
-    <option value="5" selected>Option 6 (Best)</option>
-    <option value="6">Option 7</option>
-    <option value="7">Option 8</option>
-    <option value="8">Option 9</option>
-    <option value="9">Option 10</option>
-  </select>
+  <!-- ===== 2. MARKET PORTFOLIO ===== -->
+  <h4 style="margin-top:40px;">The Market Portfolio</h4>
+  <table border="1">
+    <tr>
+      <th>E(Rm)</th>
+      <th>Rf</th>
+      <th>Standard Deviation</th>
+      <th>Sharpe</th>
+    </tr>
+    <tr>
+      <td>0.95%</td>
+      <td>0.26%</td>
+      <td>5.44%</td>
+      <td>12.77%</td>
+    </tr>
+  </table>
 
-  <canvas id="pieChart" height="350" style="max-width:500px;margin-top:20px;"></canvas>
+
+  <!-- ===== 3. PIE CHART (TÁCH RIÊNG) ===== -->
+  <div id="chartBox" style="margin-top:40px;text-align:center;">
+
+    <h4>Portfolio Allocation Visualization</h4>
+
+    <select id="optionSelect">
+      <option value="0">Option 1</option>
+      <option value="1">Option 2</option>
+      <option value="2">Option 3</option>
+      <option value="3">Option 4</option>
+      <option value="4">Option 5</option>
+      <option value="5" selected>Option 6 (Best)</option>
+      <option value="6">Option 7</option>
+      <option value="7">Option 8</option>
+      <option value="8">Option 9</option>
+      <option value="9">Option 10</option>
+    </select>
+
+    <canvas id="pieChart" height="350" style="max-width:500px;margin:20px auto;"></canvas>
+  </div>
+
+</div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-  <script>
+
+<script>
 window.addEventListener("DOMContentLoaded", () => {
 
     const table = document.getElementById("orpTable");
@@ -95,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("optionSelect");
 
     let pieChart;
-    let hasAnimated = false; // chạy khi scroll
+    let hasAnimated = false;
 
     function getWeights(i){
         const cols = rows[i+1].querySelectorAll("td");
@@ -125,7 +155,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 datasets:[{
                     data:data,
                     hoverOffset:30,
-
                     backgroundColor:(ctx)=>{
                         const colors=[
                           'rgba(10,42,102,1)',
@@ -145,34 +174,23 @@ window.addEventListener("DOMContentLoaded", () => {
             },
             options:{
                 responsive:true,
-                maintainAspectRatio:true, // 🔥 FIX LAYOUT
-
+                maintainAspectRatio:true,
                 plugins:{
                     legend:{position:'bottom'},
                     title:{
                         display:true,
-                        text:'Portfolio Allocation',
-                        font:{size:18}
+                        text:'Portfolio Allocation'
                     }
                 },
-
-                animation:{
-                    duration:1200
-                },
-
-                interaction:{
-                    mode:'nearest',
-                    intersect:true
-                }
+                animation:{ duration:1200 },
+                interaction:{ mode:'nearest', intersect:true }
             },
             plugins:[{
                 id:'hoverEffect',
                 afterEvent(chart,args){
-
                     const active = chart.getElementsAtEventForMode(
                         args.event,'nearest',{intersect:true},false
                     );
-
                     chart._active = active || [];
                     chart.update();
                 }
@@ -180,7 +198,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🔥 SCROLL TRIGGER
+    // scroll trigger (giờ dùng chartBox ổn định hơn)
     const observer = new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
             if(entry.isIntersecting && !hasAnimated){
@@ -190,31 +208,14 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     },{ threshold:0.5 });
 
-    observer.observe(document.getElementById("pieChart"));
+    observer.observe(document.getElementById("chartBox"));
 
-    // change option
     select.addEventListener("change",()=>{
         drawChart(parseInt(select.value));
     });
 
 });
 </script>
-  <h4 style="margin-top:40px;">The Market Portfolio</h4>
-  <table border="1">
-    <tr>
-      <th>E(Rm)</th>
-      <th>Rf</th>
-      <th>Standard Deviation</th>
-      <th>Sharpe</th>
-    </tr>
-    <tr>
-      <td>0.95%</td>
-      <td>0.26%</td>
-      <td>5.44%</td>
-      <td>12.77%</td>
-    </tr>
-  </table>
-</div>
 
 
 </div>
