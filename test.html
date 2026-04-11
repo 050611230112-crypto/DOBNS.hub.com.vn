@@ -85,8 +85,120 @@
     <option value="9">Option 10</option>
   </select>
 
-  <canvas id="pieChart" style="max-width:500px;margin-top:20px;"></canvas>
+  <canvas id="pieChart" height="350" style="max-width:500px;margin-top:20px;"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <script>
+window.addEventListener("DOMContentLoaded", () => {
 
+    const table = document.getElementById("orpTable");
+    const rows = table.querySelectorAll("tr");
+    const select = document.getElementById("optionSelect");
+
+    let pieChart;
+    let hasAnimated = false; // chạy khi scroll
+
+    function getWeights(i){
+        const cols = rows[i+1].querySelectorAll("td");
+
+        return [
+            parseFloat(cols[2].innerText.replace('%','').trim()),
+            parseFloat(cols[3].innerText.replace('%','').trim()),
+            parseFloat(cols[4].innerText.replace('%','').trim())
+        ];
+    }
+
+    function getLabels(i){
+        return rows[i+1].children[1].innerText.split("-");
+    }
+
+    function drawChart(i){
+
+        const data = getWeights(i);
+        const labels = getLabels(i);
+
+        if(pieChart) pieChart.destroy();
+
+        pieChart = new Chart(document.getElementById("pieChart"),{
+            type:'pie',
+            data:{
+                labels:labels,
+                datasets:[{
+                    data:data,
+                    hoverOffset:30,
+
+                    backgroundColor:(ctx)=>{
+                        const colors=[
+                          'rgba(10,42,102,1)',
+                          'rgba(0,139,69,1)',
+                          'rgba(255,140,0,1)'
+                        ];
+
+                        const active = ctx.chart._active;
+
+                        if(!active || active.length===0) return colors[ctx.dataIndex];
+
+                        return active[0].index===ctx.dataIndex
+                          ? colors[ctx.dataIndex]
+                          : colors[ctx.dataIndex].replace("1)","0.2)");
+                    }
+                }]
+            },
+            options:{
+                responsive:true,
+                maintainAspectRatio:true, // 🔥 FIX LAYOUT
+
+                plugins:{
+                    legend:{position:'bottom'},
+                    title:{
+                        display:true,
+                        text:'Portfolio Allocation',
+                        font:{size:18}
+                    }
+                },
+
+                animation:{
+                    duration:1200
+                },
+
+                interaction:{
+                    mode:'nearest',
+                    intersect:true
+                }
+            },
+            plugins:[{
+                id:'hoverEffect',
+                afterEvent(chart,args){
+
+                    const active = chart.getElementsAtEventForMode(
+                        args.event,'nearest',{intersect:true},false
+                    );
+
+                    chart._active = active || [];
+                    chart.update();
+                }
+            }]
+        });
+    }
+
+    // 🔥 SCROLL TRIGGER
+    const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting && !hasAnimated){
+                drawChart(parseInt(select.value));
+                hasAnimated = true;
+            }
+        });
+    },{ threshold:0.5 });
+
+    observer.observe(document.getElementById("pieChart"));
+
+    // change option
+    select.addEventListener("change",()=>{
+        drawChart(parseInt(select.value));
+    });
+
+});
+</script>
   <h4 style="margin-top:40px;">The Market Portfolio</h4>
   <table border="1">
     <tr>
@@ -104,104 +216,6 @@
   </table>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-
-  const table = document.getElementById("orpTable");
-  const rows = table.querySelectorAll("tr");
-  const select = document.getElementById("optionSelect");
-
-  let pieChart;
-
-  function getWeights(i){
-    if(!rows[i+1]) return [0,0,0];
-
-    const cols = rows[i+1].querySelectorAll("td");
-
-    return [
-      parseFloat(cols[2].innerText.replace('%','').trim()),
-      parseFloat(cols[3].innerText.replace('%','').trim()),
-      parseFloat(cols[4].innerText.replace('%','').trim())
-    ];
-  }
-
-  function getLabels(i){
-    return rows[i+1].children[1].innerText.split("-");
-  }
-
-  function drawChart(i){
-
-    const data = getWeights(i);
-    const labels = getLabels(i);
-
-    if(pieChart) pieChart.destroy();
-
-    pieChart = new Chart(document.getElementById("pieChart"),{
-      type:'pie',
-      data:{
-        labels:labels,
-        datasets:[{
-          data:data,
-          hoverOffset:20,
-          backgroundColor:(ctx)=>{
-            const colors=[
-              'rgba(10,42,102,1)',
-              'rgba(0,139,69,1)',
-              'rgba(255,140,0,1)'
-            ];
-
-            const active = ctx.chart._active;
-
-            if(!active || active.length===0) return colors[ctx.dataIndex];
-
-            return active[0].index===ctx.dataIndex
-              ? colors[ctx.dataIndex]
-              : colors[ctx.dataIndex].replace("1)","0.2)");
-          }
-        }]
-      },
-      options:{
-        plugins:{
-          legend:{position:'bottom'},
-          title:{
-            display:true,
-            text:'Portfolio Allocation',
-            font:{size:20,weight:'bold'}
-          }
-        },
-        animation:{
-          animateRotate:true,
-          duration:1200
-        },
-        interaction:{mode:'nearest',intersect:true}
-      },
-      plugins:[{
-        id:'hoverEffect',
-        afterEvent(chart,args){
-          const active = chart.getElementsAtEventForMode(
-            args.event,'nearest',{intersect:true},false
-          );
-          chart._active = active || [];
-          chart.update();
-        }
-      }]
-    });
-
-    // fix render khi load
-    setTimeout(()=>pieChart.resize(),100);
-  }
-
-  // initial
-  drawChart(parseInt(select.value));
-
-  // change option
-  select.addEventListener("change",()=>{
-    drawChart(parseInt(select.value));
-  });
-
-});
-</script>
 
 </div>
   <div id="CAL" class="card content" style="display:none">
