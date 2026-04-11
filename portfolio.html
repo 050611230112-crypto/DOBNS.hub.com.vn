@@ -30,97 +30,243 @@
 
   <div class="card">
     <button onclick="showPort('orp')">Optimal Risky Portfolio</button>
+    <button onclick="showPort('CAL')">CAL</button>
     <button onclick="showPort('cop')">Optimal Complete Portfolio</button>
      <button onclick="showPort('allocation')">Capital Allocation Detail</button>
     <button onclick="showPort('assmana')">Assessment & Management</button>
+     <button onclick="showPort('conclu')">Conclusion & Recomendation</button>
   </div>
 <!-- risky -->
 <div id="orp" class="card content" style="display:none">
+
+  <!-- ===== 1. OPTIMAL RISKY PORTFOLIO ===== -->
   <h3>Optimal Risky Portfolio</h3>
 
+<table id="orpTable" border="1">
+  <tr>
+    <th>Option</th>
+    <th>Portfolio</th>
+    <th>w_i</th>
+    <th>w_j</th>
+    <th>w_k</th>
+    <th>E(Rp)</th>
+    <th>Var(Rp)</th>
+    <th>Stdev(Rp)</th>
+    <th>Sharpe</th>
+    <th>Assessment</th>
+  </tr>
+
+  <tr>
+    <td>1</td><td>FPT-HPG-BID</td><td>80%</td><td>10%</td><td>10%</td>
+    <td>2.34%</td><td>0.46%</td><td>6.81%</td><td>0.3060</td>
+    <td>Moderate return, moderate risk</td>
+  </tr>
+
+  <tr>
+    <td>2</td><td>FPT-HPG-MWG</td><td>80%</td><td>10%</td><td>10%</td>
+    <td>2.46%</td><td>0.49%</td><td>7.00%</td><td>0.3155</td>
+    <td>High return, high risk</td>
+  </tr>
+
+  <tr>
+    <td>3</td><td>FPT-HPG-REE</td><td>70.52%</td><td>10%</td><td>19.48%</td>
+    <td>2.37%</td><td>0.43%</td><td>6.57%</td><td>0.3214</td>
+    <td>Balanced return, moderate risk</td>
+  </tr>
+
+  <tr>
+    <td>4</td><td>FPT-BID-MWG</td><td>79.21%</td><td>10%</td><td>10.79%</td>
+    <td>2.40%</td><td>0.45%</td><td>6.74%</td><td>0.3181</td>
+    <td>Balanced return, moderate risk</td>
+  </tr>
+
+  <tr>
+    <td>5</td><td>FPT-BID-REE</td><td>69.66%</td><td>10%</td><td>20.34%</td>
+    <td>2.30%</td><td>0.40%</td><td>6.31%</td><td>0.3241</td>
+    <td>Lowest risk, stable return</td>
+  </tr>
+
+  <tr style="background:#d4edda;font-weight:bold;">
+    <td>6</td><td>FPT-MWG-REE</td><td>70.48%</td><td>10%</td><td>19.52%</td>
+    <td>2.43%</td><td>0.43%</td><td>6.57%</td><td>0.3316</td>
+    <td>Highest Sharpe, best performance</td>
+  </tr>
+
+  <tr>
+    <td>7</td><td>HPG-BID-MWG</td><td>14%</td><td>10%</td><td>76%</td>
+    <td>1.71%</td><td>0.63%</td><td>7.92%</td><td>0.1840</td>
+    <td>Lowest return, highest risk</td>
+  </tr>
+
+  <tr>
+    <td>8</td><td>HPG-BID-REE</td><td>13.42%</td><td>10%</td><td>76.58%</td>
+    <td>1.62%</td><td>0.45%</td><td>6.69%</td><td>0.2042</td>
+    <td>Low return, moderate risk</td>
+  </tr>
+
+  <tr>
+    <td>9</td><td>HPG-MWG-REE</td><td>10%</td><td>35.31%</td><td>54.69%</td>
+    <td>1.80%</td><td>0.45%</td><td>6.69%</td><td>0.2303</td>
+    <td>Moderate return, moderate risk</td>
+  </tr>
+
+  <tr>
+    <td>10</td><td>BID-MWG-REE</td><td>10%</td><td>36.36%</td><td>53.64%</td>
+    <td>1.74%</td><td>0.41%</td><td>6.42%</td><td>0.2309</td>
+    <td>Moderate return, relatively low risk</td>
+  </tr>
+</table>
+
+
+  <!-- ===== 2. MARKET PORTFOLIO ===== -->
+  <h4 style="margin-top:40px;">The Market Portfolio</h4>
   <table border="1">
     <tr>
-      <th>Option</th>
-      <th>Portfolio</th>
-      <th>w_i</th>
-      <th>w_j</th>
-      <th>w_k</th>
-      <th>E(Rp)</th>
-      <th>Var(Rp)</th>
-      <th>Stdev(Rp)</th>
+      <th>E(Rm)</th>
+      <th>Rf</th>
+      <th>Standard Deviation</th>
       <th>Sharpe</th>
-      <th>Assessment</th>
     </tr>
-
     <tr>
-      <td>1</td><td>FPT-HPG-BID</td><td>80%</td><td>10%</td><td>10%</td>
-      <td>2.34%</td><td>0.46%</td><td>6.81%</td><td>0.3060</td>
-      <td>Moderate return, moderate risk</td>
-    </tr>
-
-    <tr>
-      <td>2</td><td>FPT-HPG-MWG</td><td>80%</td><td>10%</td><td>10%</td>
-      <td>2.46%</td><td>0.49%</td><td>7.00%</td><td>0.3155</td>
-      <td>High return, high risk</td>
-    </tr>
-
-    <tr>
-      <td>3</td><td>FPT-HPG-REE</td><td>70.52%</td><td>10%</td><td>19.48%</td>
-      <td>2.37%</td><td>0.43%</td><td>6.57%</td><td>0.3214</td>
-      <td>Balanced return, moderate risk</td>
-    </tr>
-
-    <tr>
-      <td>4</td><td>FPT-BID-MWG</td><td>79.21%</td><td>10%</td><td>10.79%</td>
-      <td>2.40%</td><td>0.45%</td><td>6.74%</td><td>0.3181</td>
-      <td>Balanced return, moderate risk</td>
-    </tr>
-
-    <tr>
-      <td>5</td><td>FPT-BID-REE</td><td>69.66%</td><td>10%</td><td>20.34%</td>
-      <td>2.30%</td><td>0.40%</td><td>6.31%</td><td>0.3241</td>
-      <td>Lowest risk, stable return</td>
-    </tr>
-
-      <tr style="background-color: #d4edda; font-weight: bold;">
-      <td>6</td><td>FPT-MWG-REE</td><td>70.48%</td><td>10%</td><td>19.52%</td>
-      <td>2.43%</td><td>0.43%</td><td>6.57%</td><td>0.3316</td>
-      <td>Highest Sharpe, best performance</td>
-    </tr>
-
-    <tr>
-      <td>7</td><td>HPG-BID-MWG</td><td>14.00%</td><td>10%</td><td>76.00%</td>
-      <td>1.71%</td><td>0.63%</td><td>7.92%</td><td>0.1840</td>
-      <td>Lowest return, highest risk</td>
-    </tr>
-
-    <tr>
-      <td>8</td><td>HPG-BID-REE</td><td>13.42%</td><td>10%</td><td>76.58%</td>
-      <td>1.62%</td><td>0.45%</td><td>6.69%</td><td>0.2042</td>
-      <td>Low return, moderate risk</td>
-    </tr>
-
-    <tr>
-      <td>9</td><td>HPG-MWG-REE</td><td>10%</td><td>35.31%</td><td>54.69%</td>
-      <td>1.80%</td><td>0.45%</td><td>6.69%</td><td>0.2303</td>
-      <td>Moderate return, moderate risk</td>
-    </tr>
-
-    <tr>
-      <td>10</td><td>BID-MWG-REE</td><td>10%</td><td>36.36%</td><td>53.64%</td>
-      <td>1.74%</td><td>0.41%</td><td>6.42%</td><td>0.2309</td>
-      <td>Moderate return, relatively low risk</td>
+      <td>0.95%</td>
+      <td>0.26%</td>
+      <td>5.44%</td>
+      <td>12.77%</td>
     </tr>
   </table>
-   <h4>The Market Portfolio</h4>
-  <table border="1">
-    <tr>
-      <th>E(Rm)</th><th>Rf</th><th>Standard Deviation</th><th>Sharpe of market portfolio</th>
-    </tr>
-    <tr>
-      <td>0.95%</td><td>0.26%</td><td>5.44%</td><td>12.77%</td>
-    </tr>
-  </table>
+
+
+  <!-- ===== 3. PIE CHART (TÁCH RIÊNG) ===== -->
+  <div id="chartBox" style="margin-top:40px;text-align:center;">
+
+    <h4>Portfolio Allocation Visualization</h4>
+
+    <select id="optionSelect">
+      <option value="0">Option 1</option>
+      <option value="1">Option 2</option>
+      <option value="2">Option 3</option>
+      <option value="3">Option 4</option>
+      <option value="4">Option 5</option>
+      <option value="5" selected>Option 6 (Best)</option>
+      <option value="6">Option 7</option>
+      <option value="7">Option 8</option>
+      <option value="8">Option 9</option>
+      <option value="9">Option 10</option>
+    </select>
+
+    <canvas id="pieChart" height="350" style="max-width:500px;margin:20px auto;"></canvas>
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    const table = document.getElementById("orpTable");
+    const rows = table.querySelectorAll("tr");
+    const select = document.getElementById("optionSelect");
+
+    let pieChart;
+    let hasAnimated = false;
+
+    function getWeights(i){
+        const cols = rows[i+1].querySelectorAll("td");
+
+        return [
+            parseFloat(cols[2].innerText.replace('%','').trim()),
+            parseFloat(cols[3].innerText.replace('%','').trim()),
+            parseFloat(cols[4].innerText.replace('%','').trim())
+        ];
+    }
+
+    function getLabels(i){
+        return rows[i+1].children[1].innerText.split("-");
+    }
+
+    function drawChart(i){
+
+        const data = getWeights(i);
+        const labels = getLabels(i);
+
+        if(pieChart) pieChart.destroy();
+
+        pieChart = new Chart(document.getElementById("pieChart"),{
+            type:'pie',
+            data:{
+                labels:labels,
+                datasets:[{
+                    data:data,
+                    hoverOffset:30,
+                    backgroundColor:(ctx)=>{
+                        const colors=[
+                          'rgba(10,42,102,1)',
+                          'rgba(0,139,69,1)',
+                          'rgba(141,238,238,1)'
+                        ];
+
+                        const active = ctx.chart._active;
+
+                        if(!active || active.length===0) return colors[ctx.dataIndex];
+
+                        return active[0].index===ctx.dataIndex
+                          ? colors[ctx.dataIndex]
+                          : colors[ctx.dataIndex].replace("1)","0.2)");
+                    }
+                }]
+            },
+            options:{
+                responsive:true,
+                maintainAspectRatio:true,
+                plugins:{
+                    legend:{position:'bottom'},
+                    title:{
+                        display:true,
+                        text:'Portfolio Allocation'
+                    }
+                },
+                animation:{ duration:1200 },
+                interaction:{ mode:'nearest', intersect:true }
+            },
+            plugins:[{
+                id:'hoverEffect',
+                afterEvent(chart,args){
+                    const active = chart.getElementsAtEventForMode(
+                        args.event,'nearest',{intersect:true},false
+                    );
+                    chart._active = active || [];
+                    chart.update();
+                }
+            }]
+        });
+    }
+
+    // scroll trigger (giờ dùng chartBox ổn định hơn)
+    const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting && !hasAnimated){
+                drawChart(parseInt(select.value));
+                hasAnimated = true;
+            }
+        });
+    },{ threshold:0.5 });
+
+    observer.observe(document.getElementById("chartBox"));
+
+    select.addEventListener("change",()=>{
+        drawChart(parseInt(select.value));
+    });
+
+});
+</script>
+
+
+</div>
+  <div id="CAL" class="card content" style="display:none">
+  <h3>CAL & Efficient Frontier </h3>
+    <img src="CAL.jpg">
 </div>
   <!-- complete -->
   <div id="cop" class="card content" style="display:none">
@@ -135,6 +281,71 @@
       <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
     </tr>
   </table>
+    <h4 style="margin-top:30px;">Capital Allocation</h4>
+<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const copTable = document.querySelector("#cop table");
+  const row = copTable.querySelectorAll("tr")[1].querySelectorAll("td");
+
+  // lấy dữ liệu
+  const y = parseFloat(row[4].innerText.replace('%','').trim());
+  const rf = parseFloat(row[5].innerText.replace('%','').trim());
+
+  new Chart(document.getElementById("copPieChart"),{
+    type:'pie',
+    data:{
+      labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
+      datasets:[{
+        data:[y, rf],
+        hoverOffset:30,
+        backgroundColor:(ctx)=>{
+          const colors=[
+            'rgba(10,42,102,1)',     // risky
+            'rgba(141,238,238,1)'    // rf (#8DEEEE)
+          ];
+
+          const active = ctx.chart._active;
+
+          if(!active || active.length===0) return colors[ctx.dataIndex];
+
+          return active[0].index===ctx.dataIndex
+            ? colors[ctx.dataIndex]
+            : colors[ctx.dataIndex].replace("1)","0.2)");
+        }
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:true,
+      plugins:{
+        legend:{position:'bottom'},
+        title:{
+          display:true,
+          text:'Capital Allocation (y*)'
+        }
+      },
+      interaction:{
+        mode:'nearest',
+        intersect:true
+      }
+    },
+    plugins:[{
+      id:'hoverEffect',
+      afterEvent(chart,args){
+        const active = chart.getElementsAtEventForMode(
+          args.event,'nearest',{intersect:true},false
+        );
+        chart._active = active || [];
+        chart.update();
+      }
+    }]
+  });
+
+});
+</script>
 </div>
     <!--  -->
  <div id="allocation" class="card content" style="display:none">
@@ -170,19 +381,139 @@
   </table>
 </div>
  <div id="assmana" class="card content" style="display:none">
-   <h3>Risk assessment</h3> 
-   <table border="1">
+  <h3>Risk Assessment</h3> 
+
+  <!-- ===== TABLE 1: RISK ===== -->
+  <table border="1">
     <tr>
-      <th></th><th>Market risk</th><th>Industry risk</th><th>Liquidity risk</th><th>Company-specific risk</th><th>Interest rate & macroeconomic risk</th>
+      <th></th>
+      <th>Market risk</th>
+      <th>Industry risk</th>
+      <th>Liquidity risk</th>
+      <th>Company-specific risk</th>
+      <th>Interest rate & macroeconomic risk</th>
     </tr>
+
     <tr>
-       <th>mpact</th><th>Whenever the overall market experiences a downturn or significant volatility, the portfolio value may decline even if the underlying stocks have strong fundamentals.</th><th>The investment portfolio is largely concentrated in a few sectors, primarily technology (FPT), retail (MWG), and energy (REE). If all three sectors experience a downturn, the overall portfolio performance would be significantly affected.</th><th>LIn the event of a sharp market downturn, liquidating certain stocks such as MWG or REE Corporation may be more difficult due to their relatively lower liquidity compared to FPT Corporation.</th><th>Internal issues such as poor corporate governance, slowing growth, or legal risks may lead to a significant decline in stock prices.</th><th>When interest rates rise, capital tends to shift from equities to safer investment channels such as bonds or real estate, which may exert downward pressure on stock prices.</th>
+      <td><b>Impact</b></td>
+      <td>Whenever the overall market experiences a downturn or significant volatility, the portfolio value may decline even if the underlying stocks have strong fundamentals.</td>
+      <td>The investment portfolio is largely concentrated in a few sectors, primarily technology (FPT), retail (MWG), and energy (REE). If all three sectors experience a downturn, the overall portfolio performance would be significantly affected.</td>
+      <td>In the event of a sharp market downturn, liquidating certain stocks such as MWG or REE Corporation may be more difficult due to their relatively lower liquidity compared to FPT Corporation.</td>
+      <td>Internal issues such as poor corporate governance, slowing growth, or legal risks may lead to a significant decline in stock prices.</td>
+      <td>When interest rates rise, capital tends to shift from equities to safer investment channels such as bonds or real estate, which may exert downward pressure on stock prices.</td>
     </tr>
+
     <tr>
-      <th>example</th><th>Market risk</th><th>Industry risk</th><th>Liquidity risk</th><th>Company-specific risk</th><th>Interest rate & macroeconomic risk</th>
+      <td><b>Example</b></td>
+      <td>
+        During major crises such as the 2008 Global Financial Crisis or the COVID-19 pandemic, stock markets experienced sharp declines. As a result, even fundamentally strong stocks such as FPT Corporation were significantly affected and saw substantial price drops.<br><br>
+        In the case where the VN-Index enters a strong correction phase, the entire investment portfolio is likely to be negatively impacted to some extent.
+      </td>
+      <td>
+        If global technology investment slows down, the growth prospects of FPT Corporation may be adversely impacted.<br><br>
+        Similarly, changes in retail policies or a decline in the adoption of alternative energy could negatively affect the revenues of Mobile World Investment Corporation and REE Corporation.
+      </td>
+      <td>
+        Stock prices may decline significantly, but there may not be sufficient buyers in the market to execute sales at the desired price.
+      </td>
+      <td>
+        For FPT Corporation, performance may be adversely affected if the company misses major contract opportunities or faces intense competition from global technology corporations.<br><br>
+        For Mobile World Investment Corporation and REE Corporation, legal issues related to retail policies or potential technical violations during project implementation may negatively impact their operations and stock performance.
+      </td>
+      <td>
+        If the State Bank of Vietnam increases interest rates, firms may face higher capital costs, leading to a decline in profitability.<br><br>
+        High inflation may also reduce consumer spending, thereby negatively affecting revenue growth, particularly for companies such as FPT Corporation.
+      </td>
     </tr>
   </table>
-   </div>
+
+  <br>
+
+  <!-- ===== TABLE 2: STRATEGY ===== -->
+     <h3>Risk Management</h3> 
+  <table border="1">
+    <tr>
+      <th>Strategies</th>
+      <th>Diversification</th>
+      <th>Portfolio Rebalancing</th>
+      <th>Hedging Strategy</th>
+      <th>Macroeconomic and Company Monitoring</th>
+      <th>Psychological Risk Management</th>
+    </tr>
+
+    
+    <tr>
+      <td><b>Action</b></td>
+      <td>
+        Maintain a significant allocation to FPT Corporation while diversifying the portfolio by adding stocks from other sectors such as financials, consumer goods, and manufacturing.<br><br>
+        Potential additions may include GAS, PNJ, VNM, VCG, Viettinbank or Vietcombank.
+      </td>
+      <td>
+        If FPT Corporation experiences a strong price increase and accounts for 85% of the portfolio, partial profit-taking should be implemented to reduce concentration risk.<br><br>
+        If Mobile World Investment Corporation or REE Corporation show signs of deterioration, they may be replaced with more stable stocks.
+      </td>
+      <td>
+        Utilize covered warrants (CW) to hedge against potential declines in stock prices.<br><br>
+        Employ VN30 Index futures contracts or other derivative instruments during periods of significant market volatility.
+      </td>
+      <td>
+        Regularly monitor macroeconomic indicators such as GDP, interest rates, exchange rates, and monetary policy.<br><br>
+        Analyze the quarterly financial statements of FPT, MWG, and REE to ensure stable operational performance.
+      </td>
+      <td>
+        The investor shall avoid panic selling during significant market declines; instead, they shall reassess the intrinsic value and long-term potential of the businesses.<br><br>
+        The investor shall not follow herd behavior or succumb to FOMO when considering purchases of stocks at elevated prices without thorough analysis.
+      </td>
+    </tr>
+
+    <tr>
+      <td><b>Benefits</b></td>
+      <td>
+        Reduce concentration risk in one or two sectors.<br>
+        Enhance the portfolio’s resilience to sector-specific fluctuations.
+      </td>
+      <td>
+        Maintain a well-balanced asset allocation.<br>
+        Ensure the portfolio remains aligned with the investor’s risk tolerance and investment objectives.
+      </td>
+      <td>
+        Mitigate potential losses during market downturns.<br>
+        Help preserve returns even under unfavorable market conditions.
+      </td>
+      <td>
+        Helps adjust the portfolio in a timely manner before risks arise.<br>
+        Avoids continuing to invest in stocks that show signs of weakening.
+      </td>
+      <td>
+        This approach mitigates losses arising from emotional decision-making.<br>
+        It also reinforces investment discipline and adherence to a long-term strategy.
+      </td>
+    </tr>
+  </table>
+
+</div>
+    <div id="conclu" class="card content" style="display:none">
+
+  <table border="1">
+    <tr>
+      <th>Conclusion</th>
+    </tr>
+    <tr>
+      <td> This portfolio is designed to achieve attractive returns while maintaining a reasonable level of risk. With an expected return of approximately 2.43% per month and a volatility of around 6.57%, it offers a balanced trade-off between growth and risk control. Notably, the expected return of the portfolio meets Mr. Nam’s required rate of return, indicating that the investment strategy is aligned with his financial objectives. Compared to the VN-Index, the portfolio delivers significantly higher returns, making it suitable for investors seeking capital appreciation with moderate risk tolerance.<br><br> 
+        The portfolio benefits from diversification across FPT, MWG, and REE, representing technology, retail, and infrastructure sectors. This combination helps reduce overall risk while maintaining strong growth potential. Built on modern portfolio theory, the portfolio demonstrates an effective allocation strategy that enhances performance and resilience under different market conditions.</td>
+    </tr>
+  </table>
+      <table border="1">
+    <tr>
+      <th>Investment </th>
+    </tr>
+    <tr>
+      <td> To further enhance portfolio performance and risk management, periodic rebalancing should be implemented (e.g., quarterly or semi-annually) to maintain the target asset allocation and adapt to market fluctuations. This approach helps lock in gains from outperforming stocks while controlling downside risk.<br><br>
+        In addition, the portfolio strategy should be continuously reviewed based on macroeconomic factors such as interest rates, inflation, and overall market trends to ensure long-term sustainability and alignment with the investor’s risk tolerance.<br><br>
+        Moreover, investors should proactively communicate and update any changes in their personal financial situation, investment objectives, or risk tolerance, as these factors may directly affect the Investment Policy Statement. Timely updates help ensure that the portfolio remains aligned with long-term goals and the investor’s actual circumstances.</td>
+    </tr>
+  </table>
+</div>
 <script>
 function showPort(id){
   document.querySelectorAll('.content').forEach(el=>el.style.display='none');
