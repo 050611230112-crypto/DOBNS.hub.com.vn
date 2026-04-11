@@ -237,6 +237,71 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
     </tr>
   </table>
+    <h4 style="margin-top:30px;">Capital Allocation</h4>
+
+<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
+    <script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  const copTable = document.querySelector("#cop table");
+  const row = copTable.querySelectorAll("tr")[1].querySelectorAll("td");
+
+  // lấy dữ liệu
+  const y = parseFloat(row[4].innerText.replace('%','').trim());
+  const rf = parseFloat(row[5].innerText.replace('%','').trim());
+
+  new Chart(document.getElementById("copPieChart"),{
+    type:'pie',
+    data:{
+      labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
+      datasets:[{
+        data:[y, rf],
+        hoverOffset:30,
+        backgroundColor:(ctx)=>{
+          const colors=[
+            'rgba(10,42,102,1)',     // risky
+            'rgba(141,238,238,1)'    // rf (#8DEEEE)
+          ];
+
+          const active = ctx.chart._active;
+
+          if(!active || active.length===0) return colors[ctx.dataIndex];
+
+          return active[0].index===ctx.dataIndex
+            ? colors[ctx.dataIndex]
+            : colors[ctx.dataIndex].replace("1)","0.2)");
+        }
+      }]
+    },
+    options:{
+      responsive:true,
+      maintainAspectRatio:true,
+      plugins:{
+        legend:{position:'bottom'},
+        title:{
+          display:true,
+          text:'Capital Allocation (y*)'
+        }
+      },
+      interaction:{
+        mode:'nearest',
+        intersect:true
+      }
+    },
+    plugins:[{
+      id:'hoverEffect',
+      afterEvent(chart,args){
+        const active = chart.getElementsAtEventForMode(
+          args.event,'nearest',{intersect:true},false
+        );
+        chart._active = active || [];
+        chart.update();
+      }
+    }]
+  });
+
+});
+</script>
 </div>
     <!--  -->
  <div id="allocation" class="card content" style="display:none">
