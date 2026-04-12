@@ -385,6 +385,7 @@ function showCOP(){
       <td>Risk-free Assets</td><td>0.65%</td><td>1,108,978</td>
     </tr>
   </table>
+   <canvas id="overallBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
 
   <h4>Stock Allocation (168,891,022)</h4>
   <table border="1">
@@ -401,6 +402,88 @@ function showCOP(){
       <td>REE</td><td>19.52%</td><td>32,973,419</td>
     </tr>
   </table>
+   <canvas id="stockBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
+   <script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  let overallChart, stockChart;
+  let hasRun = false;
+
+  function drawOverall(){
+
+    const data = [168891022, 1108978];
+
+    overallChart = new Chart(document.getElementById("overallBar"),{
+      type:'bar',
+      data:{
+        labels:["Risky Portfolio","Risk-free Assets"],
+        datasets:[{
+          label:"Investment (VND)",
+          data:data,
+          borderRadius:8
+        }]
+      },
+      options:{
+        responsive:true,
+        plugins:{
+          legend:{display:false},
+          title:{
+            display:true,
+            text:"Overall Allocation (VND)"
+          }
+        },
+        animation:{
+          duration:1200
+        }
+      }
+    });
+  }
+
+  function drawStock(){
+
+    const data = [119028502, 16889102, 32973419];
+
+    stockChart = new Chart(document.getElementById("stockBar"),{
+      type:'bar',
+      data:{
+        labels:["FPT","MWG","REE"],
+        datasets:[{
+          label:"Investment (VND)",
+          data:data,
+          borderRadius:8
+        }]
+      },
+      options:{
+        responsive:true,
+        plugins:{
+          legend:{display:false},
+          title:{
+            display:true,
+            text:"Stock Allocation (VND)"
+          }
+        },
+        animation:{
+          duration:1200
+        }
+      }
+    });
+  }
+
+  // 🔥 SCROLL TRIGGER
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !hasRun){
+        drawOverall();
+        drawStock();
+        hasRun = true;
+      }
+    });
+  },{ threshold:0.5 });
+
+  observer.observe(document.getElementById("allocation"));
+
+});
+</script>
 </div>
  <div id="assmana" class="card content" style="display:none">
   <h3>Risk Assessment</h3> 
