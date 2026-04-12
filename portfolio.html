@@ -137,11 +137,11 @@
 
 
   <!-- ===== 3. PIE CHART (TÁCH RIÊNG) ===== -->
-  <div id="chartBox" style="margin-top:40px;text-align:center;">
+  <div id="chartBox1" style="margin-top:40px;text-align:center;">
 
     <h4>Portfolio Allocation Visualization</h4>
 
-    <select id="optionSelect">
+    <select id="optionSelect1">
       <option value="0">Option 1</option>
       <option value="1">Option 2</option>
       <option value="2">Option 3</option>
@@ -167,7 +167,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const table = document.getElementById("orpTable");
     const rows = table.querySelectorAll("tr");
-    const select = document.getElementById("optionSelect");
+    const select = document.getElementById("optionSelect1");
 
     let pieChart;
     let hasAnimated = false;
@@ -270,57 +270,191 @@ window.addEventListener("DOMContentLoaded", () => {
 </div>
   <!-- complete -->
 <div id="cop" class="card content" style="display:none">
- <h3>Optimal Complete Portfolio</h3>
+  <h3>Optimal Complete Portfolio</h3>
 
-<table id="copTable" border="1">
-  <tr>
-    <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
-    <th>y*</th><th>1-y*</th><th>E(Rc)</th><th>σ(c)</th><th>U</th>
-  </tr>
-  <tr>
-    <td>5.0804</td><td>2.43%</td><td>0.26%</td><td>6.57%</td>
-    <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
-  </tr>
-</table>
+  <table border="1">
+    <tr>
+      <th>A</th><th>Rf</th>
+    </tr>
+    <tr>
+      <td>5.0804</td><td>0.26%</td>
+    </tr>
+  </table>
+  
+  <table id="copTable" border="1">
+    <tr>
+      <th>No.</th>
+      <th>Portfolio</th>
+      <th>E(Rp)</th>
+      <th>σ(p)</th>
+      <th>y*</th>
+      <th>1 - y*</th>
+      <th>E(Rc)</th>
+      <th>σ(c)</th>
+      <th>U</th>
+    </tr>
+<tr>
+  <td>1</td><td>FPT-HPG-BID</td><td>2.34%</td><td>6.81%</td><td>88.45%</td><td>11.55%</td><td>2.10%</td><td>6.02%</td><td>0.0118</td>
+</tr>
+<tr>
+  <td>2</td><td>FPT-HPG-MWG</td><td>2.46%</td><td>7.00%</td><td>88.72%</td><td>11.28%</td><td>2.22%</td><td>6.21%</td><td>0.0124</td>
+</tr>
+<tr>
+  <td>3</td><td>FPT-HPG-REE</td><td>2.37%</td><td>6.57%</td><td>96.24%</td><td>3.76%</td><td>2.29%</td><td>6.33%</td><td>0.0127</td>
+</tr>
+<tr>
+  <td>4</td><td>FPT-BID-MWG</td><td>2.40%</td><td>6.74%</td><td>92.92%</td><td>7.08%</td><td>2.25%</td><td>6.26%</td><td>0.0125</td>
+</tr>
+<tr>
+  <td>5</td><td>FPT-BID-REE</td><td>2.30%</td><td>6.31%</td><td>100.00%</td><td>0.00%</td><td>2.30%</td><td>6.31%</td><td>0.0129</td>
+</tr>
+<tr  style="background:#d4edda;font-weight:bold;">
+  <td>6</td><td>FPT-MWG-REE</td><td>2.43%</td><td>6.57%</td><td>99.35%</td><td>0.65%</td><td>2.42%</td><td>6.53%</td><td>0.0134</td>
+</tr>
+<tr>
+  <td>7</td><td>HPG-BID-MWG</td><td>1.71%</td><td>7.92%</td><td>45.74%</td><td>54.26%</td><td>0.92%</td><td>3.62%</td><td>0.0059</td>
+</tr>
+<tr>
+  <td>8</td><td>HPG-BID-REE</td><td>1.62%</td><td>6.69%</td><td>60.11%</td><td>39.89%</td><td>1.08%</td><td>4.02%</td><td>0.0067</td>
+</tr>
+<tr>
+  <td>9</td><td>HPG-MWG-REE</td><td>1.80%</td><td>6.69%</td><td>67.74%</td><td>32.26%</td><td>1.30%</td><td>4.53%</td><td>0.0078</td>
+</tr>
+<tr>
+  <td>10</td><td>BID-MWG-REE</td><td>1.74%</td><td>6.42%</td><td>70.75%</td><td>29.25%</td><td>1.31%</td><td>4.54%</td><td>0.0078</td>
+</tr>
+ 
+  </table> <!-- ✅ ĐÓNG TABLE Ở ĐÂY -->
 
-<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
+  <!-- ✅ CHART ĐỂ NGOÀI TABLE -->
+  <div id="chartBox" style="margin-top:40px;text-align:center;">
+    <h4>Capital Allocation</h4>
+
+    <select id="optionSelect2">
+      <option value="0">Option 1</option>
+      <option value="1">Option 2</option>
+      <option value="2">Option 3</option>
+      <option value="3">Option 4</option>
+      <option value="4">Option 5</option>
+      <option value="5" selected>Option 6 (Best)</option>
+      <option value="6">Option 7</option>
+      <option value="7">Option 8</option>
+      <option value="8">Option 9</option>
+      <option value="9">Option 10</option>
+    </select>
+
+    <canvas id="pieChart1" height="350" style="max-width:500px;margin:20px auto;"></canvas>
+  </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
 
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
-  const row = document.querySelector("#copTable")
-                .querySelectorAll("td");
+    const table = document.getElementById("copTable");
+    const rows = table.querySelectorAll("tr");
+    const select = document.getElementById("optionSelect2");
 
-  const y = parseFloat(row[4].innerText.replace('%',''));
-  const rf = parseFloat(row[5].innerText.replace('%',''));
+    let pieChart;
+    let hasAnimated = false;
 
-  new Chart(document.getElementById("copPieChart"),{
-    type:'pie',
-    data:{
-      labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
-      datasets:[{
-        data:[y, rf],
-        backgroundColor:[
-          'rgba(10,42,102,1)',
-          'rgba(141,238,238,1)'
-        ],
-        hoverOffset:20
-      }]
-    },
-    options:{
-      responsive:true,
-      maintainAspectRatio:true,
-      plugins:{
-        legend:{position:'bottom'},
-        title:{
-          display:true,
-          text:'Capital Allocation (y*)'
-        }
-      }
+    // ===== LẤY DATA y* & 1-y* =====
+    function getWeights(i){
+        const cols = rows[i+1].querySelectorAll("td");
+
+        const y = parseFloat(cols[4].innerText.replace('%','').trim());
+        const oneMinusY = parseFloat(cols[5].innerText.replace('%','').trim());
+
+        return [y, oneMinusY];
     }
-  });
+
+    // ===== LABEL ĐÚNG THEORY =====
+    function getLabels(){
+        return ["Risky Portfolio (y*)", "Risk-Free Asset (1 - y*)"];
+    }
+
+    // ===== VẼ CHART =====
+    function drawChart(i){
+
+        const data = getWeights(i);
+        const labels = getLabels();
+
+        if(pieChart) pieChart.destroy();
+
+        pieChart = new Chart(document.getElementById("pieChart1"),{
+            type:'pie',
+            data:{
+                labels:labels,
+                datasets:[{
+                    data:data,
+                    hoverOffset:30,
+                    backgroundColor:(ctx)=>{
+                        const colors=[
+                          'rgba(10,42,102,1)',   // xanh đậm
+                          'rgba(0,139,69,1)'     // xanh lá
+                        ];
+
+                        const active = ctx.chart._active;
+
+                        if(!active || active.length===0) return colors[ctx.dataIndex];
+
+                        return active[0].index===ctx.dataIndex
+                          ? colors[ctx.dataIndex]
+                          : colors[ctx.dataIndex].replace("1)","0.2)");
+                    }
+                }]
+            },
+            options:{
+                responsive:true,
+                maintainAspectRatio:true,
+                plugins:{
+                    legend:{position:'bottom'},
+                    title:{
+                        display:true,
+                        text:'Optimal Complete Portfolio Allocation'
+                    },
+                    tooltip:{
+                        callbacks:{
+                            label:function(context){
+                                return context.label + ": " + context.raw + "%";
+                            }
+                        }
+                    }
+                },
+                animation:{ duration:1200 },
+                interaction:{ mode:'nearest', intersect:true }
+            },
+            plugins:[{
+                id:'hoverEffect',
+                afterEvent(chart,args){
+                    const active = chart.getElementsAtEventForMode(
+                        args.event,'nearest',{intersect:true},false
+                    );
+                    chart._active = active || [];
+                    chart.update();
+                }
+            }]
+        });
+    }
+
+    // ===== SCROLL TỚI MỚI CHẠY =====
+    const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting && !hasAnimated){
+                drawChart(parseInt(select.value));
+                hasAnimated = true;
+            }
+        });
+    },{ threshold:0.5 });
+
+    observer.observe(document.getElementById("chartBox"));
+
+    // ===== CHANGE OPTION =====
+    select.addEventListener("change",()=>{
+        drawChart(parseInt(select.value));
+    });
 
 });
 </script>
@@ -341,8 +475,7 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>Risk-free Assets</td><td>0.65%</td><td>1,108,978</td>
     </tr>
   </table>
-   <canvas id="overallBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
-
+<canvas id="overallBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
   <h4>Stock Allocation (168,891,022)</h4>
   <table border="1">
     <tr>
@@ -359,12 +492,19 @@ window.addEventListener("DOMContentLoaded", () => {
     </tr>
   </table>
    <canvas id="stockBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
-   <script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+<script>
 window.addEventListener("DOMContentLoaded", () => {
 
   let overallChart, stockChart;
   let hasRun = false;
 
+  function formatVND(value){
+    return value.toLocaleString("vi-VN") + " VND";
+  }
+
+  // ===== OVERALL =====
   function drawOverall(){
 
     const data = [168891022, 1108978];
@@ -374,27 +514,50 @@ window.addEventListener("DOMContentLoaded", () => {
       data:{
         labels:["Risky Portfolio","Risk-free Assets"],
         datasets:[{
-          label:"Investment (VND)",
           data:data,
-          borderRadius:8
+          backgroundColor:'#0A2A66',
+          borderRadius:10,
+          barPercentage:0.6
         }]
       },
       options:{
-        responsive:true,
         plugins:{
           legend:{display:false},
           title:{
             display:true,
-            text:"Overall Allocation (VND)"
+            text:"Overall Allocation",
+            font:{ size:25, weight:'bold' }
+          },
+          tooltip:{
+            callbacks:{
+              label:(ctx)=> formatVND(ctx.raw)
+            }
+          }
+        },
+        scales:{
+          x:{
+            grid:{ display:false },
+            ticks:{ font:{ size:14, weight:'bold' } }
+          },
+          y:{
+            grid:{ display:false },
+            ticks:{
+              callback:(v)=> (v/1000000) + "M"
+            }
           }
         },
         animation:{
-          duration:1200
+          y:{
+            duration:3000,
+            from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+            delay: ctx => ctx.dataIndex * 150
+          }
         }
       }
     });
   }
 
+  // ===== STOCK =====
   function drawStock(){
 
     const data = [119028502, 16889102, 32973419];
@@ -404,28 +567,50 @@ window.addEventListener("DOMContentLoaded", () => {
       data:{
         labels:["FPT","MWG","REE"],
         datasets:[{
-          label:"Investment (VND)",
           data:data,
-          borderRadius:8
+          backgroundColor:'#0A2A66',
+          borderRadius:10,
+          barPercentage:0.6
         }]
       },
       options:{
-        responsive:true,
         plugins:{
           legend:{display:false},
           title:{
             display:true,
-            text:"Stock Allocation (VND)"
+            text:"Stock Allocation",
+            font:{ size:25, weight:'bold' }
+          },
+          tooltip:{
+            callbacks:{
+              label:(ctx)=> formatVND(ctx.raw)
+            }
+          }
+        },
+        scales:{
+          x:{
+            grid:{ display:false },
+            ticks:{ font:{ size:14, weight:'bold' } }
+          },
+          y:{
+            grid:{ display:false },
+            ticks:{
+              callback:(v)=> (v/1000000) + "M"
+            }
           }
         },
         animation:{
-          duration:1200
+          y:{
+            duration:3000,
+            from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+            delay: ctx => ctx.dataIndex * 150
+          }
         }
       }
     });
   }
 
-  // 🔥 SCROLL TRIGGER
+  // ===== SCROLL TRIGGER =====
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting && !hasRun){
