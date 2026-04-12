@@ -270,18 +270,18 @@ window.addEventListener("DOMContentLoaded", () => {
 </div>
   <!-- complete -->
 <div id="cop" class="card content" style="display:none">
-  <h3>Optimal Complete Portfolio</h3>
+ <h3>Optimal Complete Portfolio</h3>
 
-  <table border="1">
-    <tr>
-      <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
-      <th>y*</th><th>1-y*</th><th>E(Rc)</th><th>σ(c)</th><th>U</th>
-    </tr>
-    <tr>
-      <td>5.0804</td><td>2.43%</td><td>0.26%</td><td>6.57%</td>
-      <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
-    </tr>
-  </table>
+<table id="copTable" border="1">
+  <tr>
+    <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
+    <th>y*</th><th>1-y*</th><th>E(Rc)</th><th>σ(c)</th><th>U</th>
+  </tr>
+  <tr>
+    <td>5.0804</td><td>2.43%</td><td>0.26%</td><td>6.57%</td>
+    <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
+  </tr>
+</table>
 
 <canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
 
@@ -290,15 +290,12 @@ window.addEventListener("DOMContentLoaded", () => {
 <script>
 window.addEventListener("DOMContentLoaded", () => {
 
-  // lấy dòng dữ liệu thứ 2 trong bảng
-  const row = document.querySelector("#cop table tr:nth-child(2)")
+  const row = document.querySelector("#copTable tr:nth-child(2)")
                 .querySelectorAll("td");
 
-  // lấy y* và 1-y*
   const y = parseFloat(row[4].innerText.replace('%',''));
   const rf = parseFloat(row[5].innerText.replace('%',''));
 
-  // vẽ chart
   new Chart(document.getElementById("copPieChart"),{
     type:'pie',
     data:{
