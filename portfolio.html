@@ -283,51 +283,33 @@ window.addEventListener("DOMContentLoaded", () => {
     </tr>
   </table>
 
-  <h4 style="margin-top:30px;">Capital Allocation</h4>
+<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
 
-  <canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
-</div>
-
-<!-- ✅ CHỈ LOAD 1 LẦN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
 
 <script>
-let copChart = null;
+window.addEventListener("DOMContentLoaded", () => {
 
-// ===== DRAW CHART =====
-function renderCOPChart(){
-
-  // tránh vẽ lại nhiều lần
-  if(copChart) return;
-
-  // lấy đúng dòng data
+  // lấy dòng dữ liệu thứ 2 trong bảng
   const row = document.querySelector("#cop table tr:nth-child(2)")
                 .querySelectorAll("td");
 
-  const y = parseFloat(row[4].innerText.replace('%','').trim());
-  const rf = parseFloat(row[5].innerText.replace('%','').trim());
+  // lấy y* và 1-y*
+  const y = parseFloat(row[4].innerText.replace('%',''));
+  const rf = parseFloat(row[5].innerText.replace('%',''));
 
-  copChart = new Chart(document.getElementById("copPieChart"),{
+  // vẽ chart
+  new Chart(document.getElementById("copPieChart"),{
     type:'pie',
     data:{
       labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
       datasets:[{
         data:[y, rf],
-        hoverOffset:30,
-        backgroundColor:(ctx)=>{
-          const colors=[
-            'rgba(10,42,102,1)',
-            'rgba(141,238,238,1)'
-          ];
-
-          const active = ctx.chart._active;
-
-          if(!active || active.length===0) return colors[ctx.dataIndex];
-
-          return active[0].index===ctx.dataIndex
-            ? colors[ctx.dataIndex]
-            : colors[ctx.dataIndex].replace("1)","0.2)");
-        }
+        backgroundColor:[
+          'rgba(10,42,102,1)',
+          'rgba(141,238,238,1)'
+        ],
+        hoverOffset:20
       }]
     },
     options:{
@@ -339,46 +321,11 @@ function renderCOPChart(){
           display:true,
           text:'Capital Allocation (y*)'
         }
-      },
-      interaction:{
-        mode:'nearest',
-        intersect:true
       }
-    },
-    plugins:[{
-      id:'hoverEffect',
-      afterEvent(chart,args){
-        const active = chart.getElementsAtEventForMode(
-          args.event,'nearest',{intersect:true},false
-        );
-        chart._active = active || [];
-        chart.update();
-      }
-    }]
+    }
   });
 
-  // fix khi render trong tab ẩn
-  setTimeout(()=>copChart.resize(),100);
-}
-
-
-// ===== SHOW TAB (SỬA NHẸ) =====
-function showPort(id){
-
-  // ẩn tất cả
-  document.querySelectorAll('.content')
-    .forEach(el=>el.style.display='none');
-
-  // hiện tab được chọn
-  document.getElementById(id).style.display='block';
-
-  // 🔥 QUAN TRỌNG: gọi chart khi mở COP
-  if(id === 'cop'){
-    setTimeout(()=>{
-      renderCOPChart();
-    },200);
-  }
-}
+});
 </script>
 </div>
     <!--  -->
