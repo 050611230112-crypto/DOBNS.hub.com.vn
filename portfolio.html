@@ -269,8 +269,9 @@ window.addEventListener("DOMContentLoaded", () => {
     <img src="CAL.jpg">
 </div>
   <!-- complete -->
-  <div id="cop" class="card content" style="display:none">
+<div id="cop" class="card content" style="display:none">
   <h3>Optimal Complete Portfolio</h3>
+
   <table border="1">
     <tr>
       <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
@@ -281,25 +282,28 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
     </tr>
   </table>
+
   <h4 style="margin-top:30px;">Capital Allocation</h4>
+
   <canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
 </div>
 
-<!-- ✅ Đưa Chart.js RA NGOÀI div -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- ✅ CHỈ LOAD 1 LẦN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
 
 <script>
-let copChart = null; // tránh vẽ lại nhiều lần
+let copChart = null;
 
+// ===== DRAW CHART =====
 function renderCOPChart(){
 
-  // ❌ nếu đã có chart thì không vẽ lại
+  // tránh vẽ lại nhiều lần
   if(copChart) return;
 
-  const copTable = document.querySelector("#cop table");
-  const row = copTable.querySelectorAll("tr")[1].querySelectorAll("td");
+  // lấy đúng dòng data
+  const row = document.querySelector("#cop table tr:nth-child(2)")
+                .querySelectorAll("td");
 
-  // lấy dữ liệu
   const y = parseFloat(row[4].innerText.replace('%','').trim());
   const rf = parseFloat(row[5].innerText.replace('%','').trim());
 
@@ -352,20 +356,28 @@ function renderCOPChart(){
       }
     }]
   });
+
+  // fix khi render trong tab ẩn
+  setTimeout(()=>copChart.resize(),100);
 }
 
-// ❌ KHÔNG dùng DOMContentLoaded nữa
-// 👉 vì div đang display:none
 
-// ✅ gọi function này khi bạn SHOW COP
-function showCOP(){
-  const cop = document.getElementById("cop");
-  cop.style.display = "block";
+// ===== SHOW TAB (SỬA NHẸ) =====
+function showPort(id){
 
-  // delay nhẹ để chart render đúng
-  setTimeout(()=>{
-    renderCOPChart();
-  },100);
+  // ẩn tất cả
+  document.querySelectorAll('.content')
+    .forEach(el=>el.style.display='none');
+
+  // hiện tab được chọn
+  document.getElementById(id).style.display='block';
+
+  // 🔥 QUAN TRỌNG: gọi chart khi mở COP
+  if(id === 'cop'){
+    setTimeout(()=>{
+      renderCOPChart();
+    },200);
+  }
 }
 </script>
 </div>
