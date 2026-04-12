@@ -475,7 +475,7 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>Risk-free Assets</td><td>0.65%</td><td>1,108,978</td>
     </tr>
   </table>
-
+<canvas id="overallBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
   <h4>Stock Allocation (168,891,022)</h4>
   <table border="1">
     <tr>
@@ -491,6 +491,140 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>REE</td><td>19.52%</td><td>32,973,419</td>
     </tr>
   </table>
+   <canvas id="stockBar" height="250" style="max-width:500px;margin:20px auto;"></canvas>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  let overallChart, stockChart;
+  let hasRun = false;
+
+  function formatVND(value){
+    return value.toLocaleString("vi-VN") + " VND";
+  }
+
+  // ===== OVERALL =====
+  function drawOverall(){
+
+    const data = [168891022, 1108978];
+
+    overallChart = new Chart(document.getElementById("overallBar"),{
+      type:'bar',
+      data:{
+        labels:["Risky Portfolio","Risk-free Assets"],
+        datasets:[{
+          data:data,
+          backgroundColor:'#0A2A66',
+          borderRadius:10,
+          barPercentage:0.6
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{display:false},
+          title:{
+            display:true,
+            text:"Overall Allocation",
+            font:{ size:25, weight:'bold' }
+          },
+          tooltip:{
+            callbacks:{
+              label:(ctx)=> formatVND(ctx.raw)
+            }
+          }
+        },
+        scales:{
+          x:{
+            grid:{ display:false },
+            ticks:{ font:{ size:14, weight:'bold' } }
+          },
+          y:{
+            grid:{ display:false },
+            ticks:{
+              callback:(v)=> (v/1000000) + "M"
+            }
+          }
+        },
+        animation:{
+          y:{
+            duration:3000,
+            from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+            delay: ctx => ctx.dataIndex * 150
+          }
+        }
+      }
+    });
+  }
+
+  // ===== STOCK =====
+  function drawStock(){
+
+    const data = [119028502, 16889102, 32973419];
+
+    stockChart = new Chart(document.getElementById("stockBar"),{
+      type:'bar',
+      data:{
+        labels:["FPT","MWG","REE"],
+        datasets:[{
+          data:data,
+          backgroundColor:'#0A2A66',
+          borderRadius:10,
+          barPercentage:0.6
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{display:false},
+          title:{
+            display:true,
+            text:"Stock Allocation",
+            font:{ size:25, weight:'bold' }
+          },
+          tooltip:{
+            callbacks:{
+              label:(ctx)=> formatVND(ctx.raw)
+            }
+          }
+        },
+        scales:{
+          x:{
+            grid:{ display:false },
+            ticks:{ font:{ size:14, weight:'bold' } }
+          },
+          y:{
+            grid:{ display:false },
+            ticks:{
+              callback:(v)=> (v/1000000) + "M"
+            }
+          }
+        },
+        animation:{
+          y:{
+            duration:3000,
+            from: ctx => ctx.chart.scales.y.getPixelForValue(0),
+            delay: ctx => ctx.dataIndex * 150
+          }
+        }
+      }
+    });
+  }
+
+  // ===== SCROLL TRIGGER =====
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting && !hasRun){
+        drawOverall();
+        drawStock();
+        hasRun = true;
+      }
+    });
+  },{ threshold:0.5 });
+
+  observer.observe(document.getElementById("allocation"));
+
+});
+</script>
 </div>
  <div id="assmana" class="card content" style="display:none">
   <h3>Risk Assessment</h3> 
