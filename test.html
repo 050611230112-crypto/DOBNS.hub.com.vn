@@ -293,10 +293,37 @@ window.addEventListener("DOMContentLoaded", () => {
       <th>σ(c)</th>
       <th>U</th>
     </tr>
-
-    <!-- data giữ nguyên -->
-    ...
-    
+<tr>
+  <td>1</td><td>FPT-HPG-BID</td><td>2.34%</td><td>6.81%</td><td>88.45%</td><td>11.55%</td><td>2.10%</td><td>6.02%</td><td>0.0118</td>
+</tr>
+<tr>
+  <td>2</td><td>FPT-HPG-MWG</td><td>2.46%</td><td>7.00%</td><td>88.72%</td><td>11.28%</td><td>2.22%</td><td>6.21%</td><td>0.0124</td>
+</tr>
+<tr>
+  <td>3</td><td>FPT-HPG-REE</td><td>2.37%</td><td>6.57%</td><td>96.24%</td><td>3.76%</td><td>2.29%</td><td>6.33%</td><td>0.0127</td>
+</tr>
+<tr>
+  <td>4</td><td>FPT-BID-MWG</td><td>2.40%</td><td>6.74%</td><td>92.92%</td><td>7.08%</td><td>2.25%</td><td>6.26%</td><td>0.0125</td>
+</tr>
+<tr>
+  <td>5</td><td>FPT-BID-REE</td><td>2.30%</td><td>6.31%</td><td>100.00%</td><td>0.00%</td><td>2.30%</td><td>6.31%</td><td>0.0129</td>
+</tr>
+<tr>
+  <td style="background:#d4edda;font-weight:bold;">6</td><td>FPT-MWG-REE</td><td>2.43%</td><td>6.57%</td><td>99.35%</td><td>0.65%</td><td>2.42%</td><td>6.53%</td><td>0.0134</td>
+</tr>
+<tr>
+  <td>7</td><td>HPG-BID-MWG</td><td>1.71%</td><td>7.92%</td><td>45.74%</td><td>54.26%</td><td>0.92%</td><td>3.62%</td><td>0.0059</td>
+</tr>
+<tr>
+  <td>8</td><td>HPG-BID-REE</td><td>1.62%</td><td>6.69%</td><td>60.11%</td><td>39.89%</td><td>1.08%</td><td>4.02%</td><td>0.0067</td>
+</tr>
+<tr>
+  <td>9</td><td>HPG-MWG-REE</td><td>1.80%</td><td>6.69%</td><td>67.74%</td><td>32.26%</td><td>1.30%</td><td>4.53%</td><td>0.0078</td>
+</tr>
+<tr>
+  <td>10</td><td>BID-MWG-REE</td><td>1.74%</td><td>6.42%</td><td>70.75%</td><td>29.25%</td><td>1.31%</td><td>4.54%</td><td>0.0078</td>
+</tr>
+ 
   </table> <!-- ✅ ĐÓNG TABLE Ở ĐÂY -->
 
   <!-- ✅ CHART ĐỂ NGOÀI TABLE -->
@@ -333,23 +360,26 @@ window.addEventListener("DOMContentLoaded", () => {
     let pieChart;
     let hasAnimated = false;
 
+    // ===== LẤY DATA y* & 1-y* =====
     function getWeights(i){
         const cols = rows[i+1].querySelectorAll("td");
 
-        return [
-            parseFloat(cols[4].innerText.replace('%','').trim()),
-            parseFloat(cols[5].innerText.replace('%','').trim())
-        ];
+        const y = parseFloat(cols[4].innerText.replace('%','').trim());
+        const oneMinusY = parseFloat(cols[5].innerText.replace('%','').trim());
+
+        return [y, oneMinusY];
     }
 
-    function getLabels(i){
-        return rows[i+1].children[1].innerText.split("-");
+    // ===== LABEL ĐÚNG THEORY =====
+    function getLabels(){
+        return ["Risky Portfolio (y*)", "Risk-Free Asset (1 - y*)"];
     }
 
+    // ===== VẼ CHART =====
     function drawChart(i){
 
         const data = getWeights(i);
-        const labels = getLabels(i);
+        const labels = getLabels();
 
         if(pieChart) pieChart.destroy();
 
@@ -362,9 +392,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     hoverOffset:30,
                     backgroundColor:(ctx)=>{
                         const colors=[
-                          'rgba(10,42,102,1)',
-                          'rgba(0,139,69,1)',
-                          'rgba(141,238,238,1)'
+                          'rgba(10,42,102,1)',   // xanh đậm
+                          'rgba(0,139,69,1)'     // xanh lá
                         ];
 
                         const active = ctx.chart._active;
@@ -384,7 +413,14 @@ window.addEventListener("DOMContentLoaded", () => {
                     legend:{position:'bottom'},
                     title:{
                         display:true,
-                        text:'Portfolio Allocation'
+                        text:'Optimal Complete Portfolio Allocation'
+                    },
+                    tooltip:{
+                        callbacks:{
+                            label:function(context){
+                                return context.label + ": " + context.raw + "%";
+                            }
+                        }
                     }
                 },
                 animation:{ duration:1200 },
@@ -403,7 +439,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // scroll trigger (giờ dùng chartBox ổn định hơn)
+    // ===== SCROLL TỚI MỚI CHẠY =====
     const observer = new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
             if(entry.isIntersecting && !hasAnimated){
@@ -415,14 +451,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(document.getElementById("chartBox"));
 
+    // ===== CHANGE OPTION =====
     select.addEventListener("change",()=>{
         drawChart(parseInt(select.value));
     });
 
 });
 </script>
-
-
 </div>
     <!--  -->
  <div id="allocation" class="card content" style="display:none">
