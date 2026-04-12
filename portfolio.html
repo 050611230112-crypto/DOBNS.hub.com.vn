@@ -281,11 +281,20 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
     </tr>
   </table>
-    <h4 style="margin-top:30px;">Capital Allocation</h4>
-<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-    <script>
-window.addEventListener("DOMContentLoaded", () => {
+  <h4 style="margin-top:30px;">Capital Allocation</h4>
+  <canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
+</div>
+
+<!-- ✅ Đưa Chart.js RA NGOÀI div -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+let copChart = null; // tránh vẽ lại nhiều lần
+
+function renderCOPChart(){
+
+  // ❌ nếu đã có chart thì không vẽ lại
+  if(copChart) return;
 
   const copTable = document.querySelector("#cop table");
   const row = copTable.querySelectorAll("tr")[1].querySelectorAll("td");
@@ -294,7 +303,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const y = parseFloat(row[4].innerText.replace('%','').trim());
   const rf = parseFloat(row[5].innerText.replace('%','').trim());
 
-  new Chart(document.getElementById("copPieChart"),{
+  copChart = new Chart(document.getElementById("copPieChart"),{
     type:'pie',
     data:{
       labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
@@ -303,8 +312,8 @@ window.addEventListener("DOMContentLoaded", () => {
         hoverOffset:30,
         backgroundColor:(ctx)=>{
           const colors=[
-            'rgba(10,42,102,1)',     // risky
-            'rgba(141,238,238,1)'    // rf (#8DEEEE)
+            'rgba(10,42,102,1)',
+            'rgba(141,238,238,1)'
           ];
 
           const active = ctx.chart._active;
@@ -343,8 +352,21 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }]
   });
+}
 
-});
+// ❌ KHÔNG dùng DOMContentLoaded nữa
+// 👉 vì div đang display:none
+
+// ✅ gọi function này khi bạn SHOW COP
+function showCOP(){
+  const cop = document.getElementById("cop");
+  cop.style.display = "block";
+
+  // delay nhẹ để chart render đúng
+  setTimeout(()=>{
+    renderCOPChart();
+  },100);
+}
 </script>
 </div>
     <!--  -->
