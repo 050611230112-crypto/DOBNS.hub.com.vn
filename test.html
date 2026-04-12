@@ -167,7 +167,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const table = document.getElementById("orpTable");
     const rows = table.querySelectorAll("tr");
-    const select = document.getElementById("optionSelect1");
+    const select = document.getElementById("optionSelect");
 
     let pieChart;
     let hasAnimated = false;
@@ -343,7 +343,7 @@ window.addEventListener("DOMContentLoaded", () => {
       <option value="9">Option 10</option>
     </select>
 
-    <canvas id="pieChart" height="350" style="max-width:500px;margin:20px auto;"></canvas>
+    <canvas id="pieChart1" height="350" style="max-width:500px;margin:20px auto;"></canvas>
   </div>
 
 </div>
@@ -383,7 +383,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if(pieChart) pieChart.destroy();
 
-        pieChart = new Chart(document.getElementById("pieChart"),{
+        pieChart = new Chart(document.getElementById("pieChart1"),{
             type:'pie',
             data:{
                 labels:labels,
