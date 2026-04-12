@@ -288,20 +288,20 @@ window.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
+<!-- 🔥 NHỚ THÊM CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-// Khai báo biến toàn cục để quản lý biểu đồ
 let copChartInstance = null;
 
 function drawCopChart() {
   const row = document.querySelector("#copTable tr:last-child").querySelectorAll("td");
 
-  // Lấy dữ liệu và xử lý %
   const y = parseFloat(row[4].innerText.replace('%',''));
   const rf = parseFloat(row[5].innerText.replace('%',''));
 
-  const ctx = document.getElementById("copPieChart");
+  const ctx = document.getElementById("copPieChart").getContext('2d'); // 🔥 FIX
 
-  // Nếu biểu đồ đã tồn tại thì hủy đi để vẽ mới (tránh lỗi đè chart)
   if (copChartInstance) {
     copChartInstance.destroy();
   }
@@ -321,6 +321,9 @@ function drawCopChart() {
     },
     options: {
       responsive: true,
+      animation: {
+        animateScale: true // 🔥 thêm animation cho đẹp
+      },
       plugins: {
         legend: { position: 'bottom' },
         title: {
@@ -332,27 +335,25 @@ function drawCopChart() {
   });
 }
 
-// SỬA LẠI HÀM SHOWPORT CỦA BẠN
 function showPort(id) {
-  // Ẩn tất cả
   document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
   
-  // Hiện phần được chọn
   const target = document.getElementById(id);
   target.style.display = 'block';
-  
-  // Nếu mở phần 'cop' thì mới gọi hàm vẽ biểu đồ
+
+  // 🔥 FIX: delay 1 chút để canvas render rồi mới vẽ
   if (id === 'cop') {
-    drawCopChart();
+    setTimeout(drawCopChart, 100);
   }
-  
-  // (Tùy chọn) Vẽ cho các phần khác nếu bạn muốn
+
   if (id === 'orp') {
-    // Nếu bạn có hàm vẽ orp thì gọi ở đây
-    if(typeof drawChart === "function") drawChart(parseInt(document.getElementById("optionSelect").value));
+    if(typeof drawChart === "function") {
+      drawChart(parseInt(document.getElementById("optionSelect").value));
+    }
   }
 }
 </script>
+  
 </div>
     <!--  -->
  <div id="allocation" class="card content" style="display:none">
