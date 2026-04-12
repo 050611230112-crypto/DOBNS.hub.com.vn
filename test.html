@@ -269,9 +269,10 @@ window.addEventListener("DOMContentLoaded", () => {
     <img src="CAL.jpg">
 </div>
   <!-- complete -->
-  <div id="cop" class="card content" style="display:none">
+<div id="cop" class="card content" style="display:none">
   <h3>Optimal Complete Portfolio</h3>
-  <table border="1">
+
+  <table id="copTable" border="1">
     <tr>
       <th>A</th><th>E(Rp)</th><th>Rf</th><th>σ(p)</th>
       <th>y*</th><th>1-y*</th><th>E(Rc)</th><th>σ(c)</th><th>U</th>
@@ -281,70 +282,76 @@ window.addEventListener("DOMContentLoaded", () => {
       <td>99.35%</td><td>0.65%</td><td>2.4208%</td><td>6.5266%</td><td>0.0134</td>
     </tr>
   </table>
-    <h4 style="margin-top:30px;">Capital Allocation</h4>
-<canvas id="copPieChart" height="300" style="max-width:400px;margin:20px auto;"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-    <script>
-window.addEventListener("DOMContentLoaded", () => {
 
-  const copTable = document.querySelector("#cop table");
-  const row = copTable.querySelectorAll("tr")[1].querySelectorAll("td");
+  <div style="max-width:400px; margin: 20px auto;">
+    <canvas id="copPieChart"></canvas>
+  </div>
+</div>
 
-  // lấy dữ liệu
-  const y = parseFloat(row[4].innerText.replace('%','').trim());
-  const rf = parseFloat(row[5].innerText.replace('%','').trim());
+<script>
+// Khai báo biến toàn cục để quản lý biểu đồ
+let copChartInstance = null;
 
-  new Chart(document.getElementById("copPieChart"),{
-    type:'pie',
-    data:{
-      labels:["Risky Portfolio (y*)","Risk-Free Asset (1 - y*)"],
-      datasets:[{
-        data:[y, rf],
-        hoverOffset:30,
-        backgroundColor:(ctx)=>{
-          const colors=[
-            'rgba(10,42,102,1)',     // risky
-            'rgba(141,238,238,1)'    // rf (#8DEEEE)
-          ];
+function drawCopChart() {
+  const row = document.querySelector("#copTable tr:last-child").querySelectorAll("td");
 
-          const active = ctx.chart._active;
+  // Lấy dữ liệu và xử lý %
+  const y = parseFloat(row[4].innerText.replace('%',''));
+  const rf = parseFloat(row[5].innerText.replace('%',''));
 
-          if(!active || active.length===0) return colors[ctx.dataIndex];
+  const ctx = document.getElementById("copPieChart");
 
-          return active[0].index===ctx.dataIndex
-            ? colors[ctx.dataIndex]
-            : colors[ctx.dataIndex].replace("1)","0.2)");
-        }
+  // Nếu biểu đồ đã tồn tại thì hủy đi để vẽ mới (tránh lỗi đè chart)
+  if (copChartInstance) {
+    copChartInstance.destroy();
+  }
+
+  copChartInstance = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["Risky Portfolio (y*)", "Risk-Free Asset (1 - y*)"],
+      datasets: [{
+        data: [y, rf],
+        backgroundColor: [
+          'rgba(10,42,102,1)',
+          'rgba(141,238,238,1)'
+        ],
+        hoverOffset: 20
       }]
     },
-    options:{
-      responsive:true,
-      maintainAspectRatio:true,
-      plugins:{
-        legend:{position:'bottom'},
-        title:{
-          display:true,
-          text:'Capital Allocation (y*)'
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        title: {
+          display: true,
+          text: 'Capital Allocation (y*)'
         }
-      },
-      interaction:{
-        mode:'nearest',
-        intersect:true
       }
-    },
-    plugins:[{
-      id:'hoverEffect',
-      afterEvent(chart,args){
-        const active = chart.getElementsAtEventForMode(
-          args.event,'nearest',{intersect:true},false
-        );
-        chart._active = active || [];
-        chart.update();
-      }
-    }]
+    }
   });
+}
 
-});
+// SỬA LẠI HÀM SHOWPORT CỦA BẠN
+function showPort(id) {
+  // Ẩn tất cả
+  document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
+  
+  // Hiện phần được chọn
+  const target = document.getElementById(id);
+  target.style.display = 'block';
+  
+  // Nếu mở phần 'cop' thì mới gọi hàm vẽ biểu đồ
+  if (id === 'cop') {
+    drawCopChart();
+  }
+  
+  // (Tùy chọn) Vẽ cho các phần khác nếu bạn muốn
+  if (id === 'orp') {
+    // Nếu bạn có hàm vẽ orp thì gọi ở đây
+    if(typeof drawChart === "function") drawChart(parseInt(document.getElementById("optionSelect").value));
+  }
+}
 </script>
 </div>
     <!--  -->
