@@ -33,7 +33,62 @@
             <button class="btn-register">Mở Tài Khoản</button>
         </div>
 </header>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Market - DOBN CAPITAL</title>
+    <!-- Trỏ chính xác vào thư mục css/ -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body style="padding-top: 100px;">
 
+    <header>
+        <div class="logo"><span class="logo-text">DOBN <span class="gold-text">CAPITAL</span></span></div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
+            <a href="about.html"><i class="fas fa-building"></i> About Us</a>
+            <a href="customer.html" class="highlight-nav"><i class="fas fa-user-tie"></i> Services</a>
+            <a href="stock.html"><i class="fas fa-chart-line"></i> Stock</a>
+            <a href="esg.html"><i class="fas fa-leaf"></i> ESG</a>
+            <a href="news.html" class="active"><i class="fas fa-newspaper"></i> News</a>
+            <a href="support.html"><i class="fas fa-headset"></i> Support</a>
+        </nav>
+        <div class="auth-buttons">
+            <button class="btn-login">Đăng Nhập</button>
+            <button class="btn-register">Mở Tài Khoản</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Nội dung tin tức -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>TIN TỨC & PHÂN TÍCH THỊ TRƯỜNG</h2>
+                <p>Cập nhật chuyển động dòng tiền vĩ mô và xu hướng doanh nghiệp mới nhất</p>
+            </div>
+            <!-- Bố cục lưới danh sách bài viết -->
+            <div class="gallery" style="grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                <div class="card" style="background: #0f172a; padding: 20px;">
+                    <span class="badge">Nhận định vĩ mô</span>
+                    <h4 style="margin: 10px 0;">Phân tích tác động dòng vốn FDI vào thị trường chứng khoán Việt Nam năm 2026</h4>
+                    <p style="font-size: 13px; color: #94a3b8;">Dòng vốn dịch chuyển mạnh mẽ từ các quốc gia khu vực tạo động lực thúc đẩy các nhóm ngành bất động sản khu công nghiệp...</p>
+                </div>
+                <div class="card" style="background: #0f172a; padding: 20px;">
+                    <span class="badge" style="background:rgba(16, 185, 129, 0.1); color:#10b981; border-color:#10b981;">Doanh nghiệp</span>
+                    <h4 style="margin: 10px 0;">FPT công bố lợi nhuận tăng trưởng đột phá nhờ các hợp đồng AI toàn cầu</h4>
+                    <p style="font-size: 13px; color: #94a3b8;">Khối công nghệ tiếp tục duy trì vị thế dẫn dắt chuỗi giá trị tăng trưởng bền vững của tập đoàn trong quý mới...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tải tệp javascript dùng chung -->
+    <script src="js/main.js"></script>
+</body>
+</html>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
 <script>
