@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Dịch Vụ Khách Hàng - DOBN Capital</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen p-6">
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="text-emerald-400 hover:underline mb-6 inline-block">← Quay lại trang chủ</a>
+        
+        <h1 class="text-3xl font-black text-emerald-400 mb-2">HỆ THỐNG HOẠCH ĐỊNH TÀI CHÍNH CÁ NHÂN</h1>
+        <p class="text-slate-400 mb-8">Vui lòng hoàn thành bảng thông tin dưới đây để nhận ngay Portfolio phân tích miễn phí.</p>
+
+        <form id="financialForm" class="space-y-8 bg-slate-800 p-8 rounded-2xl border border-slate-700">
+            <div>
+                <h2 class="text-xl font-bold text-amber-400 border-b border-slate-700 pb-2 mb-4">1. Thông Tin Khách Hàng</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Họ và Tên *</label>
+                        <input type="text" id="custName" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white focus:outline-emerald-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Số Điện Thoại *</label>
+                        <input type="tel" id="custPhone" required class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white focus:outline-emerald-400">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-amber-400 border-b border-slate-700 pb-2 mb-4">2. Báo Cáo Tài Sản & Nợ Hiện Tại (VND)</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Tổng Giá Trị Tài Sản (Tiền mặt, BĐS, Vàng...)</label>
+                        <input type="number" id="custAssets" value="0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white focus:outline-emerald-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-1">Tổng Nợ Hiện Tại (Vay ngân hàng, thẻ tín dụng...)</label>
+                        <input type="number" id="custDebts" value="0" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white focus:outline-emerald-400">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-amber-400 border-b border-slate-700 pb-2 mb-4">3. Khảo Sát Mục Tiêu & Khẩu Vị Rủi Ro</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Mục tiêu đầu tư ưu tiên lớn nhất của bạn là gì?</label>
+                        <select id="q1" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                            <option value="2">Bảo toàn vốn tối đa, nhận cổ tức ổn định</option>
+                            <option value="5">Tăng trưởng vừa phải, có thể chịu rung lắc nhẹ</option>
+                            <option value="8">Tăng trưởng tài sản vượt trội bằng cổ phiếu vốn hóa vừa và nhỏ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Khi thị trường sụt giảm 20%, bạn sẽ hành động thế nào?</label>
+                        <select id="q2" class="w-full bg-slate-900 border border-slate-700 rounded p-2 text-white">
+                            <option value="1">Hoảng loạn, bán ngay lập tức cắt lỗ</option>
+                            <option value="4">Tiếp tục nắm giữ xem xét tình hình</option>
+                            <option value="7">Mua gom thêm tích sản với giá rẻ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-emerald-400 text-slate-900 font-bold rounded-xl hover:brightness-110 transition">
+                XÁC NHẬN VÀ XUẤT PROFILE PORTFOLIO ĐỀ XUẤT (PDF)
+            </button>
+        </form>
+
+        <div id="pdfTemplate" class="hidden mt-12 bg-white text-slate-900 p-8 rounded-xl max-w-3xl mx-auto shadow-2xl">
+            <div class="text-center border-b-2 border-emerald-600 pb-4 mb-6">
+                <h2 class="text-2xl font-black text-emerald-700 tracking-wider">DOBN CAPITAL PORTFOLIO MANAGEMENT</h2>
+                <p class="text-gray-500 text-xs">Báo Cáo Hoạch Định & Khuyến Nghị Mã Cổ Phiếu Cá Nhân Hóa</p>
+            </div>
+            <div class="space-y-4 text-sm">
+                <p><strong>Khách hàng:</strong> <span id="pdfName" class="text-emerald-700 font-bold"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="pdfPhone"></span></p>
+                <div class="grid grid-cols-2 bg-gray-100 p-3 rounded">
+                    <p><strong>Tổng Tài Sản:</strong> <span id="pdfAssets" class="text-green-600 font-semibold"></span> VND</p>
+                    <p><strong>Tổng Nợ:</strong> <span id="pdfDebts" class="text-red-600 font-semibold"></span> VND</p>
+                </div>
+                <p><strong>Khẩu vị đầu tư:</strong> <span id="pdfRisk" class="font-bold underline"></span></p>
+                
+                <div class="mt-6">
+                    <h3 class="font-bold text-md text-amber-600 mb-3">🎯 TOP 5 MÃ CỔ PHIẾU GỢI Ý PHÙ HỢP NHẤT:</h3>
+                    <p class="text-xs text-gray-500 mb-4">* Click vào Logo của mã cổ phiếu dưới đây để đi trực tiếp tới File Báo Cáo Phân Tích Cơ Bản chi tiết.</p>
+                    <div id="recommendedStocksList" class="grid grid-cols-5 gap-4 text-center">
+                        </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-xs text-gray-400 border-t pt-4">
+                Báo cáo được khởi tạo tự động bởi AI Engine của DOBN Capital ngày 01/06/2026.
+            </div>
+        </div>
+        
+        <div id="downloadBtnContainer" class="hidden text-center mt-4">
+            <button onclick="downloadPDFFile()" class="px-6 py-2 bg-amber-500 text-slate-900 font-bold rounded-lg shadow hover:bg-amber-400">
+                📥 Tải xuống File PDF của bạn
+            </button>
+        </div>
+    </div>
+
+    <script src="js/recommendation.js"></script>
+    <script>
+        document.getElementById('financialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Lấy thông tin từ form
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const assets = parseFloat(document.getElementById('custAssets').value);
+            const debts = parseFloat(document.getElementById('custDebts').value);
+            const score = parseInt(document.getElementById('q1').value) + parseInt(document.getElementById('q2').value);
+
+            // 1. Chạy thuật toán gợi ý mã cổ phiếu dựa trên điểm rủi ro
+            const selectedStocks = getRecommendations(score);
+
+            // 2. Điền dữ liệu vào form hiển thị để xuất PDF
+            document.getElementById('pdfName').innerText = name;
+            document.getElementById('pdfPhone').innerText = phone;
+            document.getElementById('pdfAssets').innerText = assets.toLocaleString('vi-VN');
+            document.getElementById('pdfDebts').innerText = debts.toLocaleString('vi-VN');
+            
+            let riskText = "Cân Bằng";
+            if(score <= 5) riskText = "An Toàn (Phòng Thủ)";
+            if(score > 10) riskText = "Tăng Trưởng Mạnh Mẽ";
+            document.getElementById('pdfRisk').innerText = riskText;
+
+            // 3. Đổ 5 mã cổ phiếu cùng link trực tiếp vào template
+            const container = document.getElementById('recommendedStocksList');
+            container.innerHTML = '';
+            selectedStocks.forEach(stock => {
+                container.innerHTML += `
+                    <a href="pdfs/${stock.code}.pdf" target="_blank" class="block border p-2 rounded hover:border-emerald-500 transition bg-white shadow-sm cursor-pointer">
+                        <img src="${stock.logo}" alt="${stock.code}" class="mx-auto w-10 h-10 mb-1 rounded">
+                        <div class="font-bold text-slate-900 text-sm">${stock.code}</div>
+                        <div class="text-[10px] text-gray-500">${stock.name}</div>
+                    </a>
+                `;
+            });
+
+            // Hiện vùng chứa để tải PDF
+            document.getElementById('pdfTemplate').classList.remove('hidden');
+            document.getElementById('downloadBtnContainer').classList.remove('hidden');
+
+            // 4. Lưu thông tin ngay lập tức sang Google Sheet qua API/Form trung gian
+            sendToGoogleSheet({name, phone, assets, debts, riskScore: score});
+        });
+
+        // Hàm xử lý xuất HTML sang PDF bằng html2canvas + jspdf
+        function downloadPDFFile() {
+            const { jsPDF } = window.jspdf;
+            const element = document.getElementById('pdfTemplate');
+            
+            html2canvas(element, { scale: 2 }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210; // Kích thước khổ A4 rộng
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save(`DOBN_Capital_Portfolio_${document.getElementById('pdfName').innerText}.pdf`);
+            });
+        }
+    </script>
+</body>
+</html>
