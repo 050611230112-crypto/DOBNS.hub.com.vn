@@ -2,110 +2,130 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOBN CAPITAL - Homepage</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Thị Trường Cổ Phiếu - DOBN Capital</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="bg-slate-900 text-white min-h-screen p-6">
+    <div class="max-w-6xl mx-auto">
+        <a href="index.html" class="text-emerald-400 hover:underline mb-6 inline-block">← Quay lại trang chủ</a>
+        <h1 class="text-3xl font-black text-amber-400 mb-8 text-center">TRUNG TÂM PHÂN TÍCH DOANH NGHIỆP</h1>
 
-    <header>
-        <div class="logo">
-            <span class="logo-text">DOBN <span class="gold-text">CAPITAL</span></span>
+        <div class="flex justify-center space-x-4 mb-12">
+            <button onclick="switchTab('analysis')" id="tabBtnAnalysis" class="px-6 py-3 font-bold rounded-xl bg-emerald-500 text-slate-900 transition shadow-lg">
+                📁 Analysis Report (32 Mã Báo Cáo)
+            </button>
+            <button onclick="switchTab('price')" id="tabBtnPrice" class="px-6 py-3 font-bold rounded-xl bg-slate-800 border border-slate-700 text-white transition">
+                📈 Stock Price (Biểu Đồ Biến Động Giá)
+            </button>
         </div>
-        <nav>
-            <a href="index.html" class="active"><i class="fas fa-home"></i> Homepage</a>
-            <a href="about.html"><i class="fas fa-building"></i> About Us</a>
-            <a href="products.html"><i class="fas fa-briefcase"></i> Products</a>
-            <a href="customer.html" class="highlight-nav"><i class="fas fa-user-tie"></i> Services</a>
-            <a href="stocks.html"><i class="fas fa-chart-line"></i> Stock</a>
-            <a href="esg.html"><i class="fas fa-leaf"></i> ESG </a>
-    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
-            <a href="support.html"><i class="fas fa-headset"></i> Support</a>
-        </nav>
-        <div class="auth-buttons">
-            <button class="btn-login">Đăng Nhập</button>
-            <button class="btn-register">Mở Tài Khoản</button>
-        </div>
-    </header>
 
-    <div class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <span class="badge">INVESTMENT FUND MANAGEMENT</span>
-            <h1>Chào mừng đến với DOBN CAPITAL</h1>
-            <p class="slogan">Dedication • Opportunity • Beyond • Network</p>
-            <div class="hero-actions">
-                <a href="customer.html" class="btn-primary">Thiết Kế Kế Hoạch Tài Chính 📋</a>
-                <a href="products.html" class="btn-secondary">Khám Phá Dịch Vụ</a>
+        <div id="analysisSection" class="block">
+            <h2 class="text-xl font-bold text-slate-300 mb-6 text-center">Chọn mã cổ phiếu để xem báo cáo phân tích định giá chi tiết (PDF):</h2>
+            <div id="grid32Stocks" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+                </div>
+        </div>
+
+        <div id="priceSection" class="hidden max-w-3xl mx-auto bg-slate-800 p-6 rounded-2xl border border-slate-700">
+            <h2 class="text-xl font-bold text-slate-200 mb-4">Tra Cứu Biến Động Giá Cổ Phiếu</h2>
+            <div class="mb-6">
+                <label class="block text-sm text-slate-400 mb-1">Chọn công ty hoặc mã cổ phiếu cần xem:</label>
+                <select id="stockPriceSelect" onchange="updateChartPrice()" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-white">
+                    </select>
+            </div>
+            <div class="relative bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <canvas id="priceLineChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        
-        <div class="card" style="margin-top: -40px; position: relative; z-index: 10;">
-            <h3>OUR BUSINESS</h3>
-            <div class="gallery">
-                <div class="gallery-item"><img src="DOBN/1.jpg"><div class="gallery-desc">Môi Giới Chứng Khoán</div></div>
-                <div class="gallery-item"><img src="DOBN/2.jpg"><div class="gallery-desc">Quản Lý Danh Mục Ủy Thác</div></div>
-                <div class="gallery-item"><img src="DOBN/3.jpg"><div class="gallery-desc">Báo Cáo Phân Tích Cơ Bản</div></div>
-                <div class="gallery-item"><img src="DOBN/4.jpg"><div class="gallery-desc">Tư Vấn Tín Dụng Xanh</div></div>
-                <div class="gallery-item"><img src="DOBN/5.jpg"><div class="gallery-desc">Công Nghệ Đầu Tư AI</div></div>
-                <div class="gallery-item"><img src="DOBN/6.jpg"><div class="gallery-desc">Ngân Hàng Đầu Tư</div></div>
-            </div>
-        </div>
-
-        <div class="video-wrapper">
-            <div class="video-card">
-                <video class="video" autoplay muted loop playsinline>
-                    <source src="intro.mp4" type="video/mp4">
-                </video>
-                <div class="video-overlay"><div class="video-text">DOBN CAPITAL CORPORATE INTRODUCTION</div></div>
-            </div>
-        </div>
-
-        <div class="grid-two-columns">
-            <div class="card academic-card">
-                <h3><i class="fas fa-university text-gold"></i> GENERAL INFORMATION</h3>
-                <div class="academic-content">
-                    <p class="university-title">HO CHI MINH UNIVERSITY OF BANKING</p>
-                    <p><strong>Môn học:</strong> Nghiệp vụ ngân hàng đầu tư - L16</p>
-                    <p><strong>Giảng viên hướng dẫn:</strong> Dr. Vũ Thị Anh Thư</p>
-                </div>
-            </div>
-
-            <div class="card member-card">
-                <h3><i class="fas fa-users text-gold"></i> GROUP MEMBER 03</h3>
-                <div class="table-responsive">
-                    <table>
-                        <thead>
-                            <tr><th>FULL NAME</th><th>STUDENT ID</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Ngô Quốc Bảo</td><td><code class="id-badge">050611230112</code></td></tr>
-                            <tr><td>Trần Tuấn Giang</td><td><code class="id-badge">050611230256</code></td></tr>
-                            <tr><td>Nguyễn Thị Minh Khuê</td><td><code class="id-badge">050611230514</code></td></tr>
-                            <tr><td>Phạm Đăng Trí</td><td><code class="id-badge">050611231412</code></td></tr> 
-                            <tr><td>Đinh Mai Thảo</td><td><code class="id-badge">050611231138</code></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVRTLD2GMN"></script>
+    <script src="js/recommendation.js"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-VVRTLD2GMN');
-    </script>
+        // Khởi tạo đồ thị toàn cục
+        let myChart = null;
 
-    <footer>
-        <p>© 2026 DOBN CAPITAL - Academic Project Website. All Rights Reserved.</p>
-    </footer>
+        // Chuyển đổi qua lại giữa 2 Option
+        function switchTab(tab) {
+            if(tab === 'analysis') {
+                document.getElementById('analysisSection').classList.remove('hidden');
+                document.getElementById('priceSection').classList.add('hidden');
+                document.getElementById('tabBtnAnalysis').className = "px-6 py-3 font-bold rounded-xl bg-emerald-500 text-slate-900 shadow-lg";
+                document.getElementById('tabBtnPrice').className = "px-6 py-3 font-bold rounded-xl bg-slate-800 border border-slate-700 text-white";
+            } else {
+                document.getElementById('analysisSection').classList.add('hidden');
+                document.getElementById('priceSection').classList.remove('hidden');
+                document.getElementById('tabBtnPrice').className = "px-6 py-3 font-bold rounded-xl bg-emerald-500 text-slate-900 shadow-lg";
+                document.getElementById('tabBtnAnalysis').className = "px-6 py-3 font-bold rounded-xl bg-slate-800 border border-slate-700 text-white";
+                initChartInstance(); // Khởi tạo đồ thị
+            }
+        }
+
+        // Tự động tải danh sách 32 mã cổ phiếu lên giao diện khi mở trang
+        window.onload = function() {
+            const grid = document.getElementById('grid32Stocks');
+            const selectDropdown = document.getElementById('stockPriceSelect');
+            
+            // Đổ dữ liệu từ mảng 32 mã (đã khai báo trong file recommendation.js)
+            stockDatabase.forEach(stock => {
+                // Tạo giao diện grid cho báo cáo phân tích
+                grid.innerHTML += `
+                    <a href="pdfs/${stock.code}.pdf" target="_blank" class="p-3 bg-slate-800 border border-slate-700 rounded-xl text-center hover:border-amber-400 transition transform hover:-translate-y-1 block">
+                        <img src="${stock.logo}" alt="${stock.code}" class="mx-auto w-10 h-10 mb-2 rounded bg-white">
+                        <div class="font-bold text-white">${stock.code}</div>
+                        <div class="text-[11px] text-slate-400 truncate">${stock.name}</div>
+                    </a>
+                `;
+                // Đổ vào dropdown box xem giá
+                selectDropdown.innerHTML += `<option value="${stock.code}">${stock.code} - ${stock.name}</option>`;
+            });
+        };
+
+        // Hàm khởi tạo Chart.js để vẽ biểu đồ line chart
+        function initChartInstance() {
+            const ctx = document.getElementById('priceLineChart').getContext('2d');
+            if (myChart) myChart.destroy(); // Xóa chart cũ nếu có
+            
+            // Giả lập dữ liệu giá 5 phiên gần nhất
+            const dummyLabels = ["Phiên 1", "Phiên 2", "Phiên 3", "Phiên 4", "Phiên 5"];
+            const dummyData = [120, 122, 119, 125, 128]; // Mẫu giá mặc định
+
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dummyLabels,
+                    datasets: [{
+                        label: 'Giá Đóng Cửa (Nghìn VND)',
+                        data: dummyData,
+                        borderColor: '#10b981', // Màu xanh lục emerald cực đẹp chuyên nghiệp
+                        borderWidth: 3,
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } },
+                        x: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } }
+                    },
+                    plugins: { legend: { labels: { color: '#fff' } } }
+                }
+            });
+        }
+
+        // Thay đổi biểu đồ khi người dùng chọn mã cổ phiếu khác nhau
+        function updateChartPrice() {
+            if(!myChart) return;
+            const selectedCode = document.getElementById('stockPriceSelect').value;
+            
+            // Giả lập thuật toán sinh số ngẫu nhiên cho biểu đồ sống động tùy từng mã
+            const randomData = Array.from({length: 5}, () => Math.floor(Math.random() * (150 - 50 + 1)) + 50);
+            
+            myChart.data.datasets[0].label = `Giá cổ phiếu ${selectedCode}`;
+            myChart.data.datasets[0].data = randomData;
+            myChart.update(); // Làm mới biểu đồ hành động giá
+        }
+    </script>
 </body>
 </html>
